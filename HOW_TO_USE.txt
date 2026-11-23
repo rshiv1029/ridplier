@@ -1,0 +1,15 @@
+PA JOB HELPER: how to use
+
+1. Double-click "start_mac.command". (First time only: right-click it, choose Open, then Open again.
+   Setup takes a few minutes. Later it starts in seconds.)
+2. A page opens in your browser. Click "My info", fill in your details, upload your resume, Save.
+3. On the Jobs page, newest jobs are at the top. Click "Apply" on one.
+4. A new browser window opens. Log in or create the hospital account the first time.
+   The app fills in what it safely can. Questions about licenses, DEA, or anything
+   needing your own answer are outlined in ORANGE. Answer those yourself
+   (choose "pending" for licenses that are still in process).
+5. Click Next in that window yourself. The app fills the next page automatically.
+6. Click Submit yourself, then press "I applied" on the job card.
+
+Check the page each morning. It looks for new jobs every time you open it.
+To quit, close the black Terminal window.

@@ -1,0 +1,51 @@
+name: Scheduled PA Job Scraper & Notifier
+
+on:
+  schedule:
+    # Runs 4 times a day: 8:00 AM, 12:00 PM, 5:00 PM, 9:00 PM EST (UTC: 13, 17, 22, 2)
+    - cron: '0 13,17,22,2 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI anytime
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  scrape-and-notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install httpx
+
+      - name: Run Job Scraper & Notifier
+        env:
+          TMOBILE_NUMBER: ${{ secrets.TMOBILE_NUMBER }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: |
+          python run_scraper.py
+
+      - name: Commit & push updated state and dashboard
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add seen.json docs/
+          if git diff --staged --quiet; then
+            echo "No changes in jobs or seen state to commit."
+          else
+            git commit -m "Auto-update PA job listings and seen state [skip ci]"
+            git push
+          fi

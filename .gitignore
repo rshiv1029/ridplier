@@ -1,0 +1,23 @@
+# Virtual Environment
+.venv/
+env/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Browser profiles & Playwright artifacts
+chrome_profile/
+.playwright/
+
+# Sensitive local personal files & credentials
+.env
+Singh_RIdhi.pdf
+profile.json
+resume_data.json
+
+# Local temp logs
+*.log
+last_check.txt
