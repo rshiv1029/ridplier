@@ -41,7 +41,7 @@ def fetch_nyp_jobs() -> List[JobPosting]:
 
                     is_friendly, reason = evaluate_new_grad(title)
                     ext_path = item.get("externalPath", "")
-                    full_url = f"https://nyp.wd1.myworkdayjobs.com/nypcareers{ext_path}"
+                    full_url = f"https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers{ext_path}"
                     req_id = ext_path.split("_")[-1] if "_" in ext_path else ext_path
                     location = item.get("locationsText", "NYC Metro")
 

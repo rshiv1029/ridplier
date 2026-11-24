@@ -42,7 +42,7 @@ def fetch_adventist_jobs() -> List[JobPosting]:
 
                     is_friendly, reason = evaluate_new_grad(title)
                     ext_path = item.get("externalPath", "")
-                    full_url = f"https://adventisthealthcare.wd1.myworkdayjobs.com/AdventistHealthCareCareers{ext_path}"
+                    full_url = f"https://adventisthealthcare.wd1.myworkdayjobs.com/en-US/AdventistHealthCareCareers{ext_path}"
                     req_id = ext_path.split("_")[-1] if "_" in ext_path else ext_path
                     location = item.get("locationsText", "Rockville / Silver Spring, MD")
 
