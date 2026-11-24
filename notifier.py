@@ -8,22 +8,33 @@ from scrapers.models import JobPosting
 DEFAULT_DASHBOARD_URL = "https://rshiv1029.github.io/ridplier/"
 
 def send_tmobile_sms(phone_digits: str, message: str, gmail_user: str, gmail_password: str) -> bool:
-    """Send SMS via T-Mobile email-to-SMS gateway: [10-digits]@tmomail.net"""
+    """Send SMS via T-Mobile email-to-SMS gateway: [10-digits]@tmomail.net with fallback to STARTTLS"""
     recipient = f"{phone_digits.strip()}@tmomail.net"
     msg = MIMEText(message, "plain", "utf-8")
     msg["From"] = gmail_user
     msg["To"] = recipient
     msg["Subject"] = ""  # Keep subject empty so SMS doesn't waste characters
 
-    try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+    # Try Port 465 (SSL) first, then Port 587 (STARTTLS)
+    for port, use_ssl in [(465, True), (587, False)]:
+        try:
+            print(f"[Notifier] Connecting to smtp.gmail.com:{port} ({'SSL' if use_ssl else 'STARTTLS'})...")
+            if use_ssl:
+                server = smtplib.SMTP_SSL("smtp.gmail.com", port, timeout=15)
+            else:
+                server = smtplib.SMTP("smtp.gmail.com", port, timeout=15)
+                server.starttls()
+
             server.login(gmail_user, gmail_password)
             server.sendmail(gmail_user, [recipient], msg.as_string())
-        print(f"[Notifier] SMS successfully sent to {recipient}")
-        return True
-    except Exception as e:
-        print(f"[Notifier] Failed to send SMS via SMTP: {e}")
-        return False
+            server.quit()
+            print(f"[Notifier] ✅ SMS successfully delivered to gateway: {recipient}")
+            return True
+        except Exception as e:
+            print(f"[Notifier] Attempt on port {port} failed: {e}")
+
+    print(f"[Notifier] ❌ All SMTP attempts failed for {recipient}")
+    return False
 
 def format_sms_message(job: JobPosting) -> str:
     """Format a clean, concise SMS suitable for a phone screen."""
@@ -65,6 +76,11 @@ def notify_new_jobs(new_jobs: List[JobPosting], dry_run: bool = False):
     pw = os.getenv("GMAIL_APP_PASSWORD")
     dashboard_url = os.getenv("DASHBOARD_URL", DEFAULT_DASHBOARD_URL)
 
+    # Diagnostic logging (safely masked)
+    print(f"[Notifier Diagnostic] TMOBILE_NUMBER found: {bool(phone)} ({phone[:3]}*** if set)")
+    print(f"[Notifier Diagnostic] GMAIL_USER found: {bool(user)} ({user.split('@')[0][:2]}*** if set)")
+    print(f"[Notifier Diagnostic] GMAIL_APP_PASSWORD found: {bool(pw)} (length: {len(pw) if pw else 0})")
+
     if not new_jobs:
         print("[Notifier] No new jobs to notify.")
         return
@@ -73,6 +89,9 @@ def notify_new_jobs(new_jobs: List[JobPosting], dry_run: bool = False):
     if not notifiable:
         print("[Notifier] No new-grad eligible jobs to notify.")
         return
+
+    if not (phone and user and pw):
+        print("⚠️ [Notifier Warning] Credentials missing! TMOBILE_NUMBER, GMAIL_USER, or GMAIL_APP_PASSWORD not passed.")
 
     messages_to_send = []
 
