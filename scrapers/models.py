@@ -13,6 +13,7 @@ class JobPosting:
     is_new_grad_friendly: bool
     match_reason: str
     hub: str  # "MD" or "NYC"
+    probability: str = "moderate"  # "high", "moderate", "lower"
     raw_data: Optional[Dict[str, Any]] = None
 
     @classmethod

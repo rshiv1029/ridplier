@@ -11,6 +11,23 @@ def format_email_html(jobs: List[JobPosting], dashboard_url: str) -> str:
     """Generate a clean, mobile-optimized HTML email card for iPhone Mail / Gmail."""
     cards_html = ""
     for j in jobs:
+        prob = j.probability or "moderate"
+        if prob == "high":
+            badge_bg = "rgba(16, 185, 129, 0.15)"
+            badge_color = "#34d399"
+            badge_border = "rgba(16, 185, 129, 0.4)"
+            badge_label = "🟢 High Chance (New Grad Welcome)"
+        elif prob == "lower":
+            badge_bg = "rgba(249, 115, 22, 0.15)"
+            badge_color = "#fb923c"
+            badge_border = "rgba(249, 115, 22, 0.4)"
+            badge_label = "🟠 Lower Chance (2+ Yrs Preferred)"
+        else:
+            badge_bg = "rgba(245, 158, 11, 0.15)"
+            badge_color = "#fbbf24"
+            badge_border = "rgba(245, 158, 11, 0.4)"
+            badge_label = "🟡 Moderate Chance (1 Yr / Standard)"
+
         cards_html += f"""
         <div style="background-color: #1e293b; border-radius: 10px; padding: 18px; margin-bottom: 16px; border: 1px solid #334155;">
           <div style="color: #38bdf8; font-size: 13px; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">
@@ -22,8 +39,11 @@ def format_email_html(jobs: List[JobPosting], dashboard_url: str) -> str:
           <div style="color: #94a3b8; font-size: 14px; margin-bottom: 12px;">
             📍 {j.location} &nbsp;|&nbsp; 📅 {j.posted_date} &nbsp;|&nbsp; 💼 Full-Time
           </div>
-          <div style="background-color: rgba(16, 185, 129, 0.15); color: #34d399; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-bottom: 16px;">
-            ⭐ {j.match_reason}
+          <div style="background-color: {badge_bg}; color: {badge_color}; border: 1px solid {badge_border}; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-bottom: 10px;">
+            {badge_label}
+          </div>
+          <div style="color: #cbd5e1; font-size: 13px; margin-bottom: 16px; background-color: rgba(0,0,0,0.25); padding: 8px 12px; border-radius: 6px;">
+            💡 <strong>Match Signal:</strong> {j.match_reason}
           </div>
           <div>
             <a href="{j.url}" style="background-color: #38bdf8; color: #0f172a; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; font-size: 14px; display: inline-block;">

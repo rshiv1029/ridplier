@@ -39,11 +39,25 @@ def fetch_nyp_jobs() -> List[JobPosting]:
                     if not is_title_eligible(title):
                         continue
 
-                    is_friendly, reason = evaluate_new_grad(title)
                     ext_path = item.get("externalPath", "")
                     full_url = f"https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers{ext_path}"
                     req_id = ext_path.split("_")[-1] if "_" in ext_path else ext_path
                     location = item.get("locationsText", "NYC Metro")
+
+                    # Fetch job description for deep evaluation
+                    desc_text = ""
+                    try:
+                        detail_url = f"https://nyp.wd1.myworkdayjobs.com/wday/cxs/nyp/nypcareers{ext_path}"
+                        d_req = urllib.request.Request(detail_url, headers=headers)
+                        with urllib.request.urlopen(d_req, context=ctx, timeout=10) as d_resp:
+                            info = json.loads(d_resp.read().decode("utf-8")).get("jobPostingInfo", {})
+                            desc_text = info.get("jobDescription", "")
+                    except Exception:
+                        pass
+
+                    is_friendly, probability, reason = evaluate_new_grad(title, desc_text)
+                    if not is_friendly:
+                        continue
 
                     job = JobPosting(
                         id=JobPosting.make_id("NYP", req_id),
@@ -55,6 +69,7 @@ def fetch_nyp_jobs() -> List[JobPosting]:
                         is_new_grad_friendly=is_friendly,
                         match_reason=reason,
                         hub="NYC",
+                        probability=probability,
                         raw_data=item,
                     )
                     postings.append(job)

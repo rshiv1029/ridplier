@@ -57,7 +57,9 @@ def fetch_holy_cross_jobs() -> List[JobPosting]:
                         continue
 
                     seen_ids.add(seq_no)
-                    is_friendly, reason = evaluate_new_grad(title)
+                    is_friendly, probability, reason = evaluate_new_grad(title)
+                    if not is_friendly:
+                        continue
 
                     # Build direct job link
                     slug = re.sub(r"[^a-zA-Z0-9]+", "-", title).strip("-")
@@ -74,6 +76,7 @@ def fetch_holy_cross_jobs() -> List[JobPosting]:
                         is_new_grad_friendly=is_friendly,
                         match_reason=reason,
                         hub="MD",
+                        probability=probability,
                         raw_data=item,
                     )
                     postings.append(job)

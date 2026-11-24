@@ -63,7 +63,9 @@ def fetch_adventist_jobs() -> List[JobPosting]:
                     except Exception as err:
                         print(f"[Adventist Scraper] Could not fetch detail for {req_id}: {err}")
 
-                    is_friendly, reason = evaluate_new_grad(title, desc_text)
+                    is_friendly, probability, reason = evaluate_new_grad(title, desc_text)
+                    if not is_friendly:
+                        continue
 
                     job = JobPosting(
                         id=JobPosting.make_id("Adventist", req_id),
@@ -75,6 +77,7 @@ def fetch_adventist_jobs() -> List[JobPosting]:
                         is_new_grad_friendly=is_friendly,
                         match_reason=reason,
                         hub="MD",
+                        probability=probability,
                         raw_data=item,
                     )
                     postings.append(job)

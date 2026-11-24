@@ -132,7 +132,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     }
     .badge-md { background: rgba(129, 140, 248, 0.2); color: var(--badge-md); }
     .badge-nyc { background: rgba(244, 63, 94, 0.2); color: var(--badge-nyc); }
-    .badge-newgrad { background: rgba(16, 185, 129, 0.2); color: var(--badge-new); }
+    .badge-high { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+    .badge-moderate { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+    .badge-lower { background: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4); }
     .job-meta {
       display: flex;
       gap: 1.5rem;
@@ -143,10 +145,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     .job-reason {
       font-size: 0.85rem;
       color: #cbd5e1;
-      background: rgba(0,0,0,0.2);
-      padding: 0.5rem 0.75rem;
+      background: rgba(0,0,0,0.25);
+      padding: 0.6rem 0.85rem;
       border-radius: 6px;
-      border-left: 3px solid var(--badge-new);
     }
     .apply-btn {
       align-self: flex-start;
@@ -182,7 +183,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <button class="filter-btn active" onclick="filterJobs('all')">All Jobs</button>
     <button class="filter-btn" onclick="filterJobs('MD')">📍 Maryland (MoCo)</button>
     <button class="filter-btn" onclick="filterJobs('NYC')">🗽 NYP (NYC)</button>
-    <button class="filter-btn" onclick="filterJobs('newgrad')">⭐ Verified New Grad</button>
+    <button class="filter-btn" onclick="filterJobs('high')">🟢 High Chance</button>
+    <button class="filter-btn" onclick="filterJobs('moderate')">🟡 Moderate Chance</button>
+    <button class="filter-btn" onclick="filterJobs('lower')">🟠 Lower Chance (2+ Yrs)</button>
   </div>
 
   <div class="jobs-grid" id="jobs-container">
@@ -193,10 +196,22 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     const JOBS = __JOBS_JSON__;
     document.getElementById('total-count').textContent = JOBS.length;
 
+    function getProbBadge(p) {
+      if (p === 'high') return '<span class="badge badge-high">🟢 High Chance (New Grad Welcome)</span>';
+      if (p === 'lower') return '<span class="badge badge-lower">🟠 Lower Chance (2+ Yrs Preferred)</span>';
+      return '<span class="badge badge-moderate">🟡 Moderate Chance (1 Yr / Standard)</span>';
+    }
+
+    function getBorderColor(p) {
+      if (p === 'high') return '#10b981';
+      if (p === 'lower') return '#f97316';
+      return '#f59e0b';
+    }
+
     function renderJobs(list) {
       const c = document.getElementById('jobs-container');
       c.innerHTML = list.map(j => `
-        <div class="job-card" data-hub="${j.hub}" data-newgrad="${j.is_new_grad_friendly}">
+        <div class="job-card" data-hub="${j.hub}" data-prob="${j.probability}">
           <div class="job-top">
             <div>
               <div class="job-hospital">${j.hospital}</div>
@@ -204,14 +219,17 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             </div>
             <div class="badges">
               <span class="badge ${j.hub === 'MD' ? 'badge-md' : 'badge-nyc'}">${j.hub}</span>
-              ${j.is_new_grad_friendly ? '<span class="badge badge-newgrad">New Grad Friendly</span>' : ''}
+              ${getProbBadge(j.probability)}
             </div>
           </div>
           <div class="job-meta">
             <span>📍 ${j.location}</span>
             <span>📅 ${j.posted_date}</span>
+            <span>💼 Full-Time</span>
           </div>
-          <div class="job-reason">💡 ${j.match_reason}</div>
+          <div class="job-reason" style="border-left: 3px solid ${getBorderColor(j.probability)};">
+            💡 <strong>Match Signal:</strong> ${j.match_reason}
+          </div>
           <a class="apply-btn" href="${j.url}" target="_blank" rel="noopener noreferrer">Apply on Hospital Site ↗</a>
         </div>
       `).join('');
@@ -223,7 +241,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
       if (type === 'all') renderJobs(JOBS);
       else if (type === 'MD' || type === 'NYC') renderJobs(JOBS.filter(j => j.hub === type));
-      else if (type === 'newgrad') renderJobs(JOBS.filter(j => j.is_new_grad_friendly));
+      else if (type === 'high' || type === 'moderate' || type === 'lower') renderJobs(JOBS.filter(j => j.probability === type));
     }
 
     renderJobs(JOBS);
