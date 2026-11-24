@@ -72,6 +72,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     .stat-pill strong {
       color: var(--text);
     }
+    .sync-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      color: #38bdf8;
+    }
 
     /* Main Status Tabs */
     .status-tabs-container {
@@ -425,6 +432,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       <div class="stat-pill">📍 Montgomery County, MD + NYC Metro</div>
       <div class="stat-pill">⚡ Auto-Updated 4x Daily</div>
       <div class="stat-pill">Total Active: <strong id="total-count">0</strong></div>
+      <div class="stat-pill sync-status" id="cloud-sync-status">☁️ Connecting Cloud...</div>
     </div>
   </div>
 
@@ -463,11 +471,15 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   <script>
     const JOBS = __JOBS_JSON__;
     const STORAGE_KEY = 'ridplier_job_status_v1';
+    
+    // Supabase Cloud Sync Configuration
+    const SUPABASE_URL = "https://lmfjzjkkaytnrmiqadut.supabase.co";
+    const SUPABASE_KEY = "sb_publishable__2yNARQiGOBhIIariC0t-Q_LSfzaIcc";
 
     let currentStatusTab = 'to_apply'; // 'to_apply' | 'applied' | 'dismissed'
     let currentFilter = 'all';         // 'all' | 'MD' | 'NYC' | 'high' | 'moderate' | 'lower'
 
-    // Status persistence in localStorage
+    // Local Storage helpers (Immediate 0ms UI reactivity)
     function getStoredStatuses() {
       try {
         const data = localStorage.getItem(STORAGE_KEY);
@@ -485,14 +497,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       }
     }
 
-    function getJobStatus(jobId) {
-      const statuses = getStoredStatuses();
-      if (statuses[jobId] && statuses[jobId].status) {
-        return statuses[jobId];
-      }
-      return { status: 'to_apply', date: null };
-    }
-
     function showToast(msg) {
       const toast = document.getElementById('toast');
       toast.textContent = msg;
@@ -500,7 +504,82 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       setTimeout(() => toast.classList.remove('show'), 2200);
     }
 
-    // User Action: Mark as Applied
+    // --- Supabase Cloud REST API Helpers ---
+    async function supabaseUpsert(jobId, status, date) {
+      const job = JOBS.find(j => j.id === jobId) || {};
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/job_statuses`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify({
+            job_id: jobId,
+            status: status,
+            date: date,
+            hospital: job.hospital || '',
+            title: job.title || '',
+            url: job.url || ''
+          })
+        });
+        if (res.ok) {
+          document.getElementById('cloud-sync-status').innerHTML = '☁️ Cloud Synced';
+        }
+      } catch (e) {
+        console.warn("Supabase upsert failed:", e);
+      }
+    }
+
+    async function supabaseDelete(jobId) {
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/job_statuses?job_id=eq.${encodeURIComponent(jobId)}`, {
+          method: 'DELETE',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`
+          }
+        });
+        if (res.ok) {
+          document.getElementById('cloud-sync-status').innerHTML = '☁️ Cloud Synced';
+        }
+      } catch (e) {
+        console.warn("Supabase delete failed:", e);
+      }
+    }
+
+    async function syncFromCloud() {
+      const syncEl = document.getElementById('cloud-sync-status');
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/job_statuses?select=*`, {
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`
+          }
+        });
+        if (res.ok) {
+          const cloudRows = await res.json();
+          const localStatuses = getStoredStatuses();
+          
+          // Merge cloud data (cross-device sync)
+          cloudRows.forEach(row => {
+            localStatuses[row.job_id] = { status: row.status, date: row.date };
+          });
+          
+          saveStoredStatuses(localStatuses);
+          updateUI();
+          syncEl.innerHTML = '☁️ Cloud Synced';
+        } else {
+          syncEl.innerHTML = '💾 Local Storage';
+        }
+      } catch (e) {
+        syncEl.innerHTML = '💾 Local Storage';
+      }
+    }
+
+    // --- User Actions ---
     function markAsApplied(jobId) {
       const statuses = getStoredStatuses();
       const today = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -508,9 +587,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       saveStoredStatuses(statuses);
       showToast('Moved to Applied! 🎉');
       updateUI();
+      supabaseUpsert(jobId, 'applied', today);
     }
 
-    // User Action: Dismiss
     function dismissJob(jobId) {
       const statuses = getStoredStatuses();
       const today = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -518,18 +597,19 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       saveStoredStatuses(statuses);
       showToast('Job dismissed');
       updateUI();
+      supabaseUpsert(jobId, 'dismissed', today);
     }
 
-    // User Action: Move back to To Apply
     function restoreToApply(jobId) {
       const statuses = getStoredStatuses();
       delete statuses[jobId];
       saveStoredStatuses(statuses);
       showToast('Restored to "To Apply"');
       updateUI();
+      supabaseDelete(jobId);
     }
 
-    // Switching main status tabs
+    // --- Tab & Filter Switching ---
     function switchStatusTab(status) {
       currentStatusTab = status;
       document.querySelectorAll('.status-tab').forEach(t => t.classList.remove('active'));
@@ -538,7 +618,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       renderJobs();
     }
 
-    // Sub-filtering
     function filterJobs(filterKey) {
       currentFilter = filterKey;
       document.querySelectorAll('.filter-btn').forEach(b => {
@@ -711,8 +790,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       renderJobs();
     }
 
-    // Initial setup
+    // 1. Initial instant render from local storage
     updateUI();
+
+    // 2. Background sync from Supabase cloud
+    syncFromCloud();
   </script>
 </body>
 </html>
@@ -728,7 +810,6 @@ def generate_dashboard(jobs: List[JobPosting], output_dir: Path):
     print(f"[Dashboard] Generated docs/index.html with {len(jobs)} jobs.")
 
 if __name__ == "__main__":
-    # If run standalone, regenerate from existing docs/jobs.json or docs/index.html
     docs_dir = Path(__file__).parent / "docs"
     jobs_file = docs_dir / "jobs.json"
     index_file = docs_dir / "index.html"
@@ -744,6 +825,6 @@ if __name__ == "__main__":
     
     if jobs:
         generate_dashboard(jobs, docs_dir)
-        print("[Standalone] Successfully rebuilt docs/index.html from existing data.")
+        print("[Standalone] Successfully rebuilt docs/index.html with Supabase integration.")
     else:
         print("[Standalone] No existing jobs found to rebuild from.")
