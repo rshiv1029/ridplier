@@ -14,7 +14,7 @@ chrome_profile/
 
 # Sensitive local personal files & credentials
 .env
-Singh_RIdhi.pdf
+*.pdf
 profile.json
 resume_data.json
 
