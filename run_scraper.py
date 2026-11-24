@@ -11,6 +11,7 @@ from pathlib import Path
 
 from scrapers.holy_cross import fetch_holy_cross_jobs
 from scrapers.nyp import fetch_nyp_jobs
+from scrapers.adventist import fetch_adventist_jobs
 from notifier import notify_new_jobs
 from build_site import generate_dashboard
 
@@ -42,10 +43,13 @@ def main():
     holy_cross_jobs = fetch_holy_cross_jobs()
     print(f"  -> Holy Cross Health (MD): {len(holy_cross_jobs)} eligible listings found.")
 
+    adventist_jobs = fetch_adventist_jobs()
+    print(f"  -> Adventist HealthCare (MD - Rockville & Silver Spring): {len(adventist_jobs)} eligible listings found.")
+
     nyp_jobs = fetch_nyp_jobs()
     print(f"  -> NewYork-Presbyterian (NYC): {len(nyp_jobs)} eligible listings found.")
 
-    all_jobs = holy_cross_jobs + nyp_jobs
+    all_jobs = holy_cross_jobs + adventist_jobs + nyp_jobs
     print(f"[Total] Collected {len(all_jobs)} active PA postings across all target hubs.")
 
     # 2. Identify new jobs
