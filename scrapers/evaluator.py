@@ -86,25 +86,39 @@ OTHER_SPECIALTIES = {
 def detect_specialty(title: str, description: str = "") -> Tuple[str, bool]:
     """
     Identifies the clinical department/specialty from title and description.
+    Title matches always take precedence over description body keywords.
     Returns: (specialty_name, is_top_specialty)
     """
     title_lower = title.lower()
     full_text = f"{title}\n{description}".lower()
 
-    # 1. Check title specifically for ER / ED acronyms or Emergency
-    if re.search(r"\b(er|ed)\b", title_lower) or re.search(r"\b(emergency|trauma)\b", full_text):
+    # Pass 1: Title-level match (Highest accuracy)
+    # Check title specifically for ER / ED acronyms or Emergency
+    if re.search(r"\b(er|ed|emergency|trauma)\b", title_lower):
         return "Emergency Medicine (ER)", True
 
-    # 2. Check remaining Top 5 Specialties
     for spec, pat in TOP_SPECIALTIES.items():
         if spec == "Emergency Medicine (ER)":
             continue
-        if re.search(pat, title_lower) or re.search(pat, full_text):
+        if re.search(pat, title_lower):
             return spec, True
 
-    # 3. Check Other Common Specialties
     for spec, pat in OTHER_SPECIALTIES.items():
-        if re.search(pat, title_lower) or re.search(pat, full_text):
+        if re.search(pat, title_lower):
+            return spec, False
+
+    # Pass 2: Description-level match (Fallback if title is generic APP/PA)
+    if re.search(r"\b(emergency\s*department|emergency\s*medicine|emergency\s*room)\b", full_text):
+        return "Emergency Medicine (ER)", True
+
+    for spec, pat in TOP_SPECIALTIES.items():
+        if spec == "Emergency Medicine (ER)":
+            continue
+        if re.search(pat, full_text):
+            return spec, True
+
+    for spec, pat in OTHER_SPECIALTIES.items():
+        if re.search(pat, full_text):
             return spec, False
 
     return "General / Inpatient", False

@@ -2,8 +2,8 @@ name: Scheduled PA Job Scraper & Notifier
 
 on:
   schedule:
-    # Runs 4 times a day: 8:00 AM, 12:00 PM, 5:00 PM, 9:00 PM EST (UTC: 13, 17, 22, 2)
-    - cron: '0 13,17,22,2 * * *'
+    # Runs every 6 hours around the clock (00:00, 06:00, 12:00, 18:00 UTC)
+    - cron: '0 */6 * * *'
   workflow_dispatch: # Allows manual trigger from GitHub UI anytime
 
 permissions:
