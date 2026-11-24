@@ -13,7 +13,7 @@ def send_tmobile_sms(phone_digits: str, message: str, gmail_user: str, gmail_pas
     msg = MIMEText(message, "plain", "utf-8")
     msg["From"] = gmail_user
     msg["To"] = recipient
-    msg["Subject"] = ""  # Keep subject empty so SMS doesn't waste characters
+    msg["Subject"] = "Ridplier PA Job Alert"  # Non-empty subject prevents carrier spam filtering
 
     # Try Port 465 (SSL) first, then Port 587 (STARTTLS)
     for port, use_ssl in [(465, True), (587, False)]:
