@@ -66,10 +66,10 @@ def format_batch_summary(remaining_jobs: List[JobPosting], dashboard_url: str) -
 
 def notify_new_jobs(new_jobs: List[JobPosting], dry_run: bool = False):
     """
-    Smart SMS notification:
-    - If 1 to 3 new jobs: sends individual direct-apply text cards.
-    - If > 3 new jobs: sends top 2 direct cards + 1 smart summary text with the dashboard link.
-    Never sends more than 3 texts per run.
+    Smart SMS notification (Max 2 texts to avoid T-Mobile carrier rate-limiting):
+    - 1 job: Sends 1 direct-apply card.
+    - 2 jobs: Sends 2 direct-apply cards.
+    - 3+ jobs: Sends Card #1, then Card #2 with a summary footer & dashboard link attached.
     """
     phone = os.getenv("TMOBILE_NUMBER")
     user = os.getenv("GMAIL_USER")
@@ -77,9 +77,12 @@ def notify_new_jobs(new_jobs: List[JobPosting], dry_run: bool = False):
     dashboard_url = os.getenv("DASHBOARD_URL", DEFAULT_DASHBOARD_URL)
 
     # Diagnostic logging (safely masked)
-    print(f"[Notifier Diagnostic] TMOBILE_NUMBER found: {bool(phone)} ({phone[:3]}*** if set)")
-    print(f"[Notifier Diagnostic] GMAIL_USER found: {bool(user)} ({user.split('@')[0][:2]}*** if set)")
-    print(f"[Notifier Diagnostic] GMAIL_APP_PASSWORD found: {bool(pw)} (length: {len(pw) if pw else 0})")
+    phone_preview = f"{phone[:3]}***" if phone else "not set"
+    user_preview = f"{user[:3]}***" if user else "not set"
+    pw_len = len(pw) if pw else 0
+    print(f"[Notifier Diagnostic] TMOBILE_NUMBER: {phone_preview}")
+    print(f"[Notifier Diagnostic] GMAIL_USER: {user_preview}")
+    print(f"[Notifier Diagnostic] GMAIL_APP_PASSWORD: {pw_len} chars")
 
     if not new_jobs:
         print("[Notifier] No new jobs to notify.")
@@ -95,15 +98,18 @@ def notify_new_jobs(new_jobs: List[JobPosting], dry_run: bool = False):
 
     messages_to_send = []
 
-    if len(notifiable) <= 3:
+    if len(notifiable) <= 2:
         for job in notifiable:
             messages_to_send.append(format_sms_message(job))
     else:
-        # Send top 2 individual job cards
-        for job in notifiable[:2]:
-            messages_to_send.append(format_sms_message(job))
-        # 3rd text is a smart breakdown with the website link
-        messages_to_send.append(format_batch_summary(notifiable[2:], dashboard_url))
+        # 1st text: Top job card
+        messages_to_send.append(format_sms_message(notifiable[0]))
+
+        # 2nd text: 2nd job card + summary footer with dashboard link
+        remaining = notifiable[2:]
+        summary_footer = format_batch_summary(remaining, dashboard_url)
+        card_with_footer = f"{format_sms_message(notifiable[1])}\n\n{summary_footer}"
+        messages_to_send.append(card_with_footer)
 
     for idx, text in enumerate(messages_to_send):
         if dry_run or not (phone and user and pw):
@@ -113,4 +119,5 @@ def notify_new_jobs(new_jobs: List[JobPosting], dry_run: bool = False):
             print("--------------------------------------------------------------------------------\n")
         else:
             send_tmobile_sms(phone, text, user, pw)
-            time.sleep(2)  # brief pause so carrier SMS delivery preserves chronological order
+            if idx < len(messages_to_send) - 1:
+                time.sleep(5)  # 5s pause ensures T-Mobile's gateway delivers both in order without throttling
