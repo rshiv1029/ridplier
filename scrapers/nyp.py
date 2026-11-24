@@ -3,7 +3,7 @@ import ssl
 import urllib.request
 from typing import List
 from .models import JobPosting
-from .evaluator import is_title_eligible, evaluate_new_grad
+from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty
 
 NYP_URL = "https://nyp.wd1.myworkdayjobs.com/wday/cxs/nyp/nypcareers/jobs"
 
@@ -59,6 +59,8 @@ def fetch_nyp_jobs() -> List[JobPosting]:
                     if not is_friendly:
                         continue
 
+                    specialty, is_top = detect_specialty(title, desc_text)
+
                     job = JobPosting(
                         id=JobPosting.make_id("NYP", req_id),
                         hospital="NewYork-Presbyterian (NYP)",
@@ -70,6 +72,8 @@ def fetch_nyp_jobs() -> List[JobPosting]:
                         match_reason=reason,
                         hub="NYC",
                         probability=probability,
+                        specialty=specialty,
+                        is_top_specialty=is_top,
                         raw_data=item,
                     )
                     postings.append(job)

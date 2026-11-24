@@ -66,6 +66,49 @@ MODERATE_CHANCE_PATTERNS = [
     r"preferred[^.]{0,50}(?:1|one)\s*years?",
 ]
 
+# Top 5 Desired Specialties
+TOP_SPECIALTIES = {
+    "ENT / Head & Neck": r"\b(ent|otolaryngology|head\s*(?:and|&)\s*neck|ear[,\s]+nose[,\s]+throat|otorhinolaryngology)\b",
+    "Dermatology": r"\b(dermatology|dermatologic|derm)\b",
+    "Emergency Medicine (ER)": r"\b(emergency\s*medicine|emergency\s*department|emergency\s*room|\ber\b|\bed\b|trauma|emergency\s*services)\b",
+    "Surgery": r"\b(surgery|surgical|operating\s*room|perioperative|general\s*surgery|robotic|transplant|cardiothoracic|cardiac\s*surgery|orthopedic|ortho|neurosurgery|thoracic|vascular|colorectal|plastics|plastic\s*surgery)\b",
+    "Urgent Care": r"\b(urgent\s*care|walk[- ]in|immediate\s*care|express\s*care|fast\s*track)\b",
+}
+
+OTHER_SPECIALTIES = {
+    "Critical Care / ICU": r"\b(critical\s*care|icu|intensive\s*care)\b",
+    "Cardiology": r"\b(cardiology|electrophysiology|heart)\b",
+    "Internal Medicine": r"\b(internal\s*medicine|hospitalist|inpatient\s*medicine)\b",
+    "Primary Care": r"\b(primary\s*care|outpatient|family\s*medicine|ambulatory)\b",
+    "Obstetrics & Gynecology": r"\b(obstetrics|gynecology|ob\/gyn|obgyn|women'?s\s*health)\b",
+}
+
+def detect_specialty(title: str, description: str = "") -> Tuple[str, bool]:
+    """
+    Identifies the clinical department/specialty from title and description.
+    Returns: (specialty_name, is_top_specialty)
+    """
+    title_lower = title.lower()
+    full_text = f"{title}\n{description}".lower()
+
+    # 1. Check title specifically for ER / ED acronyms or Emergency
+    if re.search(r"\b(er|ed)\b", title_lower) or re.search(r"\b(emergency|trauma)\b", full_text):
+        return "Emergency Medicine (ER)", True
+
+    # 2. Check remaining Top 5 Specialties
+    for spec, pat in TOP_SPECIALTIES.items():
+        if spec == "Emergency Medicine (ER)":
+            continue
+        if re.search(pat, title_lower) or re.search(pat, full_text):
+            return spec, True
+
+    # 3. Check Other Common Specialties
+    for spec, pat in OTHER_SPECIALTIES.items():
+        if re.search(pat, title_lower) or re.search(pat, full_text):
+            return spec, False
+
+    return "General / Inpatient", False
+
 def is_title_eligible(title: str) -> bool:
     title_clean = re.sub(r"[_\-]+", " ", title.lower())
     for pat in EXCLUDE_TITLE_WORDS:

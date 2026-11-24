@@ -20,6 +20,7 @@
       --prob-lower: #f97316;
       --border: #334155;
       --success: #10b981;
+      --top-spec: #c084fc;
     }
     * {
       box-sizing: border-box;
@@ -151,6 +152,15 @@
       color: var(--accent);
       border-color: var(--accent);
     }
+    .filter-btn-top {
+      border-color: rgba(168, 85, 247, 0.45);
+      color: #c084fc;
+    }
+    .filter-btn-top:hover, .filter-btn-top.active {
+      background: #a855f7 !important;
+      color: #ffffff !important;
+      border-color: #a855f7 !important;
+    }
 
     /* Jobs Grid */
     .jobs-grid {
@@ -231,6 +241,18 @@
       background: rgba(148, 163, 184, 0.15);
       color: #94a3b8;
       border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .badge-top-spec {
+      background: rgba(168, 85, 247, 0.18);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.45);
+      font-weight: 700;
+    }
+    .badge-spec {
+      background: rgba(148, 163, 184, 0.12);
+      color: #cbd5e1;
+      border: 1px solid rgba(148, 163, 184, 0.28);
     }
 
     .job-meta {
@@ -453,7 +475,13 @@
 
   <!-- Sub-filters for current tab -->
   <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all" onclick="filterJobs('all')">All</button>
+    <button class="filter-btn active" data-filter="all" onclick="filterJobs('all')">All Jobs</button>
+    <button class="filter-btn filter-btn-top" data-filter="top_5" onclick="filterJobs('top_5')">⭐ Top 5 Specialties</button>
+    <button class="filter-btn" data-filter="Surgery" onclick="filterJobs('Surgery')">🔪 Surgery</button>
+    <button class="filter-btn" data-filter="Emergency Medicine (ER)" onclick="filterJobs('Emergency Medicine (ER)')">🚨 Emergency (ER)</button>
+    <button class="filter-btn" data-filter="ENT / Head & Neck" onclick="filterJobs('ENT / Head & Neck')">🩺 ENT</button>
+    <button class="filter-btn" data-filter="Dermatology" onclick="filterJobs('Dermatology')">✨ Derm</button>
+    <button class="filter-btn" data-filter="Urgent Care" onclick="filterJobs('Urgent Care')">⚡ Urgent Care</button>
     <button class="filter-btn" data-filter="MD" onclick="filterJobs('MD')">📍 Maryland (MoCo)</button>
     <button class="filter-btn" data-filter="NYC" onclick="filterJobs('NYC')">🗽 NYP (NYC)</button>
     <button class="filter-btn" data-filter="high" onclick="filterJobs('high')">🟢 High Chance</button>
@@ -468,7 +496,7 @@
   <div class="toast" id="toast">Status updated!</div>
 
   <script>
-    const JOBS = [{"id": "006944dc7691", "hospital": "Adventist HealthCare (Shady Grove / White Oak)", "title": "Physician Assistant (PA), Day Shift, Obstetrics", "location": "Silver Spring, MD", "url": "https://adventisthealthcare.wd1.myworkdayjobs.com/en-US/AdventistHealthCareCareers/job/Silver-Spring-MD/Physician-Assistant--PA---Day-Shift--Obstetrics_R-043908", "posted_date": "Posted 30+ Days Ago", "is_new_grad_friendly": true, "match_reason": "Standard PA listing (typical hospital boilerplate)", "hub": "MD", "probability": "moderate"}, {"id": "6423f773aba1", "hospital": "Adventist HealthCare (Shady Grove / White Oak)", "title": "Surgical Physician Assistant, Day Shift, Surgery", "location": "Silver Spring, MD", "url": "https://adventisthealthcare.wd1.myworkdayjobs.com/en-US/AdventistHealthCareCareers/job/Silver-Spring-MD/Surgical-Physician-Assistant--Day-Shift--Surgery_R-044496", "posted_date": "Posted Today", "is_new_grad_friendly": true, "match_reason": "Standard PA listing (typical hospital boilerplate)", "hub": "MD", "probability": "moderate"}, {"id": "f914f004c360", "hospital": "Adventist HealthCare (Shady Grove / White Oak)", "title": "Physician Assistant (PA), Rotating Shift, Orthopedic Surgery", "location": "Rockville, MD", "url": "https://adventisthealthcare.wd1.myworkdayjobs.com/en-US/AdventistHealthCareCareers/job/Rockville-MD/Physician-Assistant--PA---Rotating-Shift--Orthopedic-Surgery_R-043546", "posted_date": "Posted 26 Days Ago", "is_new_grad_friendly": true, "match_reason": "1 Year Preferred: 'minimum of one year'", "hub": "MD", "probability": "moderate"}, {"id": "1d1b7fea9a54", "hospital": "Adventist HealthCare (Shady Grove / White Oak)", "title": "Physician Assistant (PA), Rotating Shift, Orthopedic Surgery", "location": "Rockville, MD", "url": "https://adventisthealthcare.wd1.myworkdayjobs.com/en-US/AdventistHealthCareCareers/job/Rockville-MD/Physician-Assistant--PA---Rotating-Shift--Orthopedic-Surgery_R-044099", "posted_date": "Posted 26 Days Ago", "is_new_grad_friendly": true, "match_reason": "1 Year Preferred: 'minimum of one year'", "hub": "MD", "probability": "moderate"}, {"id": "8b9760580427", "hospital": "Adventist HealthCare (Shady Grove / White Oak)", "title": "Physician Assistant (PA), Day or Evening Shift, Neurosurgery", "location": "Rockville, MD", "url": "https://adventisthealthcare.wd1.myworkdayjobs.com/en-US/AdventistHealthCareCareers/job/Rockville-MD/Physician-Assistant--PA---Day-or-Evening-Shift--Neurosurgery_R-043348", "posted_date": "Posted 26 Days Ago", "is_new_grad_friendly": true, "match_reason": "1 Year Preferred: 'minimum of one year'", "hub": "MD", "probability": "moderate"}, {"id": "f318780b8a59", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant- Internal Medicine - Rotating - NYP/Allen Hospital", "location": "NYP/Allen Hospital", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPAllen-Hospital/Physician-Assistant--Internal-Medicine---Rotating---NYP-Allen-Hospital_00890224", "posted_date": "Posted 21 Days Ago", "is_new_grad_friendly": true, "match_reason": "New Grad Welcome: 'new grads welcome'", "hub": "NYC", "probability": "high"}, {"id": "2318fee2f84d", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Cardiothoracic Surgery | Full-Time, Brooklyn Campus", "location": "NYP/Brooklyn Methodist Hospital", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPBrooklyn-Methodist-Hospital/Physician-Assistant---Cardiothoracic-Surgery---Full-Time--Brooklyn-Campus_00890309-1", "posted_date": "Posted 19 Days Ago", "is_new_grad_friendly": true, "match_reason": "2+ Years Preferred: 'preferred criteria must have at least 2 years'", "hub": "NYC", "probability": "lower"}, {"id": "d5f7b83f6eec", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Robotic - General Surgery - Days\u00a0- Cornell Campus", "location": "NYP/Weill Cornell Medical Center", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPWeill-Cornell-Medical-Center/Physician-Assistant---Robotic---General-Surgery---Days---Cornell-Campus_00890535", "posted_date": "Posted 17 Days Ago", "is_new_grad_friendly": true, "match_reason": "1 Year Preferred: '1 year experience'", "hub": "NYC", "probability": "moderate"}, {"id": "355b9463d1d1", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Cardiac Surgery, Operating Room - Columbia University Campus", "location": "NYP/Columbia University Irving Medical Center", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPColumbia-University-Irving-Medical-Center/Physician-Assistant---Cardiac-Surgery--Operating-Room---Columbia-University-Campus_00884278", "posted_date": "Posted 30+ Days Ago", "is_new_grad_friendly": true, "match_reason": "2+ Years Preferred: 'preferred criteria 1 2 years'", "hub": "NYC", "probability": "lower"}, {"id": "24fb3f05d389", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Internal Medicine - Nights - NYP/Westchester - Bronxville, NY", "location": "NYP/Westchester", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPWestchester/Physician-Assistant---Internal-Medicine---Nights---NYP-Westchester---Bronxville--NY_00890207", "posted_date": "Posted 24 Days Ago", "is_new_grad_friendly": true, "match_reason": "Standard PA listing (typical hospital boilerplate)", "hub": "NYC", "probability": "moderate"}, {"id": "34ead0f32143", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Transplant Surgery - Nights - NYP/Columbia University Medical Center", "location": "NYP/Columbia University Irving Medical Center", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPColumbia-University-Irving-Medical-Center/Physician-Assistant---Transplant-Surgery---Nights---NYP-Columbia-University-Medical-Center_00886427", "posted_date": "Posted 30+ Days Ago", "is_new_grad_friendly": true, "match_reason": "New Grad Welcome: 'open to new grads'", "hub": "NYC", "probability": "high"}, {"id": "9b51eedcc409", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Interventional Cardiology/Electrophysiology - Rotating - NYP/Columbia Medical Center", "location": "NYP/Columbia University Irving Medical Center", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPColumbia-University-Irving-Medical-Center/Physician-Assistant---Interventional-Cardiology-Electrophysiology---Rotating---NYP-Columbia-Medical-Center_00890178", "posted_date": "Posted 19 Days Ago", "is_new_grad_friendly": true, "match_reason": "Standard PA listing (typical hospital boilerplate)", "hub": "NYC", "probability": "moderate"}, {"id": "8a732d716b55", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Thoracic Surgery Service - Days - NYP/Columbia University Medical Center", "location": "NYP/Columbia University Irving Medical Center", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPColumbia-University-Irving-Medical-Center/Physician-Assistant---Thoracic-Surgery-Service---Days---NYP-Columbia-University-Medical-Center_00886802-1", "posted_date": "Posted 21 Days Ago", "is_new_grad_friendly": true, "match_reason": "1 Year Preferred: '1 year of experience'", "hub": "NYC", "probability": "moderate"}, {"id": "8c8957d2647a", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant I - Primary Care/Outpatient Practice - Days - NYP/Queens Medical Group", "location": "NYP/Queens Medical Group", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPQueens-Medical-Group/Physician-Assistant-I---Internal-Medicine---Days---NYP-Queens-Medical-Group_00887882", "posted_date": "Posted 28 Days Ago", "is_new_grad_friendly": true, "match_reason": "New Grad Welcome: 'new graduates who have completed'", "hub": "NYC", "probability": "high"}, {"id": "d11a0d3bafcc", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant Fellow in Critical Care (2026)- Rotating - West Campus Sphere (Columbia/Allen)", "location": "NYP/Columbia University Irving Medical Center", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPColumbia-University-Irving-Medical-Center/Physician-Assistant-Fellow-in-Critical-Care--2026---Rotating---West-Campus-Sphere--Columbia-Allen-_00872735", "posted_date": "Posted 30+ Days Ago", "is_new_grad_friendly": true, "match_reason": "1 Year Preferred: '1 year of experience'", "hub": "NYC", "probability": "moderate"}, {"id": "6af870bd4c2a", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Advanced Clinical Provider - Hospital at Home Program - **Day Shift - New York, NY", "location": "NYP/Weill Cornell Medical Center", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPWeill-Cornell-Medical-Center/Physician-Assistant---Advanced-Clinical-Provider---Hospital-at-Home-Program-----Day-Shift---New-York--NY_00877506", "posted_date": "Posted 25 Days Ago", "is_new_grad_friendly": true, "match_reason": "Standard PA listing (typical hospital boilerplate)", "hub": "NYC", "probability": "moderate"}];
+    const JOBS = [{"id": "006944dc7691", "hospital": "Adventist HealthCare (Shady Grove / White Oak)", "title": "Physician Assistant (PA), Day Shift, Obstetrics", "location": "Silver Spring, MD", "url": "https://adventisthealthcare.wd1.myworkdayjobs.com/en-US/AdventistHealthCareCareers/job/Silver-Spring-MD/Physician-Assistant--PA---Day-Shift--Obstetrics_R-043908", "posted_date": "Posted 30+ Days Ago", "is_new_grad_friendly": true, "match_reason": "Standard PA listing (typical hospital boilerplate)", "hub": "MD", "probability": "moderate", "specialty": "Obstetrics & Gynecology", "is_top_specialty": false}, {"id": "6423f773aba1", "hospital": "Adventist HealthCare (Shady Grove / White Oak)", "title": "Surgical Physician Assistant, Day Shift, Surgery", "location": "Silver Spring, MD", "url": "https://adventisthealthcare.wd1.myworkdayjobs.com/en-US/AdventistHealthCareCareers/job/Silver-Spring-MD/Surgical-Physician-Assistant--Day-Shift--Surgery_R-044496", "posted_date": "Posted Today", "is_new_grad_friendly": true, "match_reason": "Standard PA listing (typical hospital boilerplate)", "hub": "MD", "probability": "moderate", "specialty": "Surgery", "is_top_specialty": true}, {"id": "f914f004c360", "hospital": "Adventist HealthCare (Shady Grove / White Oak)", "title": "Physician Assistant (PA), Rotating Shift, Orthopedic Surgery", "location": "Rockville, MD", "url": "https://adventisthealthcare.wd1.myworkdayjobs.com/en-US/AdventistHealthCareCareers/job/Rockville-MD/Physician-Assistant--PA---Rotating-Shift--Orthopedic-Surgery_R-043546", "posted_date": "Posted 26 Days Ago", "is_new_grad_friendly": true, "match_reason": "1 Year Preferred: 'minimum of one year'", "hub": "MD", "probability": "moderate", "specialty": "Surgery", "is_top_specialty": true}, {"id": "1d1b7fea9a54", "hospital": "Adventist HealthCare (Shady Grove / White Oak)", "title": "Physician Assistant (PA), Rotating Shift, Orthopedic Surgery", "location": "Rockville, MD", "url": "https://adventisthealthcare.wd1.myworkdayjobs.com/en-US/AdventistHealthCareCareers/job/Rockville-MD/Physician-Assistant--PA---Rotating-Shift--Orthopedic-Surgery_R-044099", "posted_date": "Posted 26 Days Ago", "is_new_grad_friendly": true, "match_reason": "1 Year Preferred: 'minimum of one year'", "hub": "MD", "probability": "moderate", "specialty": "Surgery", "is_top_specialty": true}, {"id": "8b9760580427", "hospital": "Adventist HealthCare (Shady Grove / White Oak)", "title": "Physician Assistant (PA), Day or Evening Shift, Neurosurgery", "location": "Rockville, MD", "url": "https://adventisthealthcare.wd1.myworkdayjobs.com/en-US/AdventistHealthCareCareers/job/Rockville-MD/Physician-Assistant--PA---Day-or-Evening-Shift--Neurosurgery_R-043348", "posted_date": "Posted 26 Days Ago", "is_new_grad_friendly": true, "match_reason": "1 Year Preferred: 'minimum of one year'", "hub": "MD", "probability": "moderate", "specialty": "Surgery", "is_top_specialty": true}, {"id": "f318780b8a59", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant- Internal Medicine - Rotating - NYP/Allen Hospital", "location": "NYP/Allen Hospital", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPAllen-Hospital/Physician-Assistant--Internal-Medicine---Rotating---NYP-Allen-Hospital_00890224", "posted_date": "Posted 21 Days Ago", "is_new_grad_friendly": true, "match_reason": "New Grad Welcome: 'new grads welcome'", "hub": "NYC", "probability": "high", "specialty": "Internal Medicine", "is_top_specialty": false}, {"id": "2318fee2f84d", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Cardiothoracic Surgery | Full-Time, Brooklyn Campus", "location": "NYP/Brooklyn Methodist Hospital", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPBrooklyn-Methodist-Hospital/Physician-Assistant---Cardiothoracic-Surgery---Full-Time--Brooklyn-Campus_00890309-1", "posted_date": "Posted 19 Days Ago", "is_new_grad_friendly": true, "match_reason": "2+ Years Preferred: 'preferred criteria must have at least 2 years'", "hub": "NYC", "probability": "lower", "specialty": "Surgery", "is_top_specialty": true}, {"id": "d5f7b83f6eec", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Robotic - General Surgery - Days\u00a0- Cornell Campus", "location": "NYP/Weill Cornell Medical Center", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPWeill-Cornell-Medical-Center/Physician-Assistant---Robotic---General-Surgery---Days---Cornell-Campus_00890535", "posted_date": "Posted 17 Days Ago", "is_new_grad_friendly": true, "match_reason": "1 Year Preferred: '1 year experience'", "hub": "NYC", "probability": "moderate", "specialty": "Surgery", "is_top_specialty": true}, {"id": "355b9463d1d1", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Cardiac Surgery, Operating Room - Columbia University Campus", "location": "NYP/Columbia University Irving Medical Center", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPColumbia-University-Irving-Medical-Center/Physician-Assistant---Cardiac-Surgery--Operating-Room---Columbia-University-Campus_00884278", "posted_date": "Posted 30+ Days Ago", "is_new_grad_friendly": true, "match_reason": "2+ Years Preferred: 'preferred criteria 1 2 years'", "hub": "NYC", "probability": "lower", "specialty": "Surgery", "is_top_specialty": true}, {"id": "24fb3f05d389", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Internal Medicine - Nights - NYP/Westchester - Bronxville, NY", "location": "NYP/Westchester", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPWestchester/Physician-Assistant---Internal-Medicine---Nights---NYP-Westchester---Bronxville--NY_00890207", "posted_date": "Posted 24 Days Ago", "is_new_grad_friendly": true, "match_reason": "Standard PA listing (typical hospital boilerplate)", "hub": "NYC", "probability": "moderate", "specialty": "Internal Medicine", "is_top_specialty": false}, {"id": "34ead0f32143", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Transplant Surgery - Nights - NYP/Columbia University Medical Center", "location": "NYP/Columbia University Irving Medical Center", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPColumbia-University-Irving-Medical-Center/Physician-Assistant---Transplant-Surgery---Nights---NYP-Columbia-University-Medical-Center_00886427", "posted_date": "Posted 30+ Days Ago", "is_new_grad_friendly": true, "match_reason": "New Grad Welcome: 'open to new grads'", "hub": "NYC", "probability": "high", "specialty": "Surgery", "is_top_specialty": true}, {"id": "9b51eedcc409", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Interventional Cardiology/Electrophysiology - Rotating - NYP/Columbia Medical Center", "location": "NYP/Columbia University Irving Medical Center", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPColumbia-University-Irving-Medical-Center/Physician-Assistant---Interventional-Cardiology-Electrophysiology---Rotating---NYP-Columbia-Medical-Center_00890178", "posted_date": "Posted 19 Days Ago", "is_new_grad_friendly": true, "match_reason": "Standard PA listing (typical hospital boilerplate)", "hub": "NYC", "probability": "moderate", "specialty": "Cardiology", "is_top_specialty": false}, {"id": "8a732d716b55", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Thoracic Surgery Service - Days - NYP/Columbia University Medical Center", "location": "NYP/Columbia University Irving Medical Center", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPColumbia-University-Irving-Medical-Center/Physician-Assistant---Thoracic-Surgery-Service---Days---NYP-Columbia-University-Medical-Center_00886802-1", "posted_date": "Posted 21 Days Ago", "is_new_grad_friendly": true, "match_reason": "1 Year Preferred: '1 year of experience'", "hub": "NYC", "probability": "moderate", "specialty": "Surgery", "is_top_specialty": true}, {"id": "8c8957d2647a", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant I - Primary Care/Outpatient Practice - Days - NYP/Queens Medical Group", "location": "NYP/Queens Medical Group", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPQueens-Medical-Group/Physician-Assistant-I---Internal-Medicine---Days---NYP-Queens-Medical-Group_00887882", "posted_date": "Posted 28 Days Ago", "is_new_grad_friendly": true, "match_reason": "New Grad Welcome: 'new graduates who have completed'", "hub": "NYC", "probability": "high", "specialty": "Primary Care", "is_top_specialty": false}, {"id": "d11a0d3bafcc", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant Fellow in Critical Care (2026)- Rotating - West Campus Sphere (Columbia/Allen)", "location": "NYP/Columbia University Irving Medical Center", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPColumbia-University-Irving-Medical-Center/Physician-Assistant-Fellow-in-Critical-Care--2026---Rotating---West-Campus-Sphere--Columbia-Allen-_00872735", "posted_date": "Posted 30+ Days Ago", "is_new_grad_friendly": true, "match_reason": "1 Year Preferred: '1 year of experience'", "hub": "NYC", "probability": "moderate", "specialty": "Critical Care / ICU", "is_top_specialty": false}, {"id": "6af870bd4c2a", "hospital": "NewYork-Presbyterian (NYP)", "title": "Physician Assistant - Advanced Clinical Provider - Hospital at Home Program - **Day Shift - New York, NY", "location": "NYP/Weill Cornell Medical Center", "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPWeill-Cornell-Medical-Center/Physician-Assistant---Advanced-Clinical-Provider---Hospital-at-Home-Program-----Day-Shift---New-York--NY_00877506", "posted_date": "Posted 25 Days Ago", "is_new_grad_friendly": true, "match_reason": "Standard PA listing (typical hospital boilerplate)", "hub": "NYC", "probability": "moderate", "specialty": "General / Inpatient", "is_top_specialty": false}];
     const STORAGE_KEY = 'ridplier_job_status_v1';
     
     // Supabase Cloud Sync Configuration
@@ -476,7 +504,7 @@
     const SUPABASE_KEY = "sb_publishable__2yNARQiGOBhIIariC0t-Q_LSfzaIcc";
 
     let currentStatusTab = 'to_apply'; // 'to_apply' | 'applied' | 'dismissed'
-    let currentFilter = 'all';         // 'all' | 'MD' | 'NYC' | 'high' | 'moderate' | 'lower'
+    let currentFilter = 'all';         // 'all' | 'top_5' | 'Surgery' | 'MD' | etc.
     let archivedJobs = [];             // Past applied/dismissed jobs preserved even if removed by hospital
 
     // Local Storage helpers (Immediate 0ms UI reactivity)
@@ -578,6 +606,8 @@
                 match_reason: 'Archived Application History',
                 hub: 'Other',
                 probability: 'moderate',
+                specialty: 'Archived',
+                is_top_specialty: false,
                 url: row.url || '#',
                 is_closed: true
               });
@@ -652,6 +682,14 @@
       renderJobs();
     }
 
+    function getSpecialtyBadge(specialty, isTop) {
+      if (!specialty) return '';
+      if (isTop) {
+        return `<span class="badge badge-top-spec">⭐ ${specialty}</span>`;
+      }
+      return `<span class="badge badge-spec">${specialty}</span>`;
+    }
+
     function getProbBadge(p, isClosed) {
       if (isClosed) return '<span class="badge badge-closed">🔒 Closed Requisition</span>';
       if (p === 'high') return '<span class="badge badge-high">🟢 High Chance · New Grad Welcome</span>';
@@ -681,6 +719,10 @@
         list = list.filter(j => j.hub === currentFilter);
       } else if (currentFilter === 'high' || currentFilter === 'moderate' || currentFilter === 'lower') {
         list = list.filter(j => j.probability === currentFilter);
+      } else if (currentFilter === 'top_5') {
+        list = list.filter(j => j.is_top_specialty);
+      } else if (['Surgery', 'Emergency Medicine (ER)', 'ENT / Head & Neck', 'Dermatology', 'Urgent Care'].includes(currentFilter)) {
+        list = list.filter(j => j.specialty === currentFilter);
       }
 
       // Empty State handling
@@ -781,6 +823,7 @@
                 <h2 class="job-title">${j.title}</h2>
               </div>
               <div class="badges">
+                ${getSpecialtyBadge(j.specialty, j.is_top_specialty)}
                 ${j.hub !== 'Other' ? `<span class="badge ${j.hub === 'MD' ? 'badge-md' : 'badge-nyc'}">${j.hub}</span>` : ''}
                 ${getProbBadge(j.probability, j.is_closed)}
               </div>
@@ -791,7 +834,7 @@
               <span>💼 Full-Time</span>
             </div>
             <div class="${getReasonClass(j.probability)}">
-              💡 <strong>Match Signal:</strong> ${j.match_reason}
+              💡 <strong>Match Signal:</strong> ${j.is_top_specialty ? '⭐ <strong>Top 5 Specialty Pick</strong> · ' : ''}${j.match_reason}
             </div>
             ${actionMarkup}
           </div>

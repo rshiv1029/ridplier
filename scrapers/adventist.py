@@ -3,7 +3,7 @@ import ssl
 import urllib.request
 from typing import List
 from .models import JobPosting
-from .evaluator import is_title_eligible, evaluate_new_grad
+from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty
 
 ADVENTIST_URL = "https://adventisthealthcare.wd1.myworkdayjobs.com/wday/cxs/adventisthealthcare/AdventistHealthCareCareers/jobs"
 
@@ -67,6 +67,8 @@ def fetch_adventist_jobs() -> List[JobPosting]:
                     if not is_friendly:
                         continue
 
+                    specialty, is_top = detect_specialty(title, desc_text)
+
                     job = JobPosting(
                         id=JobPosting.make_id("Adventist", req_id),
                         hospital="Adventist HealthCare (Shady Grove / White Oak)",
@@ -78,6 +80,8 @@ def fetch_adventist_jobs() -> List[JobPosting]:
                         match_reason=reason,
                         hub="MD",
                         probability=probability,
+                        specialty=specialty,
+                        is_top_specialty=is_top,
                         raw_data=item,
                     )
                     postings.append(job)

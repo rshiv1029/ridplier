@@ -28,6 +28,12 @@ def format_email_html(jobs: List[JobPosting], dashboard_url: str) -> str:
             badge_border = "rgba(245, 158, 11, 0.4)"
             badge_label = "🟡 Moderate Chance (1 Yr / Standard)"
 
+        spec_html = ""
+        if getattr(j, "is_top_specialty", False):
+            spec_html = f"""<div style="background-color: rgba(168, 85, 247, 0.18); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.45); font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-bottom: 10px; margin-right: 6px;">⭐ Top 5 Pick: {j.specialty}</div>"""
+        elif getattr(j, "specialty", None):
+            spec_html = f"""<div style="background-color: rgba(148, 163, 184, 0.12); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.25); font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-bottom: 10px; margin-right: 6px;">🩺 {j.specialty}</div>"""
+
         cards_html += f"""
         <div style="background-color: #1e293b; border-radius: 10px; padding: 18px; margin-bottom: 16px; border: 1px solid #334155;">
           <div style="color: #38bdf8; font-size: 13px; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">
@@ -39,8 +45,11 @@ def format_email_html(jobs: List[JobPosting], dashboard_url: str) -> str:
           <div style="color: #94a3b8; font-size: 14px; margin-bottom: 12px;">
             📍 {j.location} &nbsp;|&nbsp; 📅 {j.posted_date} &nbsp;|&nbsp; 💼 Full-Time
           </div>
-          <div style="background-color: {badge_bg}; color: {badge_color}; border: 1px solid {badge_border}; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-bottom: 10px;">
-            {badge_label}
+          <div>
+            {spec_html}
+            <div style="background-color: {badge_bg}; color: {badge_color}; border: 1px solid {badge_border}; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-bottom: 10px;">
+              {badge_label}
+            </div>
           </div>
           <div style="color: #cbd5e1; font-size: 13px; margin-bottom: 16px; background-color: rgba(0,0,0,0.25); padding: 8px 12px; border-radius: 6px;">
             💡 <strong>Match Signal:</strong> {j.match_reason}
@@ -81,9 +90,11 @@ def format_email_plain(jobs: List[JobPosting], dashboard_url: str) -> str:
     """Plain-text fallback for email clients."""
     out = [f"🩺 Ridplier: {len(jobs)} New PA Job(s) Found!\n"]
     for j in jobs:
+        spec_text = f"⭐ Top 5 Pick: {j.specialty}" if getattr(j, "is_top_specialty", False) else f"Specialty: {getattr(j, 'specialty', 'General')}"
         out.append(
             f"🏥 {j.hospital}\n"
             f"💼 {j.title}\n"
+            f"🏷️ {spec_text}\n"
             f"📍 {j.location} (Full-Time)\n"
             f"⭐ {j.match_reason}\n"
             f"🔗 Apply: {j.url}\n"
@@ -98,7 +109,14 @@ def send_email_alert(recipient: str, jobs: List[JobPosting], dashboard_url: str,
     msg["From"] = f"Ridplier PA Alerts <{gmail_user}>"
     msg["To"] = recipient
 
-    if len(jobs) == 1:
+    top_matches = [j for j in jobs if getattr(j, "is_top_specialty", False)]
+    if top_matches:
+        spec_names = ", ".join(dict.fromkeys(j.specialty for j in top_matches))
+        if len(jobs) == 1:
+            msg["Subject"] = f"⭐ Top Pick ({spec_names}) PA Job: {jobs[0].hospital} - {jobs[0].title}"
+        else:
+            msg["Subject"] = f"⭐ {len(jobs)} New PA Jobs (Includes {spec_names} Top Picks!)"
+    elif len(jobs) == 1:
         msg["Subject"] = f"🏥 New PA Job: {jobs[0].hospital} - {jobs[0].title}"
     else:
         msg["Subject"] = f"🩺 {len(jobs)} New PA Jobs Posted ({jobs[0].hospital} & more)"

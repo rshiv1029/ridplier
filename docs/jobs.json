@@ -9,7 +9,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "MD",
-    "probability": "moderate"
+    "probability": "moderate",
+    "specialty": "Obstetrics & Gynecology",
+    "is_top_specialty": false
   },
   {
     "id": "6423f773aba1",
@@ -21,7 +23,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "MD",
-    "probability": "moderate"
+    "probability": "moderate",
+    "specialty": "Surgery",
+    "is_top_specialty": true
   },
   {
     "id": "f914f004c360",
@@ -33,7 +37,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "1 Year Preferred: 'minimum of one year'",
     "hub": "MD",
-    "probability": "moderate"
+    "probability": "moderate",
+    "specialty": "Surgery",
+    "is_top_specialty": true
   },
   {
     "id": "1d1b7fea9a54",
@@ -45,7 +51,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "1 Year Preferred: 'minimum of one year'",
     "hub": "MD",
-    "probability": "moderate"
+    "probability": "moderate",
+    "specialty": "Surgery",
+    "is_top_specialty": true
   },
   {
     "id": "8b9760580427",
@@ -57,7 +65,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "1 Year Preferred: 'minimum of one year'",
     "hub": "MD",
-    "probability": "moderate"
+    "probability": "moderate",
+    "specialty": "Surgery",
+    "is_top_specialty": true
   },
   {
     "id": "f318780b8a59",
@@ -69,7 +79,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "New Grad Welcome: 'new grads welcome'",
     "hub": "NYC",
-    "probability": "high"
+    "probability": "high",
+    "specialty": "Internal Medicine",
+    "is_top_specialty": false
   },
   {
     "id": "2318fee2f84d",
@@ -81,7 +93,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "2+ Years Preferred: 'preferred criteria must have at least 2 years'",
     "hub": "NYC",
-    "probability": "lower"
+    "probability": "lower",
+    "specialty": "Surgery",
+    "is_top_specialty": true
   },
   {
     "id": "d5f7b83f6eec",
@@ -93,7 +107,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "1 Year Preferred: '1 year experience'",
     "hub": "NYC",
-    "probability": "moderate"
+    "probability": "moderate",
+    "specialty": "Surgery",
+    "is_top_specialty": true
   },
   {
     "id": "355b9463d1d1",
@@ -105,7 +121,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "2+ Years Preferred: 'preferred criteria 1 2 years'",
     "hub": "NYC",
-    "probability": "lower"
+    "probability": "lower",
+    "specialty": "Surgery",
+    "is_top_specialty": true
   },
   {
     "id": "24fb3f05d389",
@@ -117,7 +135,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
-    "probability": "moderate"
+    "probability": "moderate",
+    "specialty": "Internal Medicine",
+    "is_top_specialty": false
   },
   {
     "id": "34ead0f32143",
@@ -129,7 +149,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "New Grad Welcome: 'open to new grads'",
     "hub": "NYC",
-    "probability": "high"
+    "probability": "high",
+    "specialty": "Surgery",
+    "is_top_specialty": true
   },
   {
     "id": "9b51eedcc409",
@@ -141,7 +163,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
-    "probability": "moderate"
+    "probability": "moderate",
+    "specialty": "Cardiology",
+    "is_top_specialty": false
   },
   {
     "id": "8a732d716b55",
@@ -153,7 +177,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "1 Year Preferred: '1 year of experience'",
     "hub": "NYC",
-    "probability": "moderate"
+    "probability": "moderate",
+    "specialty": "Surgery",
+    "is_top_specialty": true
   },
   {
     "id": "8c8957d2647a",
@@ -165,7 +191,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "New Grad Welcome: 'new graduates who have completed'",
     "hub": "NYC",
-    "probability": "high"
+    "probability": "high",
+    "specialty": "Primary Care",
+    "is_top_specialty": false
   },
   {
     "id": "d11a0d3bafcc",
@@ -177,7 +205,9 @@
     "is_new_grad_friendly": true,
     "match_reason": "1 Year Preferred: '1 year of experience'",
     "hub": "NYC",
-    "probability": "moderate"
+    "probability": "moderate",
+    "specialty": "Critical Care / ICU",
+    "is_top_specialty": false
   },
   {
     "id": "6af870bd4c2a",
@@ -189,6 +219,8 @@
     "is_new_grad_friendly": true,
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
-    "probability": "moderate"
+    "probability": "moderate",
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false
   }
 ]

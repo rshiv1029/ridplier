@@ -3,6 +3,7 @@ import re
 from pathlib import Path
 from typing import List, Dict, Any
 from scrapers.models import JobPosting
+from scrapers.evaluator import detect_specialty
 
 HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
@@ -26,6 +27,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       --prob-lower: #f97316;
       --border: #334155;
       --success: #10b981;
+      --top-spec: #c084fc;
     }
     * {
       box-sizing: border-box;
@@ -157,6 +159,15 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       color: var(--accent);
       border-color: var(--accent);
     }
+    .filter-btn-top {
+      border-color: rgba(168, 85, 247, 0.45);
+      color: #c084fc;
+    }
+    .filter-btn-top:hover, .filter-btn-top.active {
+      background: #a855f7 !important;
+      color: #ffffff !important;
+      border-color: #a855f7 !important;
+    }
 
     /* Jobs Grid */
     .jobs-grid {
@@ -237,6 +248,18 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       background: rgba(148, 163, 184, 0.15);
       color: #94a3b8;
       border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .badge-top-spec {
+      background: rgba(168, 85, 247, 0.18);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.45);
+      font-weight: 700;
+    }
+    .badge-spec {
+      background: rgba(148, 163, 184, 0.12);
+      color: #cbd5e1;
+      border: 1px solid rgba(148, 163, 184, 0.28);
     }
 
     .job-meta {
@@ -459,7 +482,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
   <!-- Sub-filters for current tab -->
   <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all" onclick="filterJobs('all')">All</button>
+    <button class="filter-btn active" data-filter="all" onclick="filterJobs('all')">All Jobs</button>
+    <button class="filter-btn filter-btn-top" data-filter="top_5" onclick="filterJobs('top_5')">⭐ Top 5 Specialties</button>
+    <button class="filter-btn" data-filter="Surgery" onclick="filterJobs('Surgery')">🔪 Surgery</button>
+    <button class="filter-btn" data-filter="Emergency Medicine (ER)" onclick="filterJobs('Emergency Medicine (ER)')">🚨 Emergency (ER)</button>
+    <button class="filter-btn" data-filter="ENT / Head & Neck" onclick="filterJobs('ENT / Head & Neck')">🩺 ENT</button>
+    <button class="filter-btn" data-filter="Dermatology" onclick="filterJobs('Dermatology')">✨ Derm</button>
+    <button class="filter-btn" data-filter="Urgent Care" onclick="filterJobs('Urgent Care')">⚡ Urgent Care</button>
     <button class="filter-btn" data-filter="MD" onclick="filterJobs('MD')">📍 Maryland (MoCo)</button>
     <button class="filter-btn" data-filter="NYC" onclick="filterJobs('NYC')">🗽 NYP (NYC)</button>
     <button class="filter-btn" data-filter="high" onclick="filterJobs('high')">🟢 High Chance</button>
@@ -482,7 +511,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     const SUPABASE_KEY = "sb_publishable__2yNARQiGOBhIIariC0t-Q_LSfzaIcc";
 
     let currentStatusTab = 'to_apply'; // 'to_apply' | 'applied' | 'dismissed'
-    let currentFilter = 'all';         // 'all' | 'MD' | 'NYC' | 'high' | 'moderate' | 'lower'
+    let currentFilter = 'all';         // 'all' | 'top_5' | 'Surgery' | 'MD' | etc.
     let archivedJobs = [];             // Past applied/dismissed jobs preserved even if removed by hospital
 
     // Local Storage helpers (Immediate 0ms UI reactivity)
@@ -584,6 +613,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 match_reason: 'Archived Application History',
                 hub: 'Other',
                 probability: 'moderate',
+                specialty: 'Archived',
+                is_top_specialty: false,
                 url: row.url || '#',
                 is_closed: true
               });
@@ -658,6 +689,14 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       renderJobs();
     }
 
+    function getSpecialtyBadge(specialty, isTop) {
+      if (!specialty) return '';
+      if (isTop) {
+        return `<span class="badge badge-top-spec">⭐ ${specialty}</span>`;
+      }
+      return `<span class="badge badge-spec">${specialty}</span>`;
+    }
+
     function getProbBadge(p, isClosed) {
       if (isClosed) return '<span class="badge badge-closed">🔒 Closed Requisition</span>';
       if (p === 'high') return '<span class="badge badge-high">🟢 High Chance · New Grad Welcome</span>';
@@ -687,6 +726,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         list = list.filter(j => j.hub === currentFilter);
       } else if (currentFilter === 'high' || currentFilter === 'moderate' || currentFilter === 'lower') {
         list = list.filter(j => j.probability === currentFilter);
+      } else if (currentFilter === 'top_5') {
+        list = list.filter(j => j.is_top_specialty);
+      } else if (['Surgery', 'Emergency Medicine (ER)', 'ENT / Head & Neck', 'Dermatology', 'Urgent Care'].includes(currentFilter)) {
+        list = list.filter(j => j.specialty === currentFilter);
       }
 
       // Empty State handling
@@ -787,6 +830,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 <h2 class="job-title">${j.title}</h2>
               </div>
               <div class="badges">
+                ${getSpecialtyBadge(j.specialty, j.is_top_specialty)}
                 ${j.hub !== 'Other' ? `<span class="badge ${j.hub === 'MD' ? 'badge-md' : 'badge-nyc'}">${j.hub}</span>` : ''}
                 ${getProbBadge(j.probability, j.is_closed)}
               </div>
@@ -797,7 +841,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
               <span>💼 Full-Time</span>
             </div>
             <div class="${getReasonClass(j.probability)}">
-              💡 <strong>Match Signal:</strong> ${j.match_reason}
+              💡 <strong>Match Signal:</strong> ${j.is_top_specialty ? '⭐ <strong>Top 5 Specialty Pick</strong> · ' : ''}${j.match_reason}
             </div>
             ${actionMarkup}
           </div>
@@ -840,11 +884,19 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 def generate_dashboard(jobs: List[JobPosting], output_dir: Path):
     """Generate static HTML dashboard in output_dir (e.g. docs/index.html)."""
     output_dir.mkdir(parents=True, exist_ok=True)
-    jobs_data = [j.to_dict() if isinstance(j, JobPosting) else j for j in jobs]
+    jobs_data = []
+    for j in jobs:
+        d = j.to_dict() if isinstance(j, JobPosting) else dict(j)
+        if "specialty" not in d or not d.get("specialty"):
+            spec, is_top = detect_specialty(d.get("title", ""), d.get("description", ""))
+            d["specialty"] = spec
+            d["is_top_specialty"] = is_top
+        jobs_data.append(d)
+        
     html = HTML_TEMPLATE.replace("__JOBS_JSON__", json.dumps(jobs_data))
     (output_dir / "index.html").write_text(html, encoding="utf-8")
     (output_dir / "jobs.json").write_text(json.dumps(jobs_data, indent=2), encoding="utf-8")
-    print(f"[Dashboard] Generated docs/index.html with {len(jobs)} jobs.")
+    print(f"[Dashboard] Generated docs/index.html with {len(jobs)} jobs and specialty tagging.")
 
 if __name__ == "__main__":
     docs_dir = Path(__file__).parent / "docs"
@@ -861,7 +913,13 @@ if __name__ == "__main__":
             jobs = json.loads(match.group(1))
     
     if jobs:
+        # Enforce specialty detection on existing jobs
+        for j in jobs:
+            spec, is_top = detect_specialty(j.get("title", ""), j.get("description", ""))
+            j["specialty"] = spec
+            j["is_top_specialty"] = is_top
+            
         generate_dashboard(jobs, docs_dir)
-        print("[Standalone] Successfully rebuilt docs/index.html with bidirectional status management.")
+        print("[Standalone] Successfully rebuilt docs/index.html with Top 5 clinical specialties.")
     else:
         print("[Standalone] No existing jobs found to rebuild from.")

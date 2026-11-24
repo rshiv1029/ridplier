@@ -4,7 +4,7 @@ import urllib.request
 import urllib.parse
 from typing import List
 from .models import JobPosting
-from .evaluator import is_title_eligible, evaluate_new_grad
+from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty
 
 TRINITY_URL = "https://jobs.trinity-health.org/search-results?keywords=physician%20assistant"
 
@@ -61,6 +61,8 @@ def fetch_holy_cross_jobs() -> List[JobPosting]:
                     if not is_friendly:
                         continue
 
+                    specialty, is_top = detect_specialty(title)
+
                     # Build direct job link
                     slug = re.sub(r"[^a-zA-Z0-9]+", "-", title).strip("-")
                     job_url = f"https://jobs.trinity-health.org/job/{seq_no}/{slug}"
@@ -77,6 +79,8 @@ def fetch_holy_cross_jobs() -> List[JobPosting]:
                         match_reason=reason,
                         hub="MD",
                         probability=probability,
+                        specialty=specialty,
+                        is_top_specialty=is_top,
                         raw_data=item,
                     )
                     postings.append(job)

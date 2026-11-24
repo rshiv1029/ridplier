@@ -14,6 +14,8 @@ class JobPosting:
     match_reason: str
     hub: str  # "MD" or "NYC"
     probability: str = "moderate"  # "high", "moderate", "lower"
+    specialty: str = "General / Inpatient"
+    is_top_specialty: bool = False
     raw_data: Optional[Dict[str, Any]] = None
 
     @classmethod
