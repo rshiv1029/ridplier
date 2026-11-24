@@ -31,6 +31,7 @@ jobs:
 
       - name: Run Job Scraper & Notifier
         env:
+          ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
           TMOBILE_NUMBER: ${{ secrets.TMOBILE_NUMBER }}
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
