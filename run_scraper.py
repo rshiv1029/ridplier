@@ -14,6 +14,10 @@ from scrapers.nyp import fetch_nyp_jobs
 from scrapers.adventist import fetch_adventist_jobs
 from scrapers.hopkins import fetch_hopkins_jobs
 from scrapers.mount_sinai import fetch_mount_sinai_jobs
+from scrapers.medstar import fetch_medstar_jobs
+from scrapers.inova import fetch_inova_jobs
+from scrapers.nyu_langone import fetch_nyu_langone_jobs
+from scrapers.pagny import fetch_nychhc_jobs
 from notifier import notify_new_jobs
 from build_site import generate_dashboard
 
@@ -49,7 +53,13 @@ def main():
     print(f"  -> Adventist HealthCare (MD - Rockville & Silver Spring): {len(adventist_jobs)} eligible listings found.")
 
     hopkins_jobs = fetch_hopkins_jobs()
-    print(f"  -> Suburban Hospital / Johns Hopkins (MD - Bethesda): {len(hopkins_jobs)} eligible listings found.")
+    print(f"  -> Suburban & Sibley / Johns Hopkins (MD/DC): {len(hopkins_jobs)} eligible listings found.")
+
+    medstar_jobs = fetch_medstar_jobs()
+    print(f"  -> MedStar Health (MD & DC): {len(medstar_jobs)} eligible listings found.")
+
+    inova_jobs = fetch_inova_jobs()
+    print(f"  -> Inova Health System (Northern Virginia): {len(inova_jobs)} eligible listings found.")
 
     nyp_jobs = fetch_nyp_jobs()
     print(f"  -> NewYork-Presbyterian (NYC): {len(nyp_jobs)} eligible listings found.")
@@ -57,7 +67,23 @@ def main():
     mount_sinai_jobs = fetch_mount_sinai_jobs()
     print(f"  -> Mount Sinai Health System (NYC): {len(mount_sinai_jobs)} eligible listings found.")
 
-    all_jobs = holy_cross_jobs + adventist_jobs + hopkins_jobs + nyp_jobs + mount_sinai_jobs
+    nyu_jobs = fetch_nyu_langone_jobs()
+    print(f"  -> NYU Langone Health (NYC): {len(nyu_jobs)} eligible listings found.")
+
+    nychhc_jobs = fetch_nychhc_jobs()
+    print(f"  -> NYC Health + Hospitals / PAGNY (NYC): {len(nychhc_jobs)} eligible listings found.")
+
+    all_jobs = (
+        holy_cross_jobs
+        + adventist_jobs
+        + hopkins_jobs
+        + medstar_jobs
+        + inova_jobs
+        + nyp_jobs
+        + mount_sinai_jobs
+        + nyu_jobs
+        + nychhc_jobs
+    )
     print(f"[Total] Collected {len(all_jobs)} active PA postings across all target hubs.")
 
     # 2. Identify new jobs

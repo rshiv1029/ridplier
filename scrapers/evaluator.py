@@ -16,6 +16,8 @@ EXCLUDE_TITLE_WORDS = [
     r"\bpart[\s-]?time\b",
     r"\bcasual\b",
     r"\bcontingent\b",
+    r"\bexperience\s+required\b",
+    r"\bexper\s+req\b",
 ]
 
 # Valid PA / APP title markers
@@ -56,6 +58,10 @@ HARD_EXPERIENCE_BLOCKERS = [
     r"at least\s+(?:3|4|5)\s*years?\s+(?:of\s+)?(?:clinical\s+)?experience",
     r"requires\s+(?:3|4|5)\+?\s*years?",
     r"not open to new grads",
+    r"not open to new graduates",
+    r"experience\s+(?:is\s+)?required",
+    r"prior\s+experience\s+required",
+    r"must\s+have\s+(?:at\s+least\s+)?(?:2|3|4|5)\s+years",
     r"completion\s+of\s+a\s+fellowship\s+required",
 ]
 
@@ -122,6 +128,36 @@ def detect_specialty(title: str, description: str = "") -> Tuple[str, bool]:
             return spec, False
 
     return "General / Inpatient", False
+
+def classify_nyc_location(location_str: str, title_str: str = "") -> Tuple[bool, str]:
+    """
+    Determines if a location in the NYC hub is inside the 5 boroughs or outside (suburbs).
+    Returns: (is_outside_nyc, borough_or_suburb_label)
+    """
+    text = f"{location_str} {title_str}".lower()
+    
+    # 1. Suburban / Outside NYC markers
+    if re.search(r"\b(westchester|bronxville|white\s*plains|sleepy\s*hollow|valhalla|yonkers|new\s*rochelle|tarrytown|mount\s*vernon|hudson\s*valley|cortlandt)\b", text):
+        return True, "Westchester (Outside City)"
+    if re.search(r"\b(long\s*island|nassau|suffolk|manhasset|new\s*hyde\s*park|mineola|huntington|stony\s*brook|garden\s*city|plainview)\b", text):
+        return True, "Long Island (Outside City)"
+    if re.search(r"\b(rockland|connecticut|new\s*jersey|jersey|hoboken)\b", text):
+        return True, "Outside NYC Suburbs"
+        
+    # 2. In-City Boroughs
+    if re.search(r"\b(manhattan|new\s*york\s*city|new\s*york,\s*ny|ny,?\s*ny|weill\s*cornell|columbia|allen|morningside|midtown|downtown|uptown)\b", text):
+        return False, "Manhattan"
+    if re.search(r"\b(brooklyn|brooklyn\s*methodist)\b", text):
+        return False, "Brooklyn"
+    if re.search(r"\b(queens|elmhurst|jamaica|flushing|astoria|long\s*island\s*city)\b", text):
+        return False, "Queens"
+    if re.search(r"\b(bronx|jacobi|lincoln|montefiore)\b", text):
+        return False, "Bronx"
+    if re.search(r"\b(staten\s*island)\b", text):
+        return False, "Staten Island"
+
+    # Default assumption for NYC hospital systems if unlisted
+    return False, "NYC (5 Boroughs)"
 
 def is_title_eligible(title: str) -> bool:
     title_clean = re.sub(r"[_\-]+", " ", title.lower())

@@ -3,7 +3,7 @@ import ssl
 import urllib.request
 from typing import List
 from .models import JobPosting
-from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty
+from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty, classify_nyc_location
 
 MOUNT_SINAI_API = "https://careers.mountsinai.org/api/jobs?keywords=physician%20assistant&page={page}&limit=50"
 
@@ -59,6 +59,7 @@ def fetch_mount_sinai_jobs() -> List[JobPosting]:
                         continue
 
                     specialty, is_top = detect_specialty(title, desc_text)
+                    is_outside, borough = classify_nyc_location(location, title)
 
                     job = JobPosting(
                         id=JobPosting.make_id("MountSinai", req_id),
@@ -73,6 +74,8 @@ def fetch_mount_sinai_jobs() -> List[JobPosting]:
                         probability=probability,
                         specialty=specialty,
                         is_top_specialty=is_top,
+                        is_outside_nyc=is_outside,
+                        borough_tag=borough,
                         raw_data=d,
                     )
                     postings.append(job)

@@ -3,7 +3,7 @@ import re
 from pathlib import Path
 from typing import List, Dict, Any
 from scrapers.models import JobPosting
-from scrapers.evaluator import detect_specialty
+from scrapers.evaluator import detect_specialty, classify_nyc_location
 
 HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
@@ -22,6 +22,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       --accent-hover: #0284c7;
       --badge-md: #818cf8;
       --badge-nyc: #f43f5e;
+      --badge-va: #60a5fa;
       --prob-high: #10b981;
       --prob-mod: #f59e0b;
       --prob-lower: #f97316;
@@ -130,43 +131,111 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       color: #0f172a;
     }
 
-    /* Sub Filters */
-    .filter-bar {
+    /* Dropdown Filters Toolbar */
+    .dropdown-filter-bar {
       max-width: 960px;
       margin: 0 auto 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      justify-content: center;
-    }
-    .filter-btn {
-      background: var(--card-bg);
-      color: var(--text-muted);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr) auto;
+      gap: 0.75rem;
+      background: #1e293b;
+      padding: 0.85rem 1rem;
       border: 1px solid var(--border);
-      padding: 0.45rem 0.9rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 500;
-      font-size: 0.88rem;
-      transition: all 0.2s;
+      border-radius: 12px;
+      align-items: flex-end;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
-    .filter-btn:hover {
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      min-width: 0;
+    }
+    .filter-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .filter-select {
+      background: #0f172a;
       color: var(--text);
-      border-color: #475569;
+      border: 1px solid #334155;
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      outline: none;
+      cursor: pointer;
+      width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      font-family: inherit;
     }
-    .filter-btn.active {
-      background: #334155;
-      color: var(--accent);
+    .filter-select:hover {
+      border-color: #64748b;
+    }
+    .filter-select:focus {
       border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
     }
-    .filter-btn-top {
-      border-color: rgba(168, 85, 247, 0.45);
-      color: #c084fc;
+    .filter-select optgroup {
+      background: #0f172a;
+      color: #94a3b8;
+      font-weight: 700;
+      font-size: 0.82rem;
     }
-    .filter-btn-top:hover, .filter-btn-top.active {
-      background: #a855f7 !important;
-      color: #ffffff !important;
-      border-color: #a855f7 !important;
+    .filter-select option {
+      background: #1e293b;
+      color: var(--text);
+      font-weight: 400;
+      padding: 0.4rem;
+    }
+    .filter-group-actions {
+      display: flex;
+      align-items: flex-end;
+    }
+    .btn-reset-filters {
+      background: transparent;
+      color: #94a3b8;
+      border: 1px dashed #475569;
+      padding: 0.58rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+      display: none;
+    }
+    .btn-reset-filters.visible {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .btn-reset-filters:hover {
+      color: #f87171;
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    @media (max-width: 820px) {
+      .dropdown-filter-bar {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        padding: 0.85rem;
+      }
+      .filter-group-actions {
+        align-items: stretch;
+      }
+      .btn-reset-filters {
+        justify-content: center;
+      }
     }
 
     /* Jobs Grid */
@@ -228,7 +297,15 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     }
     .badge-md { background: rgba(129, 140, 248, 0.18); color: var(--badge-md); border: 1px solid rgba(129, 140, 248, 0.3); }
     .badge-nyc { background: rgba(244, 63, 94, 0.18); color: var(--badge-nyc); border: 1px solid rgba(244, 63, 94, 0.3); }
+    .badge-va { background: rgba(59, 130, 246, 0.18); color: var(--badge-va); border: 1px solid rgba(59, 130, 246, 0.3); }
     
+    .badge-outside-nyc {
+      background: rgba(239, 68, 68, 0.16);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      font-weight: 700;
+    }
+
     .badge-high {
       background: rgba(16, 185, 129, 0.16);
       color: #34d399;
@@ -287,6 +364,15 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     .job-reason-lower {
       border-left: 3px solid var(--prob-lower);
       color: #fed7aa;
+    }
+
+    .location-warning {
+      background: rgba(239, 68, 68, 0.12);
+      color: #fca5a5;
+      border-left: 3px solid #ef4444;
+      padding: 0.5rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.84rem;
     }
 
     /* Actions Bar */
@@ -457,8 +543,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <h1>🩺 Ridplier</h1>
     <p>Curated PA New Grad Job Tracker & Application Hub</p>
     <div class="stats">
-      <div class="stat-pill">📍 Montgomery County, MD + NYC Metro</div>
-      <div class="stat-pill">⚡ Auto-Updated 4x Daily</div>
+      <div class="stat-pill">📍 Montgomery County, MD + DC + Northern VA + NYC Metro</div>
+      <div class="stat-pill">⚡ Auto-Updated Every 6 Hours</div>
       <div class="stat-pill">Total Active: <strong id="total-count">0</strong></div>
       <div class="stat-pill sync-status" id="cloud-sync-status">☁️ Connecting Cloud...</div>
     </div>
@@ -480,20 +566,73 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     </button>
   </div>
 
-  <!-- Sub-filters for current tab -->
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all" onclick="filterJobs('all')">All Jobs</button>
-    <button class="filter-btn filter-btn-top" data-filter="top_5" onclick="filterJobs('top_5')">⭐ Top 5 Specialties</button>
-    <button class="filter-btn" data-filter="Surgery" onclick="filterJobs('Surgery')">🔪 Surgery</button>
-    <button class="filter-btn" data-filter="Emergency Medicine (ER)" onclick="filterJobs('Emergency Medicine (ER)')">🚨 Emergency (ER)</button>
-    <button class="filter-btn" data-filter="ENT / Head & Neck" onclick="filterJobs('ENT / Head & Neck')">🩺 ENT</button>
-    <button class="filter-btn" data-filter="Dermatology" onclick="filterJobs('Dermatology')">✨ Derm</button>
-    <button class="filter-btn" data-filter="Urgent Care" onclick="filterJobs('Urgent Care')">⚡ Urgent Care</button>
-    <button class="filter-btn" data-filter="MD" onclick="filterJobs('MD')">📍 Maryland (MoCo)</button>
-    <button class="filter-btn" data-filter="NYC" onclick="filterJobs('NYC')">🗽 NYP (NYC)</button>
-    <button class="filter-btn" data-filter="high" onclick="filterJobs('high')">🟢 High Chance</button>
-    <button class="filter-btn" data-filter="moderate" onclick="filterJobs('moderate')">🟡 Moderate Chance</button>
-    <button class="filter-btn" data-filter="lower" onclick="filterJobs('lower')">🟠 Lower Chance (2+ Yrs)</button>
+  <!-- 3 Clean Dropdown Filters: Network, Location, Specialty -->
+  <div class="dropdown-filter-bar">
+    <div class="filter-group">
+      <label for="filter-network" class="filter-label">🏥 Hospital Network</label>
+      <select id="filter-network" class="filter-select" onchange="onDropdownFilterChange()">
+        <option value="all">All Networks (All Hospitals)</option>
+        <option value="NYP">NewYork-Presbyterian (NYC)</option>
+        <option value="Mount Sinai">Mount Sinai Health System (NYC)</option>
+        <option value="NYU Langone">NYU Langone Health (NYC)</option>
+        <option value="NYC Health + Hospitals">NYC Health + Hospitals / PAGNY (NYC)</option>
+        <option value="Johns Hopkins">Johns Hopkins / Suburban & Sibley (MD/DC)</option>
+        <option value="MedStar">MedStar Health (MD & DC)</option>
+        <option value="Adventist">Adventist HealthCare (MD)</option>
+        <option value="Holy Cross">Holy Cross Health (MD)</option>
+        <option value="Inova">Inova Health System (VA)</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="filter-location" class="filter-label">📍 Location & Borough</label>
+      <select id="filter-location" class="filter-select" onchange="onDropdownFilterChange()">
+        <option value="all">All Locations</option>
+        <optgroup label="🗽 New York City (Strict In-City)">
+          <option value="NYC_proper">🗽 All NYC (5 Boroughs Only)</option>
+          <option value="Manhattan">Manhattan</option>
+          <option value="Brooklyn">Brooklyn</option>
+          <option value="Queens">Queens</option>
+          <option value="Bronx">Bronx</option>
+        </optgroup>
+        <optgroup label="⚠️ Outside NYC (Suburbs)">
+          <option value="NYC_outside">⚠️ Outside NYC (Long Island / Westchester)</option>
+        </optgroup>
+        <optgroup label="📍 Maryland, DC & Virginia">
+          <option value="MD">📍 Montgomery County & DC Border (MD)</option>
+          <option value="VA">🏛️ Northern Virginia (Inova)</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="filter-specialty" class="filter-label">🩺 Clinical Specialty</label>
+      <select id="filter-specialty" class="filter-select" onchange="onDropdownFilterChange()">
+        <option value="all">All Specialties</option>
+        <optgroup label="⭐ Her Top 5 Specialties">
+          <option value="top_5">⭐ Any Top 5 Specialty Pick</option>
+          <option value="ENT / Head & Neck">🩺 1. ENT / Head & Neck</option>
+          <option value="Dermatology">✨ 2. Dermatology</option>
+          <option value="Emergency Medicine (ER)">🚨 3. Emergency Medicine (ER)</option>
+          <option value="Surgery">🔪 4. Surgery (General, Trauma, Ortho, OR)</option>
+          <option value="Urgent Care">⚡ 5. Urgent Care</option>
+        </optgroup>
+        <optgroup label="🏥 Other Specialties">
+          <option value="Critical Care / ICU">🫁 Critical Care / ICU</option>
+          <option value="Cardiology">❤️ Cardiology & Cath Lab</option>
+          <option value="Internal Medicine">🏥 Internal Medicine / Hospitalist</option>
+          <option value="Primary Care">🩺 Primary Care & Outpatient</option>
+          <option value="Obstetrics & Gynecology">👶 OB / GYN</option>
+          <option value="General / Inpatient">📋 General / Inpatient</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="filter-group filter-group-actions">
+      <button class="btn-reset-filters" id="btn-reset-filters" onclick="resetDropdownFilters()">
+        ↺ Reset Filters
+      </button>
+    </div>
   </div>
 
   <div class="jobs-grid" id="jobs-container">
@@ -511,7 +650,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     const SUPABASE_KEY = "sb_publishable__2yNARQiGOBhIIariC0t-Q_LSfzaIcc";
 
     let currentStatusTab = 'to_apply'; // 'to_apply' | 'applied' | 'dismissed'
-    let currentFilter = 'all';         // 'all' | 'top_5' | 'Surgery' | 'MD' | etc.
+    let selectedNetwork = 'all';
+    let selectedLocation = 'all';
+    let selectedSpecialty = 'all';
     let archivedJobs = [];             // Past applied/dismissed jobs preserved even if removed by hospital
 
     // Local Storage helpers (Immediate 0ms UI reactivity)
@@ -647,7 +788,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       supabaseUpsert(jobId, 'applied', today);
     }
 
-    // Dismiss job (from To Apply OR from Applied when rejected/passed)
     function dismissJob(jobId, fromApplied = false) {
       const statuses = getStoredStatuses();
       const today = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -658,7 +798,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       supabaseUpsert(jobId, 'dismissed', today);
     }
 
-    // Move back to To Apply
     function restoreToApply(jobId) {
       const statuses = getStoredStatuses();
       delete statuses[jobId];
@@ -677,15 +816,29 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       renderJobs();
     }
 
-    function filterJobs(filterKey) {
-      currentFilter = filterKey;
-      document.querySelectorAll('.filter-btn').forEach(b => {
-        if (b.getAttribute('data-filter') === filterKey) {
-          b.classList.add('active');
-        } else {
-          b.classList.remove('active');
-        }
-      });
+    function onDropdownFilterChange() {
+      selectedNetwork = document.getElementById('filter-network').value;
+      selectedLocation = document.getElementById('filter-location').value;
+      selectedSpecialty = document.getElementById('filter-specialty').value;
+
+      const resetBtn = document.getElementById('btn-reset-filters');
+      if (selectedNetwork !== 'all' || selectedLocation !== 'all' || selectedSpecialty !== 'all') {
+        resetBtn.classList.add('visible');
+      } else {
+        resetBtn.classList.remove('visible');
+      }
+
+      renderJobs();
+    }
+
+    function resetDropdownFilters() {
+      document.getElementById('filter-network').value = 'all';
+      document.getElementById('filter-location').value = 'all';
+      document.getElementById('filter-specialty').value = 'all';
+      selectedNetwork = 'all';
+      selectedLocation = 'all';
+      selectedSpecialty = 'all';
+      document.getElementById('btn-reset-filters').classList.remove('visible');
       renderJobs();
     }
 
@@ -695,6 +848,19 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         return `<span class="badge badge-top-spec">⭐ ${specialty}</span>`;
       }
       return `<span class="badge badge-spec">${specialty}</span>`;
+    }
+
+    function getLocationBadge(j) {
+      if (j.hub === 'NYC') {
+        if (j.is_outside_nyc) {
+          return `<span class="badge badge-outside-nyc">⚠️ Outside NYC (${j.borough_tag || 'Suburbs'})</span>`;
+        }
+        return `<span class="badge badge-nyc">🗽 NYC (${j.borough_tag || 'City'})</span>`;
+      }
+      if (j.hub === 'VA') {
+        return `<span class="badge badge-va">🏛️ Northern VA</span>`;
+      }
+      return `<span class="badge badge-md">📍 MD / DC</span>`;
     }
 
     function getProbBadge(p, isClosed) {
@@ -721,15 +887,59 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         return s === currentStatusTab;
       });
 
-      // 2. Filter by sub-category
-      if (currentFilter === 'MD' || currentFilter === 'NYC') {
-        list = list.filter(j => j.hub === currentFilter);
-      } else if (currentFilter === 'high' || currentFilter === 'moderate' || currentFilter === 'lower') {
-        list = list.filter(j => j.probability === currentFilter);
-      } else if (currentFilter === 'top_5') {
-        list = list.filter(j => j.is_top_specialty);
-      } else if (['Surgery', 'Emergency Medicine (ER)', 'ENT / Head & Neck', 'Dermatology', 'Urgent Care'].includes(currentFilter)) {
-        list = list.filter(j => j.specialty === currentFilter);
+      // 2. Filter by Network dropdown
+      if (selectedNetwork !== 'all') {
+        list = list.filter(j => {
+          const hosp = (j.hospital || '').toLowerCase();
+          const idStr = (j.id || '').toLowerCase();
+          if (selectedNetwork === 'NYP') return hosp.includes('presbyterian') || idStr.includes('nyp');
+          if (selectedNetwork === 'Mount Sinai') return hosp.includes('mount sinai') || idStr.includes('mountsinai');
+          if (selectedNetwork === 'NYU Langone') return hosp.includes('nyu') || idStr.includes('nyulangone');
+          if (selectedNetwork === 'NYC Health + Hospitals') return hosp.includes('nyc health') || idStr.includes('nychhc') || idStr.includes('pagny');
+          if (selectedNetwork === 'Johns Hopkins') return hosp.includes('hopkins') || hosp.includes('sibley') || hosp.includes('suburban') || idStr.includes('hopkins');
+          if (selectedNetwork === 'MedStar') return hosp.includes('medstar') || idStr.includes('medstar');
+          if (selectedNetwork === 'Adventist') return hosp.includes('adventist') || idStr.includes('adventist');
+          if (selectedNetwork === 'Holy Cross') return hosp.includes('holy cross') || idStr.includes('holycross');
+          if (selectedNetwork === 'Inova') return hosp.includes('inova') || idStr.includes('inova');
+          return true;
+        });
+      }
+
+      // 3. Filter by Location dropdown
+      if (selectedLocation !== 'all') {
+        list = list.filter(j => {
+          if (selectedLocation === 'NYC_proper') {
+            return j.hub === 'NYC' && !j.is_outside_nyc;
+          }
+          if (selectedLocation === 'NYC_outside') {
+            return j.hub === 'NYC' && j.is_outside_nyc;
+          }
+          if (['Manhattan', 'Brooklyn', 'Queens', 'Bronx'].includes(selectedLocation)) {
+            const bTag = (j.borough_tag || '').toLowerCase();
+            const loc = (j.location || '').toLowerCase();
+            const title = (j.title || '').toLowerCase();
+            const hosp = (j.hospital || '').toLowerCase();
+            const target = selectedLocation.toLowerCase();
+            return bTag.includes(target) || loc.includes(target) || title.includes(target) || hosp.includes(target);
+          }
+          if (selectedLocation === 'MD') {
+            return j.hub === 'MD';
+          }
+          if (selectedLocation === 'VA') {
+            return j.hub === 'VA';
+          }
+          return true;
+        });
+      }
+
+      // 4. Filter by Specialty dropdown
+      if (selectedSpecialty !== 'all') {
+        list = list.filter(j => {
+          if (selectedSpecialty === 'top_5') {
+            return j.is_top_specialty === true;
+          }
+          return j.specialty === selectedSpecialty;
+        });
       }
 
       // Empty State handling
@@ -822,6 +1032,15 @@ HTML_TEMPLATE = """<!DOCTYPE html>
           `;
         }
 
+        let warningNotice = '';
+        if (j.is_outside_nyc) {
+          warningNotice = `
+            <div class="location-warning">
+              ⚠️ <strong>Location Notice:</strong> Located in ${j.borough_tag || 'the suburbs'} (outside NYC 5 boroughs).
+            </div>
+          `;
+        }
+
         return `
           <div class="job-card" data-id="${j.id}">
             <div class="job-top">
@@ -831,7 +1050,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
               </div>
               <div class="badges">
                 ${getSpecialtyBadge(j.specialty, j.is_top_specialty)}
-                ${j.hub !== 'Other' ? `<span class="badge ${j.hub === 'MD' ? 'badge-md' : 'badge-nyc'}">${j.hub}</span>` : ''}
+                ${getLocationBadge(j)}
                 ${getProbBadge(j.probability, j.is_closed)}
               </div>
             </div>
@@ -840,6 +1059,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
               <span>📅 ${j.posted_date}</span>
               <span>💼 Full-Time</span>
             </div>
+            ${warningNotice}
             <div class="${getReasonClass(j.probability)}">
               💡 <strong>Match Signal:</strong> ${j.is_top_specialty ? '⭐ <strong>Top 5 Specialty Pick</strong> · ' : ''}${j.match_reason}
             </div>
@@ -891,12 +1111,16 @@ def generate_dashboard(jobs: List[JobPosting], output_dir: Path):
             spec, is_top = detect_specialty(d.get("title", ""), d.get("description", ""))
             d["specialty"] = spec
             d["is_top_specialty"] = is_top
+        if d.get("hub") == "NYC" and "is_outside_nyc" not in d:
+            is_outside, borough = classify_nyc_location(d.get("location", ""), d.get("title", ""))
+            d["is_outside_nyc"] = is_outside
+            d["borough_tag"] = borough
         jobs_data.append(d)
         
     html = HTML_TEMPLATE.replace("__JOBS_JSON__", json.dumps(jobs_data))
     (output_dir / "index.html").write_text(html, encoding="utf-8")
     (output_dir / "jobs.json").write_text(json.dumps(jobs_data, indent=2), encoding="utf-8")
-    print(f"[Dashboard] Generated docs/index.html with {len(jobs)} jobs and specialty tagging.")
+    print(f"[Dashboard] Generated docs/index.html with {len(jobs)} jobs.")
 
 if __name__ == "__main__":
     docs_dir = Path(__file__).parent / "docs"
@@ -913,13 +1137,16 @@ if __name__ == "__main__":
             jobs = json.loads(match.group(1))
     
     if jobs:
-        # Enforce specialty detection on existing jobs
         for j in jobs:
             spec, is_top = detect_specialty(j.get("title", ""), j.get("description", ""))
             j["specialty"] = spec
             j["is_top_specialty"] = is_top
+            if j.get("hub") == "NYC":
+                is_outside, borough = classify_nyc_location(j.get("location", ""), j.get("title", ""))
+                j["is_outside_nyc"] = is_outside
+                j["borough_tag"] = borough
             
         generate_dashboard(jobs, docs_dir)
-        print("[Standalone] Successfully rebuilt docs/index.html with Top 5 clinical specialties.")
+        print("[Standalone] Successfully rebuilt docs/index.html with outside-NYC alerts and new hubs.")
     else:
         print("[Standalone] No existing jobs found to rebuild from.")

@@ -12,10 +12,12 @@ class JobPosting:
     posted_date: str
     is_new_grad_friendly: bool
     match_reason: str
-    hub: str  # "MD" or "NYC"
+    hub: str  # "MD", "NYC", "VA"
     probability: str = "moderate"  # "high", "moderate", "lower"
     specialty: str = "General / Inpatient"
     is_top_specialty: bool = False
+    is_outside_nyc: bool = False
+    borough_tag: Optional[str] = None
     raw_data: Optional[Dict[str, Any]] = None
 
     @classmethod

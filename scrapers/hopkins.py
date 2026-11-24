@@ -7,9 +7,14 @@ from .models import JobPosting
 from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty
 
 HOPKINS_SEARCH_URLS = [
+    # Suburban Hospital (Bethesda, MD)
     "https://jobs.hopkinsmedicine.org/jobs/us-md-bethesda/",
     "https://jobs.hopkinsmedicine.org/jobs/advanced-practice-providers/us-md-bethesda/",
     "https://jobs.hopkinsmedicine.org/jobs/physician-assistant/us-md-bethesda/",
+    # Sibley Memorial Hospital (DC / MD Border)
+    "https://jobs.hopkinsmedicine.org/jobs/us-dc-washington/",
+    "https://jobs.hopkinsmedicine.org/jobs/advanced-practice-providers/us-dc-washington/",
+    "https://jobs.hopkinsmedicine.org/jobs/physician-assistant/us-dc-washington/",
 ]
 
 def fetch_hopkins_jobs() -> List[JobPosting]:
@@ -74,8 +79,17 @@ def fetch_hopkins_jobs() -> List[JobPosting]:
                     state = loc_data.get("addressRegion", "MD")
                     location = f"{city}, {state}" if city else "Bethesda, MD"
                     
-                    # Format hospital name
-                    hospital_name = f"Suburban Hospital (Johns Hopkins)" if "suburban" in street.lower() else f"Johns Hopkins Medicine ({street})"
+                    # Format hospital name and facility
+                    full_context = f"{street} {city} {url}".lower()
+                    if "sibley" in full_context:
+                        hospital_name = "Sibley Memorial Hospital (Johns Hopkins)"
+                        location = "Washington, DC (MD Border)"
+                    elif "suburban" in full_context:
+                        hospital_name = "Suburban Hospital (Johns Hopkins)"
+                        location = "Bethesda, MD"
+                    else:
+                        hospital_name = f"Johns Hopkins Medicine ({street})"
+                        location = f"{city}, {state}" if city else "Maryland"
 
                     # Extract requisition ID from URL path (e.g. /job/101276/...)
                     req_id_match = re.search(r'/job/(\d+)/', url)
