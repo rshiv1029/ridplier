@@ -1,7 +1,7 @@
 import re
 from typing import Tuple
 
-# Non-new-grad / leadership titles to strictly exclude
+# Non-new-grad / leadership / non-full-time titles to strictly exclude
 EXCLUDE_TITLE_WORDS = [
     r"\bsenior\b",
     r"\blead\b",
@@ -13,6 +13,9 @@ EXCLUDE_TITLE_WORDS = [
     r"\bfaculty\b",
     r"\bper diem\b",
     r"\bprn\b",
+    r"\bpart[\s-]?time\b",
+    r"\bcasual\b",
+    r"\bcontingent\b",
 ]
 
 # Valid PA / APP title markers
@@ -48,27 +51,29 @@ HARD_EXPERIENCE_BLOCKERS = [
 ]
 
 def is_title_eligible(title: str) -> bool:
-    title_lower = title.lower()
+    # Normalize underscores and hyphens to spaces so prefixes like HCMD_Physician don't break word boundaries
+    title_clean = re.sub(r"[_\-]+", " ", title.lower())
     for pat in EXCLUDE_TITLE_WORDS:
-        if re.search(pat, title_lower):
+        if re.search(pat, title_clean):
             return False
     for pat in INCLUDE_TITLE_WORDS:
-        if re.search(pat, title_lower):
+        if re.search(pat, title_clean):
             return True
     return False
 
 def evaluate_new_grad(title: str, description: str = "") -> Tuple[bool, str]:
-    text = f"{title}\n{description}".lower()
+    text = f"{title}\n{description}"
+    text_clean = re.sub(r"[_\-]+", " ", text.lower())
     
     # Check explicit positive signals
     for pat in NEW_GRAD_FRIENDLY_PHRASES:
-        m = re.search(pat, text)
+        m = re.search(pat, text_clean)
         if m:
             return True, f"Explicit new-grad match: '{m.group(0)}'"
 
     # Check hard experience blockers
     for pat in HARD_EXPERIENCE_BLOCKERS:
-        m = re.search(pat, text)
+        m = re.search(pat, text_clean)
         if m:
             return False, f"Requires experienced candidate: '{m.group(0)}'"
 

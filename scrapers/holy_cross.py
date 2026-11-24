@@ -16,53 +16,69 @@ def fetch_holy_cross_jobs() -> List[JobPosting]:
     }
 
     postings = []
-    # Query for MD / Holy Cross listings
-    req = urllib.request.Request(TRINITY_URL, headers=headers)
-    try:
-        with urllib.request.urlopen(req, timeout=20) as resp:
-            html = resp.read().decode("utf-8")
-            ph = re.search(r"phApp\.ddo\s*=\s*(\{.*?\});\s*phApp\.", html, re.DOTALL)
-            if not ph:
-                return postings
+    seen_ids = set()
 
-            data = json.loads(ph.group(1))
-            items = data.get("eagerLoadRefineSearch", {}).get("data", {}).get("jobs", [])
-
-            for item in items:
-                title = item.get("title", "")
-                state = item.get("state", "")
-                city = item.get("city", "")
-                seq_no = item.get("jobSeqNo", "")
-
-                # Filter specifically for Maryland (Montgomery County / Holy Cross)
-                is_md = state.lower() == "maryland" or "HOLYCROSS" in seq_no.upper()
-                if not is_md:
+    # Paginate through top 50 results (5 pages) to catch all Maryland Holy Cross listings
+    for offset in range(0, 50, 10):
+        url = f"https://jobs.trinity-health.org/search-results?keywords=physician%20assistant&from={offset}"
+        req = urllib.request.Request(url, headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                html = resp.read().decode("utf-8")
+                ph = re.search(r"phApp\.ddo\s*=\s*(\{.*?\});\s*phApp\.", html, re.DOTALL)
+                if not ph:
                     continue
 
-                if not is_title_eligible(title):
-                    continue
+                data = json.loads(ph.group(1))
+                items = data.get("eagerLoadRefineSearch", {}).get("data", {}).get("jobs", [])
+                if not items:
+                    break
 
-                is_friendly, reason = evaluate_new_grad(title)
-                
-                # Build direct job link
-                slug = re.sub(r"[^a-zA-Z0-9]+", "-", title).strip("-")
-                job_url = f"https://jobs.trinity-health.org/job/{seq_no}/{slug}"
-                location = f"{city}, MD" if city else "Montgomery County, MD"
+                for item in items:
+                    title = item.get("title", "")
+                    state = item.get("state", "")
+                    city = item.get("city", "")
+                    seq_no = item.get("jobSeqNo", "")
 
-                job = JobPosting(
-                    id=JobPosting.make_id("HolyCross", seq_no),
-                    hospital="Holy Cross Health (Trinity)",
-                    title=title,
-                    location=location,
-                    url=job_url,
-                    posted_date=item.get("postedDate", "Recently")[:10],
-                    is_new_grad_friendly=is_friendly,
-                    match_reason=reason,
-                    hub="MD",
-                    raw_data=item,
-                )
-                postings.append(job)
-    except Exception as e:
-        print(f"[Holy Cross Scraper] Error: {e}")
+                    if seq_no in seen_ids:
+                        continue
+
+                    # Filter specifically for Maryland (Montgomery County / Holy Cross)
+                    is_md = state.lower() == "maryland" or "HOLYCROSS" in seq_no.upper()
+                    if not is_md:
+                        continue
+
+                    # Strictly require Full-Time roles (exclude Part-Time / Per Diem)
+                    job_type = item.get("type", "").lower()
+                    if job_type and "full" not in job_type:
+                        continue
+
+                    if not is_title_eligible(title):
+                        continue
+
+                    seen_ids.add(seq_no)
+                    is_friendly, reason = evaluate_new_grad(title)
+
+                    # Build direct job link
+                    slug = re.sub(r"[^a-zA-Z0-9]+", "-", title).strip("-")
+                    job_url = f"https://jobs.trinity-health.org/job/{seq_no}/{slug}"
+                    location = f"{city}, MD" if city else "Montgomery County, MD"
+
+                    job = JobPosting(
+                        id=JobPosting.make_id("HolyCross", seq_no),
+                        hospital="Holy Cross Health (Trinity)",
+                        title=title,
+                        location=location,
+                        url=job_url,
+                        posted_date=item.get("postedDate", "Recently")[:10],
+                        is_new_grad_friendly=is_friendly,
+                        match_reason=reason,
+                        hub="MD",
+                        raw_data=item,
+                    )
+                    postings.append(job)
+        except Exception as e:
+            print(f"[Holy Cross Scraper] Error at offset {offset}: {e}")
+            break
 
     return postings
