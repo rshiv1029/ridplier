@@ -180,8 +180,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
   <div class="filter-bar">
     <button class="filter-btn active" onclick="filterJobs('all')">All Jobs</button>
-    <button class="filter-btn" onclick="filterJobs('MD')">Holy Cross / MD</button>
-    <button class="filter-btn" onclick="filterJobs('NYC')">NYP / NYC</button>
+    <button class="filter-btn" onclick="filterJobs('MD')">📍 Maryland (MoCo)</button>
+    <button class="filter-btn" onclick="filterJobs('NYC')">🗽 NYP (NYC)</button>
     <button class="filter-btn" onclick="filterJobs('newgrad')">⭐ Verified New Grad</button>
   </div>
 
