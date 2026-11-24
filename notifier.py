@@ -144,8 +144,8 @@ def notify_new_jobs(new_jobs: List[JobPosting], dry_run: bool = False):
 
     if dry_run or not (recipient and user and pw):
         print(f"\n--- [EMAIL ALERT PREVIEW (To: {recipient})] ---")
-        print(format_email_plain(notifiable[:5], dashboard_url))
+        print(format_email_plain(notifiable, dashboard_url))
         print("------------------------------------------------\n")
     else:
-        # Cap the email alert to top 5 most recent if a huge batch drops, with link to dashboard
-        send_email_alert(recipient, notifiable[:5], dashboard_url, user, pw)
+        # Include all new eligible postings in the email digest
+        send_email_alert(recipient, notifiable, dashboard_url, user, pw)
