@@ -40,11 +40,30 @@ def fetch_adventist_jobs() -> List[JobPosting]:
                     if not is_title_eligible(title):
                         continue
 
-                    is_friendly, reason = evaluate_new_grad(title)
                     ext_path = item.get("externalPath", "")
                     full_url = f"https://adventisthealthcare.wd1.myworkdayjobs.com/en-US/AdventistHealthCareCareers{ext_path}"
                     req_id = ext_path.split("_")[-1] if "_" in ext_path else ext_path
                     location = item.get("locationsText", "Rockville / Silver Spring, MD")
+
+                    # Fetch exact job posting detail for true posting date and description
+                    posted_date = "Recently"
+                    desc_text = ""
+                    try:
+                        detail_url = f"https://adventisthealthcare.wd1.myworkdayjobs.com/wday/cxs/adventisthealthcare/AdventistHealthCareCareers{ext_path}"
+                        d_req = urllib.request.Request(detail_url, headers=headers)
+                        with urllib.request.urlopen(d_req, context=ctx, timeout=10) as d_resp:
+                            info = json.loads(d_resp.read().decode("utf-8")).get("jobPostingInfo", {})
+                            posted_on = info.get("postedOn")
+                            start_date = info.get("startDate")
+                            if posted_on:
+                                posted_date = posted_on
+                            elif start_date:
+                                posted_date = f"Posted {start_date}"
+                            desc_text = info.get("jobDescription", "")
+                    except Exception as err:
+                        print(f"[Adventist Scraper] Could not fetch detail for {req_id}: {err}")
+
+                    is_friendly, reason = evaluate_new_grad(title, desc_text)
 
                     job = JobPosting(
                         id=JobPosting.make_id("Adventist", req_id),
@@ -52,7 +71,7 @@ def fetch_adventist_jobs() -> List[JobPosting]:
                         title=title,
                         location=location,
                         url=full_url,
-                        posted_date=item.get("postedOn", "Recently"),
+                        posted_date=posted_date,
                         is_new_grad_friendly=is_friendly,
                         match_reason=reason,
                         hub="MD",
