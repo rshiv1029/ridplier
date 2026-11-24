@@ -14,11 +14,14 @@ You just survived 2+ years of didactic hell, 2,000 clinical rotation hours, and 
 
 ## ⚡ What It Does
 
-* **Direct-to-Source Scraping:** Bypasses stale reposts on Indeed, LinkedIn, and sketchy travel staffing recruiters. It pulls live requisitions directly from primary hospital career portals (Holy Cross Health, NYP, and expanding across MD & NYC).
-* **B.S. Filter:** Automatically filters out "Chief", "Senior", "Lead", "Director", and "Per Diem" listings.
+* **Direct-to-Source Scraping:** Bypasses stale reposts on Indeed, LinkedIn, and sketchy travel staffing recruiters. It pulls live requisitions directly from 9 primary hospital career portals:
+  * **NYC Metro:** NewYork-Presbyterian, Mount Sinai, NYU Langone, and NYC Health + Hospitals (PAGNY).
+  * **Maryland & DC:** Adventist HealthCare (Rockville/Silver Spring), Suburban & Sibley Memorial (Johns Hopkins), Holy Cross Health (Germantown/Silver Spring), and MedStar Health.
+  * **Northern Virginia:** Inova Health System (Fairfax, Alexandria, Loudoun).
+* **B.S. Filter:** Automatically filters out "Chief", "Senior", "Lead", "Director", "Per Diem", and explicit "Experience Required" listings.
 * **New Grad Intelligence:** Scans job descriptions for genuine entry-level signals (*"New grads welcome"*, *"Will consider new graduates"*, *"PA I"*).
-* **Zero-Install SMS Alerts:** When a fresh listing drops, your phone buzzes with a clean, concise text containing the hospital, specialty, and direct application link. You can be applicant #4 instead of applicant #150.
-* **No-Fuss Mobile Dashboard:** Deployed 100% free on GitHub Pages. Bookmark it in Safari on your iPhone or Mac to browse all active openings with direct 1-click apply links.
+* **Zero-Install SMS Alerts:** When a fresh listing drops, your phone buzzes with a clean, concise text containing the hospital, specialty, and direct application link.
+* **Clean 3-Dropdown Mobile Dashboard:** Deployed 100% free on GitHub Pages. Filter by Hospital Network, Location (with NYC In-City 5-Boroughs priority), and her Top 5 Clinical Specialties (ENT, Derm, ER, Surgery, Urgent Care), with full real-time cloud sync to Supabase.
 
 ---
 
