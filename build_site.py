@@ -233,6 +233,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       color: #fb923c;
       border: 1px solid rgba(249, 115, 22, 0.4);
     }
+    .badge-closed {
+      background: rgba(148, 163, 184, 0.15);
+      color: #94a3b8;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
 
     .job-meta {
       display: flex;
@@ -478,6 +483,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
     let currentStatusTab = 'to_apply'; // 'to_apply' | 'applied' | 'dismissed'
     let currentFilter = 'all';         // 'all' | 'MD' | 'NYC' | 'high' | 'moderate' | 'lower'
+    let archivedJobs = [];             // Past applied/dismissed jobs preserved even if removed by hospital
 
     // Local Storage helpers (Immediate 0ms UI reactivity)
     function getStoredStatuses() {
@@ -506,7 +512,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
     // --- Supabase Cloud REST API Helpers ---
     async function supabaseUpsert(jobId, status, date) {
-      const job = JOBS.find(j => j.id === jobId) || {};
+      const job = getAllKnownJobs().find(j => j.id === jobId) || {};
       try {
         const res = await fetch(`${SUPABASE_URL}/rest/v1/job_statuses`, {
           method: 'POST',
@@ -563,9 +569,25 @@ HTML_TEMPLATE = """<!DOCTYPE html>
           const cloudRows = await res.json();
           const localStatuses = getStoredStatuses();
           
-          // Merge cloud data (cross-device sync)
+          archivedJobs = [];
           cloudRows.forEach(row => {
-            localStatuses[row.job_id] = { status: row.status, date: row.date };
+            localStatuses[row.job_id] = { status: row.status, date: row.date, hospital: row.hospital, title: row.title, url: row.url };
+            
+            // If job is no longer on hospital site, keep it accessible for Applied / Dismissed
+            if (!JOBS.some(j => j.id === row.job_id)) {
+              archivedJobs.push({
+                id: row.job_id,
+                hospital: row.hospital || 'Hospital Portal',
+                title: row.title || 'Physician Assistant',
+                location: 'Archived Listing',
+                posted_date: 'Expired / Closed by Hospital',
+                match_reason: 'Archived Application History',
+                hub: 'Other',
+                probability: 'moderate',
+                url: row.url || '#',
+                is_closed: true
+              });
+            }
           });
           
           saveStoredStatuses(localStatuses);
@@ -579,6 +601,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       }
     }
 
+    function getAllKnownJobs() {
+      return [...JOBS, ...archivedJobs];
+    }
+
     // --- User Actions ---
     function markAsApplied(jobId) {
       const statuses = getStoredStatuses();
@@ -590,16 +616,18 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       supabaseUpsert(jobId, 'applied', today);
     }
 
-    function dismissJob(jobId) {
+    // Dismiss job (from To Apply OR from Applied when rejected/passed)
+    function dismissJob(jobId, fromApplied = false) {
       const statuses = getStoredStatuses();
       const today = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
       statuses[jobId] = { status: 'dismissed', date: today };
       saveStoredStatuses(statuses);
-      showToast('Job dismissed');
+      showToast(fromApplied ? 'Moved to Dismissed / Archived' : 'Job dismissed');
       updateUI();
       supabaseUpsert(jobId, 'dismissed', today);
     }
 
+    // Move back to To Apply
     function restoreToApply(jobId) {
       const statuses = getStoredStatuses();
       delete statuses[jobId];
@@ -630,7 +658,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       renderJobs();
     }
 
-    function getProbBadge(p) {
+    function getProbBadge(p, isClosed) {
+      if (isClosed) return '<span class="badge badge-closed">🔒 Closed Requisition</span>';
       if (p === 'high') return '<span class="badge badge-high">🟢 High Chance · New Grad Welcome</span>';
       if (p === 'lower') return '<span class="badge badge-lower">🟠 Lower Chance · 2+ Yrs Exp Needed</span>';
       return '<span class="badge badge-moderate">🟡 Moderate Chance · 1 Yr / Standard</span>';
@@ -645,9 +674,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     function renderJobs() {
       const container = document.getElementById('jobs-container');
       const statuses = getStoredStatuses();
+      const allJobs = getAllKnownJobs();
 
       // 1. Filter by current active status tab
-      let list = JOBS.filter(j => {
+      let list = allJobs.filter(j => {
         const s = statuses[j.id] ? statuses[j.id].status : 'to_apply';
         return s === currentStatusTab;
       });
@@ -671,12 +701,12 @@ HTML_TEMPLATE = """<!DOCTYPE html>
           emptyDesc = "You have no unapplied jobs matching this filter. Check back after the next scan!";
         } else if (currentStatusTab === 'applied') {
           emptyIcon = "📋";
-          emptyTitle = "No applications logged yet";
-          emptyDesc = "When you apply to a role, press '[✅ Mark as Applied]' on the job card to track it here.";
+          emptyTitle = "No active applications here";
+          emptyDesc = "When you apply to a role, click '[✅ Mark as Applied]' on the job card to track it here.";
         } else if (currentStatusTab === 'dismissed') {
           emptyIcon = "📁";
           emptyTitle = "No dismissed jobs";
-          emptyDesc = "Jobs you dismiss from the 'To Apply' view will appear here.";
+          emptyDesc = "Rejected or dismissed jobs will appear here.";
         }
 
         container.innerHTML = `
@@ -703,7 +733,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 <button class="btn-outline btn-mark-applied" onclick="markAsApplied('${j.id}')">
                   ✅ Mark as Applied
                 </button>
-                <button class="btn-outline btn-dismiss" onclick="dismissJob('${j.id}')">
+                <button class="btn-outline btn-dismiss" onclick="dismissJob('${j.id}', false)">
                   ✕ Dismiss
                 </button>
               </div>
@@ -719,6 +749,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 </a>
               </div>
               <div class="action-group">
+                <button class="btn-outline btn-dismiss" title="Move to Dismissed (e.g. if rejected or passing)" onclick="dismissJob('${j.id}', true)">
+                  ✕ Move to Dismissed
+                </button>
                 <button class="btn-outline btn-undo" onclick="restoreToApply('${j.id}')">
                   ↩ Move back to To Apply
                 </button>
@@ -735,6 +768,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 </a>
               </div>
               <div class="action-group">
+                <button class="btn-outline btn-mark-applied" onclick="markAsApplied('${j.id}')">
+                  ✅ Move to Applied
+                </button>
                 <button class="btn-outline btn-undo" onclick="restoreToApply('${j.id}')">
                   ↩ Restore to To Apply
                 </button>
@@ -751,8 +787,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 <h2 class="job-title">${j.title}</h2>
               </div>
               <div class="badges">
-                <span class="badge ${j.hub === 'MD' ? 'badge-md' : 'badge-nyc'}">${j.hub}</span>
-                ${getProbBadge(j.probability)}
+                ${j.hub !== 'Other' ? `<span class="badge ${j.hub === 'MD' ? 'badge-md' : 'badge-nyc'}">${j.hub}</span>` : ''}
+                ${getProbBadge(j.probability, j.is_closed)}
               </div>
             </div>
             <div class="job-meta">
@@ -771,9 +807,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
     function updateCounts() {
       const statuses = getStoredStatuses();
+      const allJobs = getAllKnownJobs();
       let counts = { to_apply: 0, applied: 0, dismissed: 0 };
       
-      JOBS.forEach(j => {
+      allJobs.forEach(j => {
         const s = statuses[j.id] ? statuses[j.id].status : 'to_apply';
         if (counts[s] !== undefined) counts[s]++;
         else counts.to_apply++;
@@ -825,6 +862,6 @@ if __name__ == "__main__":
     
     if jobs:
         generate_dashboard(jobs, docs_dir)
-        print("[Standalone] Successfully rebuilt docs/index.html with Supabase integration.")
+        print("[Standalone] Successfully rebuilt docs/index.html with bidirectional status management.")
     else:
         print("[Standalone] No existing jobs found to rebuild from.")
