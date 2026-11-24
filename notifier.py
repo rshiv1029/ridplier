@@ -46,7 +46,7 @@ def format_sms_message(job: JobPosting) -> str:
         f"🔗 {job.url}"
     )
 
-def format_batch_summary(remaining_jobs: List[JobPosting], dashboard_url: str = "") -> str:
+def format_batch_summary(remaining_jobs: List[JobPosting], dashboard_url: str = DEFAULT_DASHBOARD_URL) -> str:
     """Format an informative summary message when more jobs dropped than the cap."""
     md_count = sum(1 for j in remaining_jobs if j.hub == "MD")
     nyc_count = sum(1 for j in remaining_jobs if j.hub == "NYC")
@@ -60,7 +60,8 @@ def format_batch_summary(remaining_jobs: List[JobPosting], dashboard_url: str = 
 
     return (
         f"🩺 Plus {len(remaining_jobs)} more new PA jobs dropped{breakdown_str}!\n"
-        f"Check your bookmarked Ridplier dashboard to view and apply."
+        f"View all on Ridplier:\n"
+        f"🔗 {dashboard_url}"
     )
 
 def notify_new_jobs(new_jobs: List[JobPosting], dry_run: bool = False):
