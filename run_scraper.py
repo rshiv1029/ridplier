@@ -18,6 +18,10 @@ from scrapers.medstar import fetch_medstar_jobs
 from scrapers.inova import fetch_inova_jobs
 from scrapers.nyu_langone import fetch_nyu_langone_jobs
 from scrapers.pagny import fetch_nychhc_jobs
+from scrapers.mskcc import fetch_mskcc_jobs
+from scrapers.hss import fetch_hss_jobs
+from scrapers.montefiore import fetch_montefiore_jobs
+from scrapers.maimonides import fetch_maimonides_jobs
 from notifier import notify_new_jobs
 from build_site import generate_dashboard
 
@@ -73,6 +77,18 @@ def main():
     nychhc_jobs = fetch_nychhc_jobs()
     print(f"  -> NYC Health + Hospitals / PAGNY (NYC): {len(nychhc_jobs)} eligible listings found.")
 
+    mskcc_jobs = fetch_mskcc_jobs()
+    print(f"  -> Memorial Sloan Kettering / MSKCC (NYC): {len(mskcc_jobs)} eligible listings found.")
+
+    hss_jobs = fetch_hss_jobs()
+    print(f"  -> Hospital for Special Surgery / HSS (NYC): {len(hss_jobs)} eligible listings found.")
+
+    montefiore_jobs = fetch_montefiore_jobs()
+    print(f"  -> Montefiore Health System (NYC - Bronx): {len(montefiore_jobs)} eligible listings found.")
+
+    maimonides_jobs = fetch_maimonides_jobs()
+    print(f"  -> Maimonides Medical Center (NYC - Brooklyn): {len(maimonides_jobs)} eligible listings found.")
+
     all_jobs = (
         holy_cross_jobs
         + adventist_jobs
@@ -83,6 +99,10 @@ def main():
         + mount_sinai_jobs
         + nyu_jobs
         + nychhc_jobs
+        + mskcc_jobs
+        + hss_jobs
+        + montefiore_jobs
+        + maimonides_jobs
     )
     print(f"[Total] Collected {len(all_jobs)} active PA postings across all target hubs.")
 

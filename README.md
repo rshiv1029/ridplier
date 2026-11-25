@@ -14,22 +14,20 @@ You just survived 2+ years of didactic hell, 2,000 clinical rotation hours, and 
 
 ## ⚡ What It Does
 
-* **Direct-to-Source Scraping:** Bypasses stale reposts on Indeed, LinkedIn, and sketchy travel staffing recruiters. It pulls live requisitions directly from **9 primary hospital career portals**:
-  * **NYC Metro:** NewYork-Presbyterian, Mount Sinai, NYU Langone, and NYC Health + Hospitals (PAGNY).
+* **Direct-to-Source Scraping:** Bypasses stale reposts on Indeed, LinkedIn, and sketchy travel staffing recruiters. It pulls live requisitions directly from **13 primary hospital career portals**:
+  * **NYC Metro:** NewYork-Presbyterian, Mount Sinai, NYU Langone, NYC Health + Hospitals (PAGNY), Memorial Sloan Kettering (MSKCC), Hospital for Special Surgery (HSS), Montefiore Health System (Bronx), and Maimonides Medical Center (Brooklyn).
   * **Maryland & DC Border:** Adventist HealthCare (Rockville/Silver Spring), Suburban & Sibley Memorial (Johns Hopkins), Holy Cross Health (Germantown/Silver Spring), and MedStar Health.
   * **Northern Virginia:** Inova Health System (Fairfax, Alexandria, Loudoun).
 * **Strict B.S. Filter:** Automatically filters out "Chief", "Senior", "Lead", "Director", "Per Diem", "PRN", "Part-Time", and explicit "Experience Required" postings.
-* **New Grad Intelligence:** Scans job descriptions for genuine entry-level signals (*"New grads welcome"*, *"Will consider new graduates"*, *"PA I"*).
-* **Clean 3-Dropdown Mobile Dashboard:** Deployed 100% free on GitHub Pages. Filter by:
-  1. **🏥 Hospital Network:** Switch between any of the 9 hospital systems.
-  2. **📍 Location & Borough:** Strict `🗽 NYC In-City (5 Boroughs Only)` filtering to immediately separate city jobs from suburban Long Island/Westchester postings.
-  3. **🩺 Clinical Specialty:** Instant filter for her **Top 5 Specialties** (ENT, Derm, ER, Surgery, Urgent Care) + inpatient specialties.
-* **Pipeline Tracking & Cloud Sync:** Separate tabs for **`To Apply`**, **`Applied`**, and **`Dismissed`** with instant real-time synchronization to Supabase across iPhone and Mac Safari.
-* **Zero-Install Alerts:** Optional SMS or email alerts whenever a fresh listing drops, so she can apply within hours of posting.
+* **New Grad Intelligence:** Scans job descriptions for genuine entry-level signals (*"New grads welcome"*, *"Will consider new graduates"*, *"PA I"*), extracts salary ranges, shifts, and real posting requirements (`ACLS`, `PALS`, `First-Assist`, `Epic EMR`, etc.).
+* **Clean 3-Dropdown Mobile Dashboard + Search:** Deployed 100% free on GitHub Pages with keyword search, posting date sort, remembered `🗽 Hide NYC Suburbs` toggle, `Resume_NY.pdf` vs `Resume_MD.pdf` selector, **Fast-Fill Clipboard**, and **Cover Letter & ATS Keyword** generator.
+* **Chrome Auto-Fill Extension (`extension/`):** Unpacked Manifest V3 extension for one-click form filling across Workday, iCIMS iframes, Oracle Cloud, and hospital portals.
+* **Pipeline Tracking & Cloud Sync:** Separate tabs for **`To Apply`**, **`Applied`**, and **`Dismissed`** with instant real-time synchronization to Supabase across iPhone and Mac.
+* **Zero-Spam Alerts (`14`-Day Cutoff):** Automated email/SMS alerts trigger only for genuinely recent (`<= 14` days) net-new postings.
 
 ---
 
-## 🏥 Live Hospital Coverage (130 Active Roles)
+## 🏥 Live Hospital Coverage (13 Networks)
 
 | Health System | Region | Facilities Monitored | ATS Platform |
 | :--- | :--- | :--- | :--- |
@@ -37,6 +35,10 @@ You just survived 2+ years of didactic hell, 2,000 clinical rotation hours, and 
 | **Mount Sinai Health System** | NYC | Manhattan, Queens, Brooklyn | Jibe / iCIMS REST |
 | **NYU Langone Health** | NYC | Tisch, Kimmel, Orthopedic, Brooklyn, Bellevue | Radancy / m-cloud API |
 | **NYC Health + Hospitals / PAGNY** | NYC | Jacobi, Lincoln, Kings County, Harlem, Metropolitan, South Brooklyn Health | Custom PAGNY Portal |
+| **Memorial Sloan Kettering (MSKCC)** | NYC | Manhattan & Regional Cancer Centers | Workday CXS REST |
+| **Hospital for Special Surgery (HSS)** | NYC | Manhattan Main Campus / Kellen Tower & Tri-State | Workday CXS REST |
+| **Montefiore Health System** | NYC | Moses, Einstein/Weiler, Wakefield, Hutchinson (Bronx) | Workday CXS REST |
+| **Maimonides Medical Center** | NYC | Borough Park (Brooklyn) | Jibe REST API |
 | **Johns Hopkins Medicine** | MD / DC | Suburban Hospital (Bethesda) & Sibley Memorial (DC) | Hopkins Schema.org Parser |
 | **MedStar Health** | MD / DC | MedStar Montgomery (Olney), Gaithersburg, DC | Jibe REST API |
 | **Adventist HealthCare** | MD | Shady Grove (Rockville) & White Oak (Silver Spring) | Workday CXS REST |

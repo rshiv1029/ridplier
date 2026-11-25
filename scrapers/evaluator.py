@@ -23,6 +23,7 @@ EXCLUDE_TITLE_WORDS = [
 # Valid PA / APP title markers
 INCLUDE_TITLE_WORDS = [
     r"\bphysician assistant\b",
+    r"\bphysician\s+asst\b",
     r"\bpa-c\b",
     r"\bpa\b",
     r"\badvanced practice provider\b",
@@ -137,21 +138,21 @@ def classify_nyc_location(location_str: str, title_str: str = "") -> Tuple[bool,
     text = f"{location_str} {title_str}".lower()
     
     # 1. Suburban / Outside NYC markers
-    if re.search(r"\b(westchester|bronxville|white\s*plains|sleepy\s*hollow|valhalla|yonkers|new\s*rochelle|tarrytown|mount\s*vernon|hudson\s*valley|cortlandt)\b", text):
+    if re.search(r"\b(westchester|bronxville|white\s*plains|sleepy\s*hollow|valhalla|yonkers|new\s*rochelle|tarrytown|mount\s*vernon|hudson\s*valley|cortlandt|harrison|west\s*harrison|newburgh|cornwall)\b", text):
         return True, "Westchester (Outside City)"
-    if re.search(r"\b(long\s*island|nassau|suffolk|manhasset|new\s*hyde\s*park|mineola|huntington|stony\s*brook|garden\s*city|plainview)\b", text):
+    if re.search(r"\b(long\s*island|nassau|suffolk|manhasset|new\s*hyde\s*park|mineola|huntington|stony\s*brook|garden\s*city|plainview|uniondale|commack|hauppauge)\b", text):
         return True, "Long Island (Outside City)"
-    if re.search(r"\b(rockland|connecticut|new\s*jersey|jersey|hoboken)\b", text):
+    if re.search(r"\b(rockland|nyack|connecticut|stamford|greenwich|new\s*jersey|jersey|hoboken|paramus|montvale|basking\s*ridge|middletown|bergen)\b", text):
         return True, "Outside NYC Suburbs"
         
     # 2. In-City Boroughs
-    if re.search(r"\b(manhattan|new\s*york\s*city|new\s*york,\s*ny|ny,?\s*ny|weill\s*cornell|columbia|allen|morningside|midtown|downtown|uptown)\b", text):
+    if re.search(r"\b(manhattan|new\s*york\s*city|new\s*york,\s*ny|ny,?\s*ny|weill\s*cornell|columbia|allen|morningside|midtown|downtown|uptown|kellen\s*tower|hospital\s*for\s*special\s*surgery|sloan\s*kettering|mskcc)\b", text):
         return False, "Manhattan"
-    if re.search(r"\b(brooklyn|brooklyn\s*methodist)\b", text):
+    if re.search(r"\b(brooklyn|brooklyn\s*methodist|maimonides)\b", text):
         return False, "Brooklyn"
     if re.search(r"\b(queens|elmhurst|jamaica|flushing|astoria|long\s*island\s*city)\b", text):
         return False, "Queens"
-    if re.search(r"\b(bronx|jacobi|lincoln|montefiore)\b", text):
+    if re.search(r"\b(bronx|jacobi|lincoln|montefiore|210th\s*street|waters\s*place|eastchester|bainbridge|wakefield|einstein|moses)\b", text):
         return False, "Bronx"
     if re.search(r"\b(staten\s*island)\b", text):
         return False, "Staten Island"

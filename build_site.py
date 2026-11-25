@@ -959,6 +959,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         <option value="Mount Sinai">Mount Sinai Health System (NYC)</option>
         <option value="NYU Langone">NYU Langone Health (NYC)</option>
         <option value="NYC Health + Hospitals">NYC Health + Hospitals / PAGNY (NYC)</option>
+        <option value="MSKCC">Memorial Sloan Kettering / MSKCC (NYC)</option>
+        <option value="HSS">Hospital for Special Surgery / HSS (NYC)</option>
+        <option value="Montefiore">Montefiore Health System (NYC - Bronx)</option>
+        <option value="Maimonides">Maimonides Medical Center (NYC - Brooklyn)</option>
         <option value="Johns Hopkins">Johns Hopkins / Suburban & Sibley (MD/DC)</option>
         <option value="MedStar">MedStar Health (MD & DC)</option>
         <option value="Adventist">Adventist HealthCare (MD)</option>
@@ -1479,6 +1483,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
           if (selectedNetwork === 'Mount Sinai') return hosp.includes('mount sinai') || idStr.includes('mountsinai');
           if (selectedNetwork === 'NYU Langone') return hosp.includes('nyu') || idStr.includes('nyulangone');
           if (selectedNetwork === 'NYC Health + Hospitals') return hosp.includes('nyc health') || idStr.includes('nychhc') || idStr.includes('pagny');
+          if (selectedNetwork === 'MSKCC') return hosp.includes('sloan kettering') || hosp.includes('mskcc') || idStr.includes('mskcc');
+          if (selectedNetwork === 'HSS') return hosp.includes('special surgery') || hosp.includes('hss');
+          if (selectedNetwork === 'Montefiore') return hosp.includes('montefiore');
+          if (selectedNetwork === 'Maimonides') return hosp.includes('maimonides');
           if (selectedNetwork === 'Johns Hopkins') return hosp.includes('hopkins') || hosp.includes('sibley') || hosp.includes('suburban') || idStr.includes('hopkins');
           if (selectedNetwork === 'MedStar') return hosp.includes('medstar') || idStr.includes('medstar');
           if (selectedNetwork === 'Adventist') return hosp.includes('adventist') || idStr.includes('adventist');

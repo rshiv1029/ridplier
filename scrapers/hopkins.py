@@ -79,17 +79,21 @@ def fetch_hopkins_jobs() -> List[JobPosting]:
                     state = loc_data.get("addressRegion", "MD")
                     location = f"{city}, {state}" if city else "Bethesda, MD"
                     
-                    # Format hospital name and facility
-                    full_context = f"{street} {city} {url}".lower()
+                    # Format hospital name and facility; strictly keep MD/DC region (exclude St. Petersburg FL etc.)
+                    full_context = f"{street} {city} {state} {url}".lower()
+                    if any(x in full_context for x in ["st. petersburg", "all children", ", fl", "-fl-", "florida"]):
+                        continue
                     if "sibley" in full_context:
                         hospital_name = "Sibley Memorial Hospital (Johns Hopkins)"
                         location = "Washington, DC (MD Border)"
                     elif "suburban" in full_context:
                         hospital_name = "Suburban Hospital (Johns Hopkins)"
                         location = "Bethesda, MD"
-                    else:
+                    elif state.upper() in ("MD", "DC", "MARYLAND", "DISTRICT OF COLUMBIA") or "bethesda" in full_context or "washington" in full_context:
                         hospital_name = f"Johns Hopkins Medicine ({street})"
                         location = f"{city}, {state}" if city else "Maryland"
+                    else:
+                        continue
 
                     # Extract requisition ID from URL path (e.g. /job/101276/...)
                     req_id_match = re.search(r'/job/(\d+)/', url)

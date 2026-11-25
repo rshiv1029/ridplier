@@ -90,10 +90,14 @@ def scrape_nyu_langone() -> List[JobPosting]:
                     continue
 
                 city = it.get("primary_city") or ""
-                state = it.get("primary_state") or ""
+                state = (it.get("primary_state") or "").strip()
+                if state and state.upper() not in ("NY", "NEW YORK", "NJ", "NEW JERSEY", "CT", "CONNECTICUT"):
+                    continue
                 location = f"{city}, {state}".strip(", ")
                 if not location:
                     location = it.get("primary_address") or "New York, NY"
+                if any(x in location.lower() for x in ["delray beach", "west palm", "palm beach", ", fl", "florida"]):
+                    continue
 
                 job_url = it.get("url") or f"https://jobs.nyulangone.org/job/{req_id}"
                 if job_url.startswith("http://"):
