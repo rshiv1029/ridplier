@@ -80,6 +80,22 @@
     "borough_tag": null
   },
   {
+    "id": "6f0263094020",
+    "hospital": "Johns Hopkins Medicine (Johns Hopkins Bayview Medical Center)",
+    "title": "Physician Assistant Resident - Emergency Medicine",
+    "location": "Baltimore, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/104198/physician-assistant-resident-emergency-medicine-physician-assistant-us-md-baltimore-johns-hopkins-bayview-medical-center/",
+    "posted_date": "2026-11-09",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "MD",
+    "probability": "moderate",
+    "specialty": "Emergency Medicine (ER)",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null
+  },
+  {
     "id": "11dd06a289aa",
     "hospital": "Suburban Hospital (Johns Hopkins)",
     "title": "NP or PA - Cardiothoracic Inpatient",
@@ -91,6 +107,22 @@
     "hub": "MD",
     "probability": "moderate",
     "specialty": "Surgery",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null
+  },
+  {
+    "id": "7376d89c4c7d",
+    "hospital": "Sibley Memorial Hospital (Johns Hopkins)",
+    "title": "Malignant Hematology Oncology Inpatient - Acute Care NP / PA",
+    "location": "Washington, DC (MD Border)",
+    "url": "https://jobs.hopkinsmedicine.org/job/84275/app-oncology-breast-gyn-nursing-us-dc-washington-sibley-memorial-hospital/",
+    "posted_date": "2026-09-22",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "MD",
+    "probability": "moderate",
+    "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": null
@@ -112,38 +144,6 @@
     "borough_tag": null
   },
   {
-    "id": "2b75d3916a6c",
-    "hospital": "Johns Hopkins Medicine (Johns Hopkins Community Physicians)",
-    "title": "Direct Primary Care NURSE PRACTITIONER-CRNP OR PHYSICIAN ASSISTANT",
-    "location": "Columbia, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/103644/direct-primary-care-nurse-practitioner-crnp-or-physician-assistant-physician-assistant-us-md-columbia-johns-hopkins-community-physicians/",
-    "posted_date": "2026-10-23",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "MD",
-    "probability": "moderate",
-    "specialty": "Primary Care",
-    "is_top_specialty": false,
-    "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
-    "id": "7376d89c4c7d",
-    "hospital": "Sibley Memorial Hospital (Johns Hopkins)",
-    "title": "Malignant Hematology Oncology Inpatient - Acute Care NP / PA",
-    "location": "Washington, DC (MD Border)",
-    "url": "https://jobs.hopkinsmedicine.org/job/84275/app-oncology-breast-gyn-nursing-us-dc-washington-sibley-memorial-hospital/",
-    "posted_date": "2026-09-22",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "MD",
-    "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
-    "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
     "id": "f351b677628c",
     "hospital": "Suburban Hospital (Johns Hopkins)",
     "title": "NP or PA - Cardiothoracic Inpatient - Rotating shift",
@@ -160,80 +160,16 @@
     "borough_tag": null
   },
   {
-    "id": "4ae38a9ec20d",
-    "hospital": "Johns Hopkins Medicine (Johns Hopkins Hospital)",
-    "title": "APP (NP or PA) Pediatric Oncology",
-    "location": "Baltimore, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/104001/app-np-or-pa-inpatient-pediatric-oncology-advanced-practice-providers-us-md-baltimore-johns-hopkins-hospital/",
-    "posted_date": "2026-11-06",
+    "id": "517dd67c9973",
+    "hospital": "Suburban Hospital (Johns Hopkins)",
+    "title": "NP or PA - Cardiothoracic Inpatient - Nocturnist",
+    "location": "Bethesda, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/103265/physician-assistant-i-splty-card-or-cardiothoracic-inpatient-physician-assistant-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-10-13",
     "is_new_grad_friendly": true,
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "MD",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
-    "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
-    "id": "a2b035bac11e",
-    "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "Physician Assistant I - Trauma",
-    "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/92763/physician-asst-trauma-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2025-11-10",
-    "is_new_grad_friendly": true,
-    "match_reason": "New Grad Welcome: 'physician assistant i'",
-    "hub": "MD",
-    "probability": "high",
-    "specialty": "Emergency Medicine (ER)",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
-    "id": "6f0263094020",
-    "hospital": "Johns Hopkins Medicine (Johns Hopkins Bayview Medical Center)",
-    "title": "Physician Assistant Resident - Emergency Medicine",
-    "location": "Baltimore, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/104198/physician-assistant-resident-emergency-medicine-physician-assistant-us-md-baltimore-johns-hopkins-bayview-medical-center/",
-    "posted_date": "2026-11-09",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "MD",
-    "probability": "moderate",
-    "specialty": "Emergency Medicine (ER)",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
-    "id": "990d757bdaa9",
-    "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "Physician Assistant I - Surgical",
-    "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/101276/physician-assistant-i-surgical-physician-assistant-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-09-16",
-    "is_new_grad_friendly": true,
-    "match_reason": "New Grad Welcome: 'physician assistant i'",
-    "hub": "MD",
-    "probability": "high",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
-    "id": "7afb2d572114",
-    "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "Physician Assistant I - Neurosurgery",
-    "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/96971/physician-assistant-neurosurgery-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-04-03",
-    "is_new_grad_friendly": true,
-    "match_reason": "New Grad Welcome: 'physician assistant i'",
-    "hub": "MD",
-    "probability": "high",
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
@@ -256,16 +192,48 @@
     "borough_tag": null
   },
   {
-    "id": "517dd67c9973",
+    "id": "7afb2d572114",
     "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "NP or PA - Cardiothoracic Inpatient - Nocturnist",
+    "title": "Physician Assistant I - Neurosurgery",
     "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/103265/physician-assistant-i-splty-card-or-cardiothoracic-inpatient-physician-assistant-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-10-13",
+    "url": "https://jobs.hopkinsmedicine.org/job/96971/physician-assistant-neurosurgery-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-04-03",
     "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "match_reason": "New Grad Welcome: 'physician assistant i'",
     "hub": "MD",
-    "probability": "moderate",
+    "probability": "high",
+    "specialty": "Surgery",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null
+  },
+  {
+    "id": "a2b035bac11e",
+    "hospital": "Suburban Hospital (Johns Hopkins)",
+    "title": "Physician Assistant I - Trauma",
+    "location": "Bethesda, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/92763/physician-asst-trauma-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2025-11-10",
+    "is_new_grad_friendly": true,
+    "match_reason": "New Grad Welcome: 'physician assistant i'",
+    "hub": "MD",
+    "probability": "high",
+    "specialty": "Emergency Medicine (ER)",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null
+  },
+  {
+    "id": "990d757bdaa9",
+    "hospital": "Suburban Hospital (Johns Hopkins)",
+    "title": "Physician Assistant I - Surgical",
+    "location": "Bethesda, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/101276/physician-assistant-i-surgical-physician-assistant-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-09-16",
+    "is_new_grad_friendly": true,
+    "match_reason": "New Grad Welcome: 'physician assistant i'",
+    "hub": "MD",
+    "probability": "high",
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
@@ -298,7 +266,7 @@
     "match_reason": "1 Year Preferred: 'minimum of 1 year'",
     "hub": "MD",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
+    "specialty": "Critical Care / ICU",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": null
@@ -474,8 +442,24 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "MD",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Emergency Medicine (ER)",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null
+  },
+  {
+    "id": "8987ca4cdeb5",
+    "hospital": "MedStar Health",
+    "title": "Adult Inpatient Transplant Surgery PA/ACNP",
+    "location": "Washington, DC",
+    "url": "https://careers.medstarhealth.org/careers-home/jobs/164106",
+    "posted_date": "2026-09-14",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "MD",
+    "probability": "moderate",
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": null
   },
@@ -528,22 +512,6 @@
     "borough_tag": null
   },
   {
-    "id": "f1c8f165b387",
-    "hospital": "MedStar Health Urgent Care",
-    "title": "MedStar Health Urgent Care Physician (MD - DO) - PA - NP, South (St. Mary's County)",
-    "location": "California, Maryland",
-    "url": "https://careers.medstarhealth.org/careers-home/jobs/145022",
-    "posted_date": "2025-10-23",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "MD",
-    "probability": "moderate",
-    "specialty": "Urgent Care",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
     "id": "e9365c600a69",
     "hospital": "Inova Fairfax Hospital (VA)",
     "title": "Pediatric Electrophysiologist Nurse Practitioner (NP) or Physician Assistant (PA)",
@@ -586,8 +554,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "VA",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": null
   },
@@ -970,8 +938,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Emergency Medicine (ER)",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -986,8 +954,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1002,8 +970,8 @@
     "match_reason": "1 Year Preferred: 'one year of clinical experience'",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": "Queens"
   },
@@ -1018,8 +986,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1034,8 +1002,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1050,8 +1018,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1066,8 +1034,8 @@
     "match_reason": "2+ Years Preferred: 'experience is preferred'",
     "hub": "NYC",
     "probability": "lower",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1082,8 +1050,8 @@
     "match_reason": "2+ Years Preferred: 'experience is preferred'",
     "hub": "NYC",
     "probability": "lower",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1162,8 +1130,8 @@
     "match_reason": "2+ Years Preferred: 'experience is preferred'",
     "hub": "NYC",
     "probability": "lower",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1370,8 +1338,8 @@
     "match_reason": "2+ Years Preferred: 'experience is preferred'",
     "hub": "NYC",
     "probability": "lower",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1402,7 +1370,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
+    "specialty": "Critical Care / ICU",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Brooklyn"
@@ -1450,7 +1418,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
+    "specialty": "Critical Care / ICU",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Brooklyn"
@@ -1514,8 +1482,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Emergency Medicine (ER)",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": "NYC (5 Boroughs)"
   },
@@ -1547,6 +1515,22 @@
     "hub": "NYC",
     "probability": "moderate",
     "specialty": "Surgery",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": "Manhattan"
+  },
+  {
+    "id": "26ce61f32e2b",
+    "hospital": "NYU Langone Health",
+    "title": "PA or NP - Outpatient Otolaryngology - Sleep Division - 38th Street, Manhattan",
+    "location": "New York, NY",
+    "url": "https://jobs.nyulangone.org/job/24232487/pa-or-np-outpatient-otolaryngology-sleep-division-38th-street-manhattan-new-york-ny/",
+    "posted_date": "2026-11-19",
+    "is_new_grad_friendly": true,
+    "match_reason": "2+ Years Preferred: 'experience is preferred'",
+    "hub": "NYC",
+    "probability": "lower",
+    "specialty": "ENT / Head & Neck",
     "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
@@ -1594,7 +1578,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
+    "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
@@ -1610,7 +1594,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
+    "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Brooklyn"
@@ -1626,7 +1610,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
+    "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
@@ -1674,8 +1658,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": "NYC (5 Boroughs)"
   },
@@ -1706,7 +1690,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
+    "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": true,
     "borough_tag": "Long Island (Outside City)"
@@ -1722,7 +1706,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
+    "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Brooklyn"
@@ -1738,7 +1722,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
+    "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Brooklyn"
@@ -1757,7 +1741,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Brooklyn"
   },
   {
     "id": "492ded9910d2",
@@ -1773,7 +1757,7 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Bronx"
   },
   {
     "id": "197a31755100",
@@ -1789,23 +1773,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
-  },
-  {
-    "id": "ab1385a8dbe0",
-    "hospital": "NYC Health + Hospitals (NYC Health + Hospitals - Correctional Health Services)",
-    "title": "Physician Assistant, Correctional Health Services *Sunday-Thursday, 8am - 4pm*",
-    "location": "New York City (NYC (Correctional Health)), NY",
-    "url": "https://www.pagny.org/careers/physician-assistant-correctional-health-services-sunday-thursday-8am-4pm",
-    "posted_date": "Sep 08, 2026",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "NYC",
-    "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
-    "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Bronx"
   },
   {
     "id": "1b6d109f0754",
@@ -1821,7 +1789,23 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "NYC (Correctional Health)"
+  },
+  {
+    "id": "ab1385a8dbe0",
+    "hospital": "NYC Health + Hospitals (NYC Health + Hospitals - Correctional Health Services)",
+    "title": "Physician Assistant, Correctional Health Services *Sunday-Thursday, 8am - 4pm*",
+    "location": "New York City (NYC (Correctional Health)), NY",
+    "url": "https://www.pagny.org/careers/physician-assistant-correctional-health-services-sunday-thursday-8am-4pm",
+    "posted_date": "Sep 08, 2026",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "NYC",
+    "probability": "moderate",
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
+    "is_outside_nyc": false,
+    "borough_tag": "NYC (Correctional Health)"
   },
   {
     "id": "fdb62f159a4f",
@@ -1837,7 +1821,7 @@
     "specialty": "Obstetrics & Gynecology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Bronx"
   },
   {
     "id": "921a8856bd98",
@@ -1853,7 +1837,7 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Brooklyn"
   },
   {
     "id": "c2c85d5c20fe",
@@ -1869,7 +1853,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "NYC (5 Boroughs)"
   },
   {
     "id": "626adbd35db2",
@@ -1885,7 +1869,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Bronx"
   },
   {
     "id": "eb2fcd638b48",
@@ -1917,7 +1901,7 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Brooklyn"
   },
   {
     "id": "6b30f90b6a24",
@@ -1933,7 +1917,7 @@
     "specialty": "Obstetrics & Gynecology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Bronx"
   },
   {
     "id": "a7a879fa145b",
@@ -1949,23 +1933,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
-  },
-  {
-    "id": "ea2db1fe9951",
-    "hospital": "NYC Health + Hospitals (NYC Health + Hospitals - Kings County)",
-    "title": "Physician Assistant - Catheterization Lab",
-    "location": "New York City (Brooklyn), NY",
-    "url": "https://www.pagny.org/careers/physician-assistant-catheterization-lab",
-    "posted_date": "Dec 01, 2025",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "NYC",
-    "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
-    "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Brooklyn"
   },
   {
     "id": "76131c3561aa",
@@ -1981,7 +1949,23 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Brooklyn"
+  },
+  {
+    "id": "ea2db1fe9951",
+    "hospital": "NYC Health + Hospitals (NYC Health + Hospitals - Kings County)",
+    "title": "Physician Assistant - Catheterization Lab",
+    "location": "New York City (Brooklyn), NY",
+    "url": "https://www.pagny.org/careers/physician-assistant-catheterization-lab",
+    "posted_date": "Dec 01, 2025",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "NYC",
+    "probability": "moderate",
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
+    "is_outside_nyc": false,
+    "borough_tag": "Brooklyn"
   },
   {
     "id": "1eb8cae6288d",
@@ -1997,7 +1981,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Bronx"
   },
   {
     "id": "a65e753b66f2",
@@ -2013,7 +1997,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Brooklyn"
   },
   {
     "id": "6afb32d2388d",
@@ -2045,7 +2029,7 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Bronx"
   },
   {
     "id": "fdbee35278f0",
@@ -2061,7 +2045,7 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Bronx"
   },
   {
     "id": "caa754ccfe22",
