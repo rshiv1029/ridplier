@@ -1,5 +1,6 @@
 import json
 import re
+import time
 from pathlib import Path
 from typing import List, Dict, Any
 from scrapers.models import JobPosting
@@ -198,7 +199,34 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     }
     .filter-group-actions {
       display: flex;
-      align-items: flex-end;
+      flex-direction: row;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .btn-sort-date {
+      background: #0f172a;
+      color: var(--text);
+      border: 1px solid #334155;
+      padding: 0.6rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: inherit;
+    }
+    .btn-sort-date:hover {
+      border-color: #64748b;
+    }
+    .btn-sort-date.active {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      border-color: var(--accent);
+      font-weight: 600;
     }
     .btn-reset-filters {
       background: transparent;
@@ -231,9 +259,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         padding: 0.85rem;
       }
       .filter-group-actions {
-        align-items: stretch;
+        width: 100%;
       }
-      .btn-reset-filters {
+      .btn-sort-date, .btn-reset-filters {
+        flex: 1;
         justify-content: center;
       }
     }
@@ -629,8 +658,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
 
     <div class="filter-group filter-group-actions">
+      <button class="btn-sort-date" id="btn-sort-date" onclick="toggleDateSort()" title="Cycle sort order by posting date">
+        📅 Sort by Date
+      </button>
       <button class="btn-reset-filters" id="btn-reset-filters" onclick="resetDropdownFilters()">
-        ↺ Reset Filters
+        ↺ Reset
       </button>
     </div>
   </div>
@@ -643,6 +675,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
   <script>
     const JOBS = __JOBS_JSON__;
+    const GENERATED_AT_MS = __GENERATED_AT_MS__;
     const STORAGE_KEY = 'ridplier_job_status_v1';
     
     // Supabase Cloud Sync Configuration
@@ -653,6 +686,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     let selectedNetwork = 'all';
     let selectedLocation = 'all';
     let selectedSpecialty = 'all';
+    let dateSortMode = 'none';         // 'none' | 'desc' | 'asc'
     let archivedJobs = [];             // Past applied/dismissed jobs preserved even if removed by hospital
 
     // Local Storage helpers (Immediate 0ms UI reactivity)
@@ -816,18 +850,44 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       renderJobs();
     }
 
-    function onDropdownFilterChange() {
-      selectedNetwork = document.getElementById('filter-network').value;
-      selectedLocation = document.getElementById('filter-location').value;
-      selectedSpecialty = document.getElementById('filter-specialty').value;
-
+    function updateFilterActionButtons() {
       const resetBtn = document.getElementById('btn-reset-filters');
-      if (selectedNetwork !== 'all' || selectedLocation !== 'all' || selectedSpecialty !== 'all') {
+      if (selectedNetwork !== 'all' || selectedLocation !== 'all' || selectedSpecialty !== 'all' || dateSortMode !== 'none') {
         resetBtn.classList.add('visible');
       } else {
         resetBtn.classList.remove('visible');
       }
 
+      const sortBtn = document.getElementById('btn-sort-date');
+      if (dateSortMode === 'desc') {
+        sortBtn.classList.add('active');
+        sortBtn.textContent = '📅 Newest First ↓';
+      } else if (dateSortMode === 'asc') {
+        sortBtn.classList.add('active');
+        sortBtn.textContent = '📅 Oldest First ↑';
+      } else {
+        sortBtn.classList.remove('active');
+        sortBtn.textContent = '📅 Sort by Date';
+      }
+    }
+
+    function onDropdownFilterChange() {
+      selectedNetwork = document.getElementById('filter-network').value;
+      selectedLocation = document.getElementById('filter-location').value;
+      selectedSpecialty = document.getElementById('filter-specialty').value;
+      updateFilterActionButtons();
+      renderJobs();
+    }
+
+    function toggleDateSort() {
+      if (dateSortMode === 'none') {
+        dateSortMode = 'desc';
+      } else if (dateSortMode === 'desc') {
+        dateSortMode = 'asc';
+      } else {
+        dateSortMode = 'none';
+      }
+      updateFilterActionButtons();
       renderJobs();
     }
 
@@ -838,8 +898,47 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       selectedNetwork = 'all';
       selectedLocation = 'all';
       selectedSpecialty = 'all';
-      document.getElementById('btn-reset-filters').classList.remove('visible');
+      dateSortMode = 'none';
+      updateFilterActionButtons();
       renderJobs();
+    }
+
+    const MONTH_INDEX = {
+      jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
+      jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11
+    };
+
+    function parsePostedDateMs(dateStr) {
+      if (!dateStr) return null;
+      const s = String(dateStr).trim();
+      const lower = s.toLowerCase();
+
+      // 1. ISO date: YYYY-MM-DD
+      const isoMatch = s.match(/^(\\d{4})-(\\d{2})-(\\d{2})/);
+      if (isoMatch) {
+        return new Date(Number(isoMatch[1]), Number(isoMatch[2]) - 1, Number(isoMatch[3])).getTime();
+      }
+
+      // 2. "Mon DD, YYYY" (e.g. "Nov 23, 2026")
+      const monMatch = s.match(/^([A-Za-z]{3})\\s+(\\d{1,2}),\\s*(\\d{4})$/);
+      if (monMatch) {
+        const mIdx = MONTH_INDEX[monMatch[1].toLowerCase()];
+        if (mIdx !== undefined) {
+          return new Date(Number(monMatch[3]), mIdx, Number(monMatch[2])).getTime();
+        }
+      }
+
+      // 3. Workday relative strings anchored to dashboard generation timestamp
+      const DAY_MS = 86400000;
+      if (lower.includes('today')) return GENERATED_AT_MS;
+      if (lower.includes('yesterday')) return GENERATED_AT_MS - DAY_MS;
+      const daysMatch = lower.match(/(\\d+)\\+?\\s*days?\\s*ago/);
+      if (daysMatch) {
+        const days = Number(daysMatch[1]) + (lower.includes('+') ? 1 : 0);
+        return GENERATED_AT_MS - days * DAY_MS;
+      }
+
+      return null;
     }
 
     function getSpecialtyBadge(specialty, isTop) {
@@ -939,6 +1038,18 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             return j.is_top_specialty === true;
           }
           return j.specialty === selectedSpecialty;
+        });
+      }
+
+      // 5. Sort by posting date if active
+      if (dateSortMode !== 'none') {
+        list = [...list].sort((a, b) => {
+          const ta = parsePostedDateMs(a.posted_date);
+          const tb = parsePostedDateMs(b.posted_date);
+          if (ta === null && tb === null) return 0;
+          if (ta === null) return 1;
+          if (tb === null) return -1;
+          return dateSortMode === 'desc' ? tb - ta : ta - tb;
         });
       }
 
@@ -1117,7 +1228,10 @@ def generate_dashboard(jobs: List[JobPosting], output_dir: Path):
             d["borough_tag"] = borough
         jobs_data.append(d)
         
-    html = HTML_TEMPLATE.replace("__JOBS_JSON__", json.dumps(jobs_data))
+    html = (
+        HTML_TEMPLATE.replace("__JOBS_JSON__", json.dumps(jobs_data))
+        .replace("__GENERATED_AT_MS__", str(int(time.time() * 1000)))
+    )
     (output_dir / "index.html").write_text(html, encoding="utf-8")
     (output_dir / "jobs.json").write_text(json.dumps(jobs_data, indent=2), encoding="utf-8")
     print(f"[Dashboard] Generated docs/index.html with {len(jobs)} jobs.")

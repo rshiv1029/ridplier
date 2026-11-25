@@ -138,8 +138,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "MD",
     "probability": "moderate",
-    "specialty": "Emergency Medicine (ER)",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": null
   },
@@ -170,8 +170,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "MD",
     "probability": "moderate",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": null
   },
@@ -298,7 +298,7 @@
     "match_reason": "1 Year Preferred: 'minimum of 1 year'",
     "hub": "MD",
     "probability": "moderate",
-    "specialty": "Critical Care / ICU",
+    "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": null
@@ -474,8 +474,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "MD",
     "probability": "moderate",
-    "specialty": "Emergency Medicine (ER)",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": null
   },
@@ -586,8 +586,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "VA",
     "probability": "moderate",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": null
   },
@@ -970,8 +970,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Emergency Medicine (ER)",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -986,8 +986,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1002,8 +1002,8 @@
     "match_reason": "1 Year Preferred: 'one year of clinical experience'",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Queens"
   },
@@ -1018,8 +1018,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1034,8 +1034,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1050,8 +1050,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1066,8 +1066,8 @@
     "match_reason": "2+ Years Preferred: 'experience is preferred'",
     "hub": "NYC",
     "probability": "lower",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1082,8 +1082,8 @@
     "match_reason": "2+ Years Preferred: 'experience is preferred'",
     "hub": "NYC",
     "probability": "lower",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1162,8 +1162,8 @@
     "match_reason": "2+ Years Preferred: 'experience is preferred'",
     "hub": "NYC",
     "probability": "lower",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1370,8 +1370,8 @@
     "match_reason": "2+ Years Preferred: 'experience is preferred'",
     "hub": "NYC",
     "probability": "lower",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
   },
@@ -1402,7 +1402,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Critical Care / ICU",
+    "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Brooklyn"
@@ -1450,7 +1450,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Critical Care / ICU",
+    "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Brooklyn"
@@ -1514,8 +1514,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Emergency Medicine (ER)",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "NYC (5 Boroughs)"
   },
@@ -1594,7 +1594,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Cardiology",
+    "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
@@ -1610,7 +1610,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Cardiology",
+    "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Brooklyn"
@@ -1626,7 +1626,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Cardiology",
+    "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Manhattan"
@@ -1674,8 +1674,8 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
+    "specialty": "General / Inpatient",
+    "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "NYC (5 Boroughs)"
   },
@@ -1706,7 +1706,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Cardiology",
+    "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": true,
     "borough_tag": "Long Island (Outside City)"
@@ -1722,7 +1722,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Cardiology",
+    "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Brooklyn"
@@ -1738,7 +1738,7 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "Cardiology",
+    "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": "Brooklyn"
@@ -1757,7 +1757,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "492ded9910d2",
@@ -1773,7 +1773,7 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "197a31755100",
@@ -1789,7 +1789,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "ab1385a8dbe0",
@@ -1805,7 +1805,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (Correctional Health)"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "1b6d109f0754",
@@ -1821,7 +1821,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (Correctional Health)"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "fdb62f159a4f",
@@ -1837,7 +1837,7 @@
     "specialty": "Obstetrics & Gynecology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "921a8856bd98",
@@ -1853,7 +1853,7 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "c2c85d5c20fe",
@@ -1869,7 +1869,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (5 Boroughs)"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "626adbd35db2",
@@ -1885,7 +1885,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "eb2fcd638b48",
@@ -1917,7 +1917,7 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "6b30f90b6a24",
@@ -1933,7 +1933,7 @@
     "specialty": "Obstetrics & Gynecology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "a7a879fa145b",
@@ -1949,7 +1949,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "ea2db1fe9951",
@@ -1965,7 +1965,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "76131c3561aa",
@@ -1981,7 +1981,7 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "1eb8cae6288d",
@@ -1997,7 +1997,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "a65e753b66f2",
@@ -2013,7 +2013,7 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "6afb32d2388d",
@@ -2045,7 +2045,7 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "fdbee35278f0",
@@ -2061,7 +2061,7 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Manhattan"
   },
   {
     "id": "caa754ccfe22",
