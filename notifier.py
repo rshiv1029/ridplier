@@ -222,9 +222,14 @@ def notify_new_jobs(new_jobs: List[JobPosting], dry_run: bool = False):
         return
 
     max_age_days = int(os.getenv("ALERT_MAX_AGE_DAYS", str(DEFAULT_ALERT_MAX_AGE_DAYS)))
-    eligible_new = [j for j in new_jobs if j.is_new_grad_friendly]
-    notifiable = [j for j in eligible_new if is_recently_posted(j.posted_date, max_age_days)]
-    stale_count = len(eligible_new) - len(notifiable)
+    deduped = []
+    seen_notify_ids = set()
+    for j in new_jobs:
+        if j.is_new_grad_friendly and j.id not in seen_notify_ids:
+            seen_notify_ids.add(j.id)
+            deduped.append(j)
+    notifiable = [j for j in deduped if is_recently_posted(j.posted_date, max_age_days)]
+    stale_count = len(deduped) - len(notifiable)
     if stale_count > 0:
         print(f"[Notifier] Skipped {stale_count} older listing(s) posted > {max_age_days} days ago (still visible on dashboard).")
 

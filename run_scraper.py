@@ -89,7 +89,7 @@ def main():
     maimonides_jobs = fetch_maimonides_jobs()
     print(f"  -> Maimonides Medical Center (NYC - Brooklyn): {len(maimonides_jobs)} eligible listings found.")
 
-    all_jobs = (
+    raw_jobs = (
         holy_cross_jobs
         + adventist_jobs
         + hopkins_jobs
@@ -104,7 +104,13 @@ def main():
         + montefiore_jobs
         + maimonides_jobs
     )
-    print(f"[Total] Collected {len(all_jobs)} active PA postings across all target hubs.")
+    all_jobs = []
+    seen_in_run = set()
+    for j in raw_jobs:
+        if j.id not in seen_in_run:
+            seen_in_run.add(j.id)
+            all_jobs.append(j)
+    print(f"[Total] Collected {len(all_jobs)} unique active PA postings across all target hubs.")
 
     # 2. Identify new jobs
     print("\n[2/3] Checking for newly posted jobs...")

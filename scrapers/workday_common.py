@@ -29,6 +29,7 @@ def fetch_workday_jobs(
     site: str,
     hospital_name: str,
     id_prefix: str,
+    hub: str = "NYC",
     search_terms: Optional[List[str]] = None,
     max_per_term: int = 160,
     default_location: str = "New York, NY",
@@ -52,6 +53,7 @@ def fetch_workday_jobs(
 
     for kw in terms:
         offset = 0
+        total_expected = None
         while offset < max_per_term:
             payload = {"appliedFacets": {}, "limit": 20, "offset": offset, "searchText": kw}
             req = urllib.request.Request(f"{base_cxs}/jobs", data=json.dumps(payload).encode("utf-8"), headers=headers)
@@ -59,20 +61,22 @@ def fetch_workday_jobs(
                 with urllib.request.urlopen(req, context=ctx, timeout=20) as resp:
                     data = json.loads(resp.read().decode("utf-8"))
                 items = data.get("jobPostings", [])
-                total = data.get("total", 0)
+                if total_expected is None:
+                    total_expected = data.get("total", 0)
                 if not items:
                     break
+                added_on_page = 0
                 for it in items:
                     title = it.get("title", "")
                     ext_path = it.get("externalPath", "")
                     if not ext_path or ext_path in seen_paths:
                         continue
-                    if not is_title_eligible(title):
-                        continue
                     seen_paths.add(ext_path)
-                    raw_items.append(it)
+                    added_on_page += 1
+                    if is_title_eligible(title):
+                        raw_items.append(it)
                 offset += len(items)
-                if offset >= total or len(items) < 20:
+                if added_on_page == 0 or (total_expected is not None and offset >= total_expected) or len(items) < 20:
                     break
             except Exception as e:
                 print(f"[{hospital_name} Scraper] Error at offset {offset} (kw={kw}): {e}")
@@ -132,7 +136,10 @@ def fetch_workday_jobs(
 
         seen_ids.add(req_id)
         specialty, is_top = detect_specialty(title, desc_text)
-        is_outside, borough = classify_nyc_location(loc_str, f"{title} {hospital_name}")
+        if hub == "NYC":
+            is_outside, borough = classify_nyc_location(loc_str, f"{title} {hospital_name}")
+        else:
+            is_outside, borough = False, None
         salary_range, salary_min = extract_salary_range(desc_text)
         shift = detect_shift(title, desc_text)
         requirements = extract_posting_requirements(title, desc_text)
@@ -150,7 +157,7 @@ def fetch_workday_jobs(
                 posted_date=posted_date,
                 is_new_grad_friendly=is_friendly,
                 match_reason=reason,
-                hub="NYC",
+                hub=hub,
                 probability=probability,
                 specialty=specialty,
                 is_top_specialty=is_top,
