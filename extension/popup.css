@@ -1,0 +1,269 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 390px;
+  max-height: 580px;
+  margin: 0;
+  padding: 12px;
+  background: #0f172a;
+  color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+}
+
+.ext-header h1 {
+  margin: 0;
+  font-size: 17px;
+  color: #38bdf8;
+}
+
+.subtitle {
+  margin: 2px 0 10px;
+  font-size: 11.5px;
+  color: #94a3b8;
+}
+
+.action-panel {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-primary {
+  width: 100%;
+  background: #38bdf8;
+  color: #0f172a;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #7dd3fc;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #cbd5e1;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  border-color: #94a3b8;
+  color: #ffffff;
+}
+
+.overwrite-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  color: #94a3b8;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.status-box {
+  margin-top: 8px;
+  padding: 7px 9px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.35;
+  background: rgba(16, 185, 129, 0.14);
+  color: #a7f3d0;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.status-box.warn {
+  background: rgba(245, 158, 11, 0.14);
+  color: #fde68a;
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+.status-box.error {
+  background: rgba(239, 68, 68, 0.14);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.35);
+}
+
+.hidden {
+  display: none;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: #1e293b;
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  margin-bottom: 10px;
+}
+
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  color: #94a3b8;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: #334155;
+  color: #38bdf8;
+}
+
+.tab-pane {
+  display: none;
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+.quick-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.quick-item {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 7px 9px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.quick-meta {
+  min-width: 0;
+  flex: 1;
+}
+
+.quick-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.quick-val {
+  font-size: 12.5px;
+  color: #f8fafc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.quick-empty {
+  font-size: 11.5px;
+  color: #64748b;
+  font-style: italic;
+}
+
+.btn-copy-mini {
+  background: #0f172a;
+  color: #38bdf8;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-copy-mini:hover {
+  border-color: #38bdf8;
+}
+
+.privacy-banner {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #a7f3d0;
+  font-size: 11px;
+  padding: 6px 8px;
+  border-radius: 7px;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field-wrap label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-bottom: 3px;
+}
+
+.field-wrap input,
+.field-wrap select,
+.field-wrap textarea,
+.json-box {
+  width: 100%;
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 12.5px;
+  font-family: inherit;
+  outline: none;
+}
+
+.field-wrap input:focus,
+.field-wrap select:focus,
+.field-wrap textarea:focus,
+.json-box:focus {
+  border-color: #38bdf8;
+}
+
+.json-box {
+  min-height: 160px;
+  font-family: monospace;
+  font-size: 11.5px;
+  margin-bottom: 8px;
+}
+
+.backup-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.backup-actions button {
+  flex: 1;
+}
+
+.hint-text {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: #94a3b8;
+}

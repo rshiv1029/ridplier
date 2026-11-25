@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ridplier Auto-Fill</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="ext-header">
+    <div>
+      <h1>🩺 Ridplier Auto-Fill</h1>
+      <p class="subtitle">PA Portal Form Accelerator (100% Local)</p>
+    </div>
+  </header>
+
+  <section class="action-panel">
+    <button id="btn-autofill" class="btn-primary">⚡ Auto-Fill This Page</button>
+    <label class="overwrite-toggle">
+      <input type="checkbox" id="chk-overwrite" />
+      <span>Overwrite existing values</span>
+    </label>
+    <div id="fill-status" class="status-box hidden"></div>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="quick">📋 Quick Copy</button>
+    <button class="tab-btn" data-tab="profile">✏️ Edit Profile</button>
+    <button class="tab-btn" data-tab="backup">🔄 Import/Export</button>
+  </nav>
+
+  <!-- Tab 1: Quick Copy -->
+  <section id="tab-quick" class="tab-pane active">
+    <div id="quick-list" class="quick-list"></div>
+  </section>
+
+  <!-- Tab 2: Edit Profile -->
+  <section id="tab-profile" class="tab-pane">
+    <div class="privacy-banner">
+      🔒 Stored locally in Chrome on this computer only (<code>chrome.storage.local</code>). Never sent to GitHub or external servers.
+    </div>
+    <form id="profile-form" class="profile-form"></form>
+    <button id="btn-save-profile" class="btn-primary" style="margin-top: 8px;">💾 Save Profile</button>
+  </section>
+
+  <!-- Tab 3: Import / Export -->
+  <section id="tab-backup" class="tab-pane">
+    <p class="hint-text">Export or paste your JSON profile to back up or sync between computers:</p>
+    <textarea id="json-box" class="json-box" placeholder='{"first_name": "...", "email": "..."}'></textarea>
+    <div class="backup-actions">
+      <button id="btn-export-json" class="btn-outline">📤 Load Current JSON</button>
+      <button id="btn-import-json" class="btn-primary">📥 Import JSON</button>
+    </div>
+  </section>
+
+  <script src="popup.js"></script>
+</body>
+</html>
