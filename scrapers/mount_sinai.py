@@ -3,7 +3,14 @@ import ssl
 import urllib.request
 from typing import List
 from .models import JobPosting
-from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty, classify_nyc_location
+from .evaluator import (
+    is_title_eligible,
+    evaluate_new_grad,
+    detect_specialty,
+    classify_nyc_location,
+    extract_salary_range,
+    detect_shift,
+)
 
 MOUNT_SINAI_API = "https://careers.mountsinai.org/api/jobs?keywords=physician%20assistant&page={page}&limit=100&sortBy=posted_date&descending=true"
 
@@ -62,6 +69,12 @@ def fetch_mount_sinai_jobs() -> List[JobPosting]:
 
                     specialty, is_top = detect_specialty(title, desc_text)
                     is_outside, borough = classify_nyc_location(location, title)
+                    salary_range, salary_min = extract_salary_range(
+                        desc_text,
+                        min_val=d.get("salary_min_value"),
+                        max_val=d.get("salary_max_value"),
+                    )
+                    shift = detect_shift(title, desc_text, explicit_shift=str(d.get("shift") or ""))
 
                     job = JobPosting(
                         id=JobPosting.make_id("MountSinai", req_id),
@@ -78,6 +91,9 @@ def fetch_mount_sinai_jobs() -> List[JobPosting]:
                         is_top_specialty=is_top,
                         is_outside_nyc=is_outside,
                         borough_tag=borough,
+                        salary_range=salary_range,
+                        salary_min_annual=salary_min,
+                        shift=shift,
                         raw_data=d,
                     )
                     postings.append(job)

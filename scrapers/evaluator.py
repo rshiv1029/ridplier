@@ -1,5 +1,5 @@
 import re
-from typing import Tuple
+from typing import Optional, Tuple
 
 # Non-new-grad / leadership / non-full-time titles to strictly exclude
 EXCLUDE_TITLE_WORDS = [
@@ -206,3 +206,156 @@ def evaluate_new_grad(title: str, description: str = "") -> Tuple[bool, str, str
 
     # 5. Default Moderate: Standard PA listing without specific year blockers
     return True, "moderate", "Standard PA listing (typical hospital boilerplate)"
+
+
+def _format_salary(low: float, high: Optional[float], is_hourly: bool) -> Tuple[str, int]:
+    """Normalize numeric salary values into a compact display badge and annualized minimum."""
+    if is_hourly:
+        low_s = f"${int(round(low))}" if abs(low - round(low)) < 0.05 else f"${low:.2f}"
+        if high and high > low:
+            high_s = f"${int(round(high))}" if abs(high - round(high)) < 0.05 else f"${high:.2f}"
+            return f"{low_s} – {high_s}/hr", int(round(low * 2080))
+        return f"{low_s}/hr", int(round(low * 2080))
+
+    low_k = round(low / 1000)
+    if high and high > low:
+        high_k = round(high / 1000)
+        return f"${low_k}k – ${high_k}k/yr", int(round(low))
+    return f"${low_k}k/yr", int(round(low))
+
+
+def extract_salary_range(
+    description: str = "",
+    explicit_salary: str = "",
+    min_val: Optional[float] = None,
+    max_val: Optional[float] = None,
+) -> Tuple[Optional[str], Optional[int]]:
+    """
+    Extract a normalized compensation range (e.g. '$131k – $149k/yr' or '$67 – $89/hr')
+    and annualized minimum USD integer from structured fields or description text.
+    """
+    # 1. Structured numeric values (e.g. Jibe salary_min_value / salary_max_value)
+    if min_val is not None:
+        try:
+            lo = float(min_val)
+            hi = float(max_val) if max_val is not None else None
+            if 30 <= lo <= 250:
+                return _format_salary(lo, hi if hi and 30 <= hi <= 300 else None, is_hourly=True)
+            if 35000 <= lo <= 500000:
+                return _format_salary(lo, hi if hi and 35000 <= hi <= 600000 else None, is_hourly=False)
+        except (TypeError, ValueError):
+            pass
+
+    # 2. Scan explicit salary string first, then cleaned HTML description
+    sources = []
+    if explicit_salary:
+        sources.append(str(explicit_salary))
+    if description:
+        clean_desc = re.sub(r"<[^>]+>", " ", description)
+        clean_desc = re.sub(r"\s+", " ", clean_desc)
+        sources.append(clean_desc)
+
+    range_pat = re.compile(
+        r"\$\s*([\d,]+(?:\.\d{1,2})?)\s*(?:k\b)?\s*(?:\*|\bUSD\b)?\s*(?:-|–|—|to)\s*(?:\$|\bUSD\s*\$?)?\s*([\d,]+(?:\.\d{1,2})?)\s*(?:k\b)?\s*\*?\s*(?:/\s*|per\s+)?(hr|hour|hourly|yr|year|annual|annually)?",
+        re.IGNORECASE,
+    )
+    single_pat = re.compile(
+        r"(?:salary(?:\s+range)?|hiring\s+range|base\s+salary|compensation|pay\s+range)\s*[:\-]?\s*(?:\bUSD\s*)?\$\s*([\d,]+(?:\.\d{1,2})?)\s*(?:k\b)?\s*(?:/\s*|per\s+)?(hr|hour|hourly|yr|year|annual|annually)?",
+        re.IGNORECASE,
+    )
+
+    for src in sources:
+        for m in range_pat.finditer(src):
+            raw_lo, raw_hi, unit = m.group(1), m.group(2), (m.group(3) or "").lower()
+            ctx_slice = src[max(0, m.start() - 25) : min(len(src), m.end() + 25)].lower()
+            try:
+                lo = float(raw_lo.replace(",", ""))
+                hi = float(raw_hi.replace(",", ""))
+            except ValueError:
+                continue
+            if "k" in m.group(0).lower() and lo < 1000:
+                lo *= 1000
+                hi *= 1000
+            if hi < lo:
+                continue
+
+            is_hourly_ctx = bool(re.search(r"\b(hr|hour|hourly)\b|/hr\b", unit + " " + ctx_slice))
+            if is_hourly_ctx and 30 <= lo <= 250 and hi <= 300:
+                return _format_salary(lo, hi, is_hourly=True)
+            if 35000 <= lo <= 500000 and hi <= 600000:
+                return _format_salary(lo, hi, is_hourly=False)
+
+        for m in single_pat.finditer(src):
+            raw_lo, unit = m.group(1), (m.group(2) or "").lower()
+            ctx_slice = src[max(0, m.start() - 10) : min(len(src), m.end() + 20)].lower()
+            try:
+                lo = float(raw_lo.replace(",", ""))
+            except ValueError:
+                continue
+            if "k" in m.group(0).lower() and lo < 1000:
+                lo *= 1000
+            is_hourly_ctx = bool(re.search(r"\b(hr|hour|hourly)\b|/hr\b", unit + " " + ctx_slice))
+            if is_hourly_ctx and 30 <= lo <= 250:
+                return _format_salary(lo, None, is_hourly=True)
+            if 35000 <= lo <= 500000:
+                return _format_salary(lo, None, is_hourly=False)
+
+    return None, None
+
+
+def _normalize_shift_token(text: str) -> Optional[str]:
+    low = text.lower()
+    if any(k in low for k in ["rotat", "flex", "variable", "day/night", "days/nights"]):
+        return "Rotating"
+    if any(k in low for k in ["night", "nocturnist", "overnight", "7p-7a", "7pm-7am", "1900-0700", "12am-8am", "11pm"]):
+        return "Nights"
+    if any(k in low for k in ["swing", "mid-shift", "midshift", "mid shift", "evening", "afternoon", "4pm-12am", "4pm - 12am"]):
+        return "Evenings / Swing"
+    if "weekend" in low:
+        return "Weekends"
+    if any(k in low for k in ["day", "morning", "monday-friday", "monday - friday", "monday – friday", "mon-fri", "m-f", "8am-4pm", "8am - 4pm"]):
+        return "Days"
+    return None
+
+
+def detect_shift(
+    title: str = "",
+    description: str = "",
+    explicit_shift: str = "",
+) -> Optional[str]:
+    """Identify work shift cadence cleanly from structured metadata, title, or schedule lines."""
+    if explicit_shift:
+        res = _normalize_shift_token(explicit_shift)
+        if res:
+            return res
+
+    title_res = _normalize_shift_token(title)
+    if title_res:
+        return title_res
+
+    if description:
+        clean_desc = re.sub(r"<[^>]+>", " ", description)
+        clean_desc = re.sub(r"\s+", " ", clean_desc)
+        # Check structured Shift/Schedule/Work lines first to avoid incidental 'call' mentions
+        structured = re.findall(
+            r"(?:shift|schedule|work\s*hours?|work)\s*:\s*([^.;\n]{3,60})",
+            clean_desc,
+            re.IGNORECASE,
+        )
+        for seg in structured:
+            res = _normalize_shift_token(seg)
+            if res:
+                return res
+
+        # Explicit multi-word schedule phrases anywhere in description
+        explicit_phrases = re.findall(
+            r"\b(?:night\s+shift|day\s+shift|rotating\s+shift|swing\s+shift|evening\s+shift|weekend\s+shift|monday\s*[-–to]+\s*friday|7\s*on\s*/?\s*7\s*off)\b",
+            clean_desc,
+            re.IGNORECASE,
+        )
+        for ph in explicit_phrases:
+            res = _normalize_shift_token(ph)
+            if res:
+                return res
+
+    return None

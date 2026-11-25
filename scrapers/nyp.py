@@ -3,7 +3,14 @@ import ssl
 import urllib.request
 from typing import List
 from .models import JobPosting
-from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty, classify_nyc_location
+from .evaluator import (
+    is_title_eligible,
+    evaluate_new_grad,
+    detect_specialty,
+    classify_nyc_location,
+    extract_salary_range,
+    detect_shift,
+)
 
 NYP_URL = "https://nyp.wd1.myworkdayjobs.com/wday/cxs/nyp/nypcareers/jobs"
 
@@ -61,6 +68,8 @@ def fetch_nyp_jobs() -> List[JobPosting]:
 
                     specialty, is_top = detect_specialty(title, desc_text)
                     is_outside, borough = classify_nyc_location(location, title)
+                    salary_range, salary_min = extract_salary_range(desc_text)
+                    shift = detect_shift(title, desc_text)
 
                     job = JobPosting(
                         id=JobPosting.make_id("NYP", req_id),
@@ -77,6 +86,9 @@ def fetch_nyp_jobs() -> List[JobPosting]:
                         is_top_specialty=is_top,
                         is_outside_nyc=is_outside,
                         borough_tag=borough,
+                        salary_range=salary_range,
+                        salary_min_annual=salary_min,
+                        shift=shift,
                         raw_data=item,
                     )
                     postings.append(job)

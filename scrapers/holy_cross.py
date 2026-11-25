@@ -4,7 +4,7 @@ import urllib.request
 import urllib.parse
 from typing import List
 from .models import JobPosting
-from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty
+from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty, extract_salary_range, detect_shift
 
 TRINITY_URL = "https://jobs.trinity-health.org/search-results?keywords=physician%20assistant"
 
@@ -61,7 +61,10 @@ def fetch_holy_cross_jobs() -> List[JobPosting]:
                     if not is_friendly:
                         continue
 
-                    specialty, is_top = detect_specialty(title)
+                    desc_text = item.get("description", "")
+                    specialty, is_top = detect_specialty(title, desc_text)
+                    salary_range, salary_min = extract_salary_range(desc_text)
+                    shift = detect_shift(title, desc_text)
 
                     # Build direct job link
                     slug = re.sub(r"[^a-zA-Z0-9]+", "-", title).strip("-")
@@ -81,6 +84,9 @@ def fetch_holy_cross_jobs() -> List[JobPosting]:
                         probability=probability,
                         specialty=specialty,
                         is_top_specialty=is_top,
+                        salary_range=salary_range,
+                        salary_min_annual=salary_min,
+                        shift=shift,
                         raw_data=item,
                     )
                     postings.append(job)

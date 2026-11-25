@@ -18,12 +18,15 @@ All roles are strictly inside New York City (5 boroughs).
 
 import ssl
 import urllib.request
-from typing import List
+from concurrent.futures import ThreadPoolExecutor
+from typing import Dict, List
 from bs4 import BeautifulSoup
 
 from scrapers.evaluator import (
+    detect_shift,
     detect_specialty,
     evaluate_new_grad,
+    extract_salary_range,
     is_title_eligible,
 )
 from scrapers.models import JobPosting
@@ -46,10 +49,33 @@ FACILITY_BOROUGH_MAP = {
 }
 
 
+def _fetch_pagny_detail(url: str, headers: dict, ctx: ssl.SSLContext) -> Dict[str, str]:
+    """Fetch a PAGNY job detail page for salary range, schedule, and full description."""
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, context=ctx, timeout=10) as resp:
+            html = resp.read().decode("utf-8", errors="ignore")
+        soup = BeautifulSoup(html, "html.parser")
+        meta = {}
+        for tr in soup.select("table tr"):
+            th = tr.find("th")
+            td = tr.find("td")
+            if th and td:
+                meta[th.get_text(strip=True).lower()] = td.get_text(" ", strip=True)
+        body = soup.select_one("main") or soup
+        return {
+            "position_type": meta.get("position type", ""),
+            "salary_text": meta.get("salary range", ""),
+            "description": body.get_text(" ", strip=True),
+        }
+    except Exception:
+        return {"position_type": "", "salary_text": "", "description": ""}
+
+
 def fetch_pagny_jobs() -> List[JobPosting]:
     """Scrape PA positions from NYC Health + Hospitals via PAGNY."""
     print("[NYC H+H / PAGNY Scraper] Fetching listings from pagny.org...")
-    postings: List[JobPosting] = []
+    raw_candidates = []
     seen_urls = set()
 
     ctx = ssl._create_unverified_context()
@@ -91,10 +117,7 @@ def fetch_pagny_jobs() -> List[JobPosting]:
                     or "physician assistant" in title.lower()
                     or " pa " in f" {title.lower()} "
                 )
-                if not is_pa:
-                    continue
-
-                if not is_title_eligible(title):
+                if not is_pa or not is_title_eligible(title):
                     continue
 
                 partner_el = card.select_one(".job__partner")
@@ -106,46 +129,64 @@ def fetch_pagny_jobs() -> List[JobPosting]:
                     if posted_el
                     else "Recently"
                 )
-
-                # Determine borough from facility name
-                borough = "NYC (5 Boroughs)"
-                p_low = partner_text.lower()
-                for key, b in FACILITY_BOROUGH_MAP.items():
-                    if key in p_low:
-                        borough = b
-                        break
-
-                req_slug = job_url.rstrip("/").split("/")[-1]
-
-                # Evaluate new grad viability & specialty
-                is_friendly, probability, reason = evaluate_new_grad(title, partner_text)
-                if not is_friendly:
-                    continue
-
-                specialty, is_top = detect_specialty(title, partner_text)
-
-                job = JobPosting(
-                    id=JobPosting.make_id("NYCHHC", req_slug),
-                    hospital=f"NYC Health + Hospitals ({partner_text})",
-                    title=title,
-                    location=f"New York City ({borough}), NY",
-                    url=job_url,
-                    posted_date=posted_date,
-                    is_new_grad_friendly=is_friendly,
-                    match_reason=reason,
-                    hub="NYC",
-                    probability=probability,
-                    specialty=specialty,
-                    is_top_specialty=is_top,
-                    is_outside_nyc=False,
-                    borough_tag=borough,
-                    raw_data={"slug": req_slug, "partner": partner_text},
-                )
-                postings.append(job)
+                raw_candidates.append((title, job_url, partner_text, posted_date))
 
         except Exception as e:
             print(f"[NYC H+H / PAGNY Scraper] Finished or reached end on page {page}: {e}")
             break
+
+    # Fetch detail pages concurrently for exact salary, position type, shift, and clinical context
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        details = list(pool.map(lambda c: _fetch_pagny_detail(c[1], headers, ctx), raw_candidates))
+
+    postings: List[JobPosting] = []
+    for (title, job_url, partner_text, posted_date), detail in zip(raw_candidates, details):
+        pos_type = detail.get("position_type", "").lower()
+        if any(x in pos_type for x in ["part-time", "part time", "per diem", "prn", "casual"]):
+            continue
+
+        # Determine borough from facility name
+        borough = "NYC (5 Boroughs)"
+        p_low = partner_text.lower()
+        for key, b in FACILITY_BOROUGH_MAP.items():
+            if key in p_low:
+                borough = b
+                break
+
+        req_slug = job_url.rstrip("/").split("/")[-1]
+        full_desc = detail.get("description") or partner_text
+
+        is_friendly, probability, reason = evaluate_new_grad(title, full_desc)
+        if not is_friendly:
+            continue
+
+        specialty, is_top = detect_specialty(title, full_desc)
+        salary_range, salary_min = extract_salary_range(
+            full_desc, explicit_salary=detail.get("salary_text", "")
+        )
+        shift = detect_shift(title, full_desc)
+
+        job = JobPosting(
+            id=JobPosting.make_id("NYCHHC", req_slug),
+            hospital=f"NYC Health + Hospitals ({partner_text})",
+            title=title,
+            location=f"New York City ({borough}), NY",
+            url=job_url,
+            posted_date=posted_date,
+            is_new_grad_friendly=is_friendly,
+            match_reason=reason,
+            hub="NYC",
+            probability=probability,
+            specialty=specialty,
+            is_top_specialty=is_top,
+            is_outside_nyc=False,
+            borough_tag=borough,
+            salary_range=salary_range,
+            salary_min_annual=salary_min,
+            shift=shift,
+            raw_data={"slug": req_slug, "partner": partner_text},
+        )
+        postings.append(job)
 
     print(f"[NYC H+H / PAGNY Scraper] Successfully parsed {len(postings)} eligible new-grad roles.")
     return postings

@@ -14,8 +14,10 @@ from typing import List
 
 from scrapers.evaluator import (
     classify_nyc_location,
+    detect_shift,
     detect_specialty,
     evaluate_new_grad,
+    extract_salary_range,
     is_title_eligible,
 )
 from scrapers.models import JobPosting
@@ -118,6 +120,10 @@ def scrape_nyu_langone() -> List[JobPosting]:
 
                 specialty, is_top = detect_specialty(title, desc_text)
                 is_outside, borough = classify_nyc_location(location, title)
+                salary_range, salary_min = extract_salary_range(
+                    desc_text, explicit_salary=str(it.get("salary") or "")
+                )
+                shift = detect_shift(title, desc_text, explicit_shift=str(it.get("shift") or ""))
 
                 job = JobPosting(
                     id=JobPosting.make_id("NYULangone", req_id),
@@ -134,6 +140,9 @@ def scrape_nyu_langone() -> List[JobPosting]:
                     is_top_specialty=is_top,
                     is_outside_nyc=is_outside,
                     borough_tag=borough,
+                    salary_range=salary_range,
+                    salary_min_annual=salary_min,
+                    shift=shift,
                     raw_data={"id": req_id, "category": it.get("primary_category")},
                 )
                 postings.append(job)

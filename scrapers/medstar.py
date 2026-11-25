@@ -3,7 +3,13 @@ import ssl
 import urllib.request
 from typing import List
 from .models import JobPosting
-from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty
+from .evaluator import (
+    is_title_eligible,
+    evaluate_new_grad,
+    detect_specialty,
+    extract_salary_range,
+    detect_shift,
+)
 
 MEDSTAR_API = "https://careers.medstarhealth.org/api/jobs?keywords=physician%20assistant&page={page}&limit=100&sortBy=posted_date&descending=true"
 
@@ -74,6 +80,12 @@ def fetch_medstar_jobs() -> List[JobPosting]:
                         continue
 
                     specialty, is_top = detect_specialty(title, desc_text)
+                    salary_range, salary_min = extract_salary_range(
+                        desc_text,
+                        min_val=d.get("salary_min_value"),
+                        max_val=d.get("salary_max_value"),
+                    )
+                    shift = detect_shift(title, desc_text, explicit_shift=str(d.get("shift") or ""))
 
                     job = JobPosting(
                         id=JobPosting.make_id("MedStar", req_id),
@@ -88,6 +100,9 @@ def fetch_medstar_jobs() -> List[JobPosting]:
                         probability=probability,
                         specialty=specialty,
                         is_top_specialty=is_top,
+                        salary_range=salary_range,
+                        salary_min_annual=salary_min,
+                        shift=shift,
                         raw_data=d,
                     )
                     postings.append(job)

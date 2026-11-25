@@ -18,6 +18,9 @@ class JobPosting:
     is_top_specialty: bool = False
     is_outside_nyc: bool = False
     borough_tag: Optional[str] = None
+    salary_range: Optional[str] = None
+    salary_min_annual: Optional[int] = None
+    shift: Optional[str] = None
     raw_data: Optional[Dict[str, Any]] = None
 
     @classmethod

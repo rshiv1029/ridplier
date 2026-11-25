@@ -78,6 +78,12 @@ def format_email_html(jobs: List[JobPosting], dashboard_url: str) -> str:
         elif getattr(j, "specialty", None):
             spec_html = f"""<div style="background-color: rgba(148, 163, 184, 0.12); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.25); font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; display: inline-block; margin-bottom: 10px; margin-right: 6px;">🩺 {j.specialty}</div>"""
 
+        extra_meta = ""
+        if getattr(j, "shift", None):
+            extra_meta += f" &nbsp;|&nbsp; ⏰ {j.shift}"
+        if getattr(j, "salary_range", None):
+            extra_meta += f" &nbsp;|&nbsp; 💵 {j.salary_range}"
+
         cards_html += f"""
         <div style="background-color: #1e293b; border-radius: 10px; padding: 18px; margin-bottom: 16px; border: 1px solid #334155;">
           <div style="color: #38bdf8; font-size: 13px; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">
@@ -87,7 +93,7 @@ def format_email_html(jobs: List[JobPosting], dashboard_url: str) -> str:
             {j.title}
           </div>
           <div style="color: #94a3b8; font-size: 14px; margin-bottom: 12px;">
-            📍 {j.location} &nbsp;|&nbsp; 📅 {j.posted_date} &nbsp;|&nbsp; 💼 Full-Time
+            📍 {j.location} &nbsp;|&nbsp; 📅 {j.posted_date} &nbsp;|&nbsp; 💼 Full-Time{extra_meta}
           </div>
           <div>
             {spec_html}

@@ -132,19 +132,63 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       color: #0f172a;
     }
 
-    /* Dropdown Filters Toolbar */
+    /* Dropdown Filters & Search Toolbar */
     .dropdown-filter-bar {
       max-width: 960px;
-      margin: 0 auto 1.5rem;
+      margin: 0 auto 0.85rem;
       display: grid;
-      grid-template-columns: repeat(3, 1fr) auto;
+      grid-template-columns: repeat(3, 1fr);
       gap: 0.75rem;
       background: #1e293b;
-      padding: 0.85rem 1rem;
+      padding: 0.95rem 1rem;
       border: 1px solid var(--border);
       border-radius: 12px;
       align-items: flex-end;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .toolbar-top-row {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .search-input-wrap {
+      flex: 1 1 260px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-input {
+      width: 100%;
+      background: #0f172a;
+      color: var(--text);
+      border: 1px solid #334155;
+      padding: 0.6rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      outline: none;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+    .search-input::placeholder {
+      color: #64748b;
+    }
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
+    .results-summary {
+      max-width: 960px;
+      margin: 0 auto 1rem;
+      padding: 0 0.25rem;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
     .filter-group {
       display: flex;
@@ -203,13 +247,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       gap: 0.5rem;
       align-items: center;
     }
-    .btn-sort-date {
+    .btn-sort-date, .btn-hide-suburbs {
       background: #0f172a;
       color: var(--text);
       border: 1px solid #334155;
       padding: 0.6rem 0.85rem;
       border-radius: 8px;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 500;
       cursor: pointer;
       transition: all 0.15s ease;
@@ -219,10 +263,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       gap: 0.35rem;
       font-family: inherit;
     }
-    .btn-sort-date:hover {
+    .btn-sort-date:hover, .btn-hide-suburbs:hover {
       border-color: #64748b;
     }
-    .btn-sort-date.active {
+    .btn-sort-date.active, .btn-hide-suburbs.active {
       background: rgba(56, 189, 248, 0.15);
       color: var(--accent);
       border-color: var(--accent);
@@ -252,6 +296,31 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       background: rgba(239, 68, 68, 0.1);
     }
 
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .meta-salary {
+      background: rgba(16, 185, 129, 0.14);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .meta-shift {
+      background: rgba(56, 189, 248, 0.12);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.28);
+    }
+    .meta-shift-night {
+      background: rgba(139, 92, 246, 0.15);
+      color: #c4b5fd;
+      border: 1px solid rgba(139, 92, 246, 0.35);
+    }
+
     @media (max-width: 820px) {
       .dropdown-filter-bar {
         grid-template-columns: 1fr;
@@ -261,7 +330,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       .filter-group-actions {
         width: 100%;
       }
-      .btn-sort-date, .btn-reset-filters {
+      .btn-sort-date, .btn-hide-suburbs, .btn-reset-filters {
         flex: 1;
         justify-content: center;
       }
@@ -595,8 +664,32 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     </button>
   </div>
 
-  <!-- 3 Clean Dropdown Filters: Network, Location, Specialty -->
+  <!-- Search + Quick Actions + 3 Clean Dropdown Filters -->
   <div class="dropdown-filter-bar">
+    <div class="toolbar-top-row">
+      <div class="search-input-wrap">
+        <input
+          type="search"
+          id="search-input"
+          class="search-input"
+          placeholder="🔍 Search title, hospital, shift, or keyword (e.g. Bellevue, ENT, night)..."
+          oninput="onSearchInput()"
+          aria-label="Search jobs"
+        />
+      </div>
+      <div class="filter-group-actions">
+        <button class="btn-hide-suburbs" id="btn-hide-suburbs" onclick="toggleHideSuburbs()" title="Remember preference to hide Long Island and Westchester suburb roles">
+          🗽 Hide NYC Suburbs
+        </button>
+        <button class="btn-sort-date" id="btn-sort-date" onclick="toggleDateSort()" title="Cycle sort order by posting date">
+          📅 Sort by Date
+        </button>
+        <button class="btn-reset-filters" id="btn-reset-filters" onclick="resetDropdownFilters()">
+          ↺ Reset
+        </button>
+      </div>
+    </div>
+
     <div class="filter-group">
       <label for="filter-network" class="filter-label">🏥 Hospital Network</label>
       <select id="filter-network" class="filter-select" onchange="onDropdownFilterChange()">
@@ -656,16 +749,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         </optgroup>
       </select>
     </div>
-
-    <div class="filter-group filter-group-actions">
-      <button class="btn-sort-date" id="btn-sort-date" onclick="toggleDateSort()" title="Cycle sort order by posting date">
-        📅 Sort by Date
-      </button>
-      <button class="btn-reset-filters" id="btn-reset-filters" onclick="resetDropdownFilters()">
-        ↺ Reset
-      </button>
-    </div>
   </div>
+
+  <div class="results-summary" id="results-summary"></div>
 
   <div class="jobs-grid" id="jobs-container">
     <!-- Rendered via JavaScript -->
@@ -677,6 +763,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     const JOBS = __JOBS_JSON__;
     const GENERATED_AT_MS = __GENERATED_AT_MS__;
     const STORAGE_KEY = 'ridplier_job_status_v1';
+    const HIDE_SUBURBS_KEY = 'ridplier_hide_outside_nyc_v1';
     
     // Supabase Cloud Sync Configuration
     const SUPABASE_URL = "https://lmfjzjkkaytnrmiqadut.supabase.co";
@@ -686,6 +773,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     let selectedNetwork = 'all';
     let selectedLocation = 'all';
     let selectedSpecialty = 'all';
+    let searchQuery = '';
+    let hideOutsideNYC = localStorage.getItem(HIDE_SUBURBS_KEY) === 'true';
     let dateSortMode = 'none';         // 'none' | 'desc' | 'asc'
     let archivedJobs = [];             // Past applied/dismissed jobs preserved even if removed by hospital
 
@@ -852,10 +941,19 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
     function updateFilterActionButtons() {
       const resetBtn = document.getElementById('btn-reset-filters');
-      if (selectedNetwork !== 'all' || selectedLocation !== 'all' || selectedSpecialty !== 'all' || dateSortMode !== 'none') {
+      if (selectedNetwork !== 'all' || selectedLocation !== 'all' || selectedSpecialty !== 'all' || searchQuery !== '' || dateSortMode !== 'none') {
         resetBtn.classList.add('visible');
       } else {
         resetBtn.classList.remove('visible');
+      }
+
+      const hideBtn = document.getElementById('btn-hide-suburbs');
+      if (hideOutsideNYC) {
+        hideBtn.classList.add('active');
+        hideBtn.textContent = '🗽 Hiding Suburbs';
+      } else {
+        hideBtn.classList.remove('active');
+        hideBtn.textContent = '🗽 Hide NYC Suburbs';
       }
 
       const sortBtn = document.getElementById('btn-sort-date');
@@ -871,10 +969,33 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       }
     }
 
+    function onSearchInput() {
+      searchQuery = document.getElementById('search-input').value.trim().toLowerCase();
+      updateFilterActionButtons();
+      renderJobs();
+    }
+
+    function toggleHideSuburbs() {
+      hideOutsideNYC = !hideOutsideNYC;
+      try {
+        localStorage.setItem(HIDE_SUBURBS_KEY, hideOutsideNYC ? 'true' : 'false');
+      } catch (e) {}
+      if (hideOutsideNYC && selectedLocation === 'NYC_outside') {
+        selectedLocation = 'all';
+        document.getElementById('filter-location').value = 'all';
+      }
+      updateFilterActionButtons();
+      renderJobs();
+    }
+
     function onDropdownFilterChange() {
       selectedNetwork = document.getElementById('filter-network').value;
       selectedLocation = document.getElementById('filter-location').value;
       selectedSpecialty = document.getElementById('filter-specialty').value;
+      if (selectedLocation === 'NYC_outside' && hideOutsideNYC) {
+        hideOutsideNYC = false;
+        try { localStorage.setItem(HIDE_SUBURBS_KEY, 'false'); } catch (e) {}
+      }
       updateFilterActionButtons();
       renderJobs();
     }
@@ -895,12 +1016,23 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       document.getElementById('filter-network').value = 'all';
       document.getElementById('filter-location').value = 'all';
       document.getElementById('filter-specialty').value = 'all';
+      document.getElementById('search-input').value = '';
       selectedNetwork = 'all';
       selectedLocation = 'all';
       selectedSpecialty = 'all';
+      searchQuery = '';
       dateSortMode = 'none';
       updateFilterActionButtons();
       renderJobs();
+    }
+
+    function getShiftMetaBadge(shift) {
+      if (!shift) return '';
+      if (shift === 'Nights') return `<span class="meta-pill meta-shift-night">🌙 ${shift}</span>`;
+      if (shift === 'Days') return `<span class="meta-pill meta-shift">☀️ ${shift}</span>`;
+      if (shift === 'Evenings / Swing') return `<span class="meta-pill meta-shift">🌆 ${shift}</span>`;
+      if (shift === 'Weekends') return `<span class="meta-pill meta-shift">🗓️ ${shift}</span>`;
+      return `<span class="meta-pill meta-shift">🔄 ${shift}</span>`;
     }
 
     const MONTH_INDEX = {
@@ -1041,6 +1173,24 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         });
       }
 
+      // 4b. Apply remembered Hide Outside NYC Suburbs preference
+      let hiddenSuburbCount = 0;
+      if (hideOutsideNYC && selectedLocation !== 'NYC_outside') {
+        hiddenSuburbCount = list.filter(j => j.is_outside_nyc === true).length;
+        list = list.filter(j => !j.is_outside_nyc);
+      }
+
+      // 4c. Apply free-text keyword search
+      if (searchQuery) {
+        list = list.filter(j => {
+          const hay = [
+            j.title, j.hospital, j.location, j.borough_tag,
+            j.specialty, j.shift, j.salary_range, j.match_reason
+          ].filter(Boolean).join(' ').toLowerCase();
+          return hay.includes(searchQuery);
+        });
+      }
+
       // 5. Sort by posting date if active
       if (dateSortMode !== 'none') {
         list = [...list].sort((a, b) => {
@@ -1051,6 +1201,12 @@ HTML_TEMPLATE = """<!DOCTYPE html>
           if (tb === null) return -1;
           return dateSortMode === 'desc' ? tb - ta : ta - tb;
         });
+      }
+
+      const summaryEl = document.getElementById('results-summary');
+      if (summaryEl) {
+        const suburbNote = hiddenSuburbCount > 0 ? ` · ${hiddenSuburbCount} outside-NYC suburb role(s) hidden` : '';
+        summaryEl.textContent = `Showing ${list.length} listing${list.length === 1 ? '' : 's'}${suburbNote}`;
       }
 
       // Empty State handling
@@ -1169,6 +1325,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
               <span>📍 ${j.location}</span>
               <span>📅 ${j.posted_date}</span>
               <span>💼 Full-Time</span>
+              ${getShiftMetaBadge(j.shift)}
+              ${j.salary_range ? `<span class="meta-pill meta-salary">💵 ${j.salary_range}</span>` : ''}
             </div>
             ${warningNotice}
             <div class="${getReasonClass(j.probability)}">
@@ -1203,6 +1361,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     }
 
     // 1. Initial instant render from local storage
+    updateFilterActionButtons();
     updateUI();
 
     // 2. Background sync from Supabase cloud

@@ -13,7 +13,10 @@
     "specialty": "Obstetrics & Gynecology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Days"
   },
   {
     "id": "6423f773aba1",
@@ -29,7 +32,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Days"
   },
   {
     "id": "f914f004c360",
@@ -45,7 +51,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating"
   },
   {
     "id": "1d1b7fea9a54",
@@ -61,7 +70,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating"
   },
   {
     "id": "8b9760580427",
@@ -77,7 +89,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Evenings / Swing"
   },
   {
     "id": "006944dc7691",
@@ -93,7 +108,10 @@
     "specialty": "Obstetrics & Gynecology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Days"
   },
   {
     "id": "6423f773aba1",
@@ -109,7 +127,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Days"
   },
   {
     "id": "f914f004c360",
@@ -125,7 +146,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating"
   },
   {
     "id": "1d1b7fea9a54",
@@ -141,7 +165,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating"
   },
   {
     "id": "8b9760580427",
@@ -157,7 +184,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Evenings / Swing"
   },
   {
     "id": "006944dc7691",
@@ -173,7 +203,10 @@
     "specialty": "Obstetrics & Gynecology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Days"
   },
   {
     "id": "6423f773aba1",
@@ -189,7 +222,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Days"
   },
   {
     "id": "f914f004c360",
@@ -205,7 +241,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating"
   },
   {
     "id": "1d1b7fea9a54",
@@ -221,7 +260,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating"
   },
   {
     "id": "8b9760580427",
@@ -237,135 +279,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
-    "id": "517dd67c9973",
-    "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "NP or PA - Cardiothoracic Inpatient - Nocturnist",
-    "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/103265/physician-assistant-i-splty-card-or-cardiothoracic-inpatient-physician-assistant-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-10-13",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "MD",
-    "probability": "moderate",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
-    "id": "f351b677628c",
-    "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "NP or PA - Cardiothoracic Inpatient - Rotating shift",
-    "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/101549/aprn-pa-cardiothoracic-inpatient-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-08-20",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "MD",
-    "probability": "moderate",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
-    "id": "6f0263094020",
-    "hospital": "Johns Hopkins Medicine (Johns Hopkins Bayview Medical Center)",
-    "title": "Physician Assistant Resident - Emergency Medicine",
-    "location": "Baltimore, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/104198/physician-assistant-resident-emergency-medicine-physician-assistant-us-md-baltimore-johns-hopkins-bayview-medical-center/",
-    "posted_date": "2026-11-09",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "MD",
-    "probability": "moderate",
-    "specialty": "Emergency Medicine (ER)",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
-    "id": "a2b035bac11e",
-    "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "Physician Assistant I - Trauma",
-    "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/92763/physician-asst-trauma-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2025-11-10",
-    "is_new_grad_friendly": true,
-    "match_reason": "New Grad Welcome: 'physician assistant i'",
-    "hub": "MD",
-    "probability": "high",
-    "specialty": "Emergency Medicine (ER)",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
-    "id": "990d757bdaa9",
-    "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "Physician Assistant I - Surgical",
-    "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/101276/physician-assistant-i-surgical-physician-assistant-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-09-16",
-    "is_new_grad_friendly": true,
-    "match_reason": "New Grad Welcome: 'physician assistant i'",
-    "hub": "MD",
-    "probability": "high",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
-    "id": "2d72fb43ce3e",
-    "hospital": "Johns Hopkins Medicine (Johns Hopkins Bayview Medical Center)",
-    "title": "APP (NP or PA) Hospitalist",
-    "location": "Baltimore, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/104720/app-np-or-pa-hospitalist-advanced-practice-providers-us-md-baltimore-johns-hopkins-bayview-medical-center/",
-    "posted_date": "2026-11-23",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "MD",
-    "probability": "moderate",
-    "specialty": "Internal Medicine",
-    "is_top_specialty": false,
-    "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
-    "id": "7376d89c4c7d",
-    "hospital": "Sibley Memorial Hospital (Johns Hopkins)",
-    "title": "Malignant Hematology Oncology Inpatient - Acute Care NP / PA",
-    "location": "Washington, DC (MD Border)",
-    "url": "https://jobs.hopkinsmedicine.org/job/84275/app-oncology-breast-gyn-nursing-us-dc-washington-sibley-memorial-hospital/",
-    "posted_date": "2026-09-22",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "MD",
-    "probability": "moderate",
-    "specialty": "Emergency Medicine (ER)",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null
-  },
-  {
-    "id": "7afb2d572114",
-    "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "Physician Assistant I - Neurosurgery",
-    "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/96971/physician-assistant-neurosurgery-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-04-03",
-    "is_new_grad_friendly": true,
-    "match_reason": "New Grad Welcome: 'physician assistant i'",
-    "hub": "MD",
-    "probability": "high",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Evenings / Swing"
   },
   {
     "id": "74cac9cc1ad6",
@@ -381,7 +298,86 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating"
+  },
+  {
+    "id": "2d72fb43ce3e",
+    "hospital": "Johns Hopkins Medicine (Johns Hopkins Bayview Medical Center)",
+    "title": "APP (NP or PA) Hospitalist",
+    "location": "Baltimore, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/104720/app-np-or-pa-hospitalist-advanced-practice-providers-us-md-baltimore-johns-hopkins-bayview-medical-center/",
+    "posted_date": "2026-11-23",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "MD",
+    "probability": "moderate",
+    "specialty": "Internal Medicine",
+    "is_top_specialty": false,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
+  },
+  {
+    "id": "7376d89c4c7d",
+    "hospital": "Sibley Memorial Hospital (Johns Hopkins)",
+    "title": "Malignant Hematology Oncology Inpatient - Acute Care NP / PA",
+    "location": "Washington, DC (MD Border)",
+    "url": "https://jobs.hopkinsmedicine.org/job/84275/app-oncology-breast-gyn-nursing-us-dc-washington-sibley-memorial-hospital/",
+    "posted_date": "2026-09-22",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "MD",
+    "probability": "moderate",
+    "specialty": "Emergency Medicine (ER)",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Weekends"
+  },
+  {
+    "id": "a2b035bac11e",
+    "hospital": "Suburban Hospital (Johns Hopkins)",
+    "title": "Physician Assistant I - Trauma",
+    "location": "Bethesda, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/92763/physician-asst-trauma-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2025-11-10",
+    "is_new_grad_friendly": true,
+    "match_reason": "New Grad Welcome: 'physician assistant i'",
+    "hub": "MD",
+    "probability": "high",
+    "specialty": "Emergency Medicine (ER)",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating"
+  },
+  {
+    "id": "517dd67c9973",
+    "hospital": "Suburban Hospital (Johns Hopkins)",
+    "title": "NP or PA - Cardiothoracic Inpatient - Nocturnist",
+    "location": "Bethesda, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/103265/physician-assistant-i-splty-card-or-cardiothoracic-inpatient-physician-assistant-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-10-13",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "MD",
+    "probability": "moderate",
+    "specialty": "Surgery",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Nights"
   },
   {
     "id": "11dd06a289aa",
@@ -397,7 +393,86 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating"
+  },
+  {
+    "id": "990d757bdaa9",
+    "hospital": "Suburban Hospital (Johns Hopkins)",
+    "title": "Physician Assistant I - Surgical",
+    "location": "Bethesda, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/101276/physician-assistant-i-surgical-physician-assistant-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-09-16",
+    "is_new_grad_friendly": true,
+    "match_reason": "New Grad Welcome: 'physician assistant i'",
+    "hub": "MD",
+    "probability": "high",
+    "specialty": "Surgery",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating"
+  },
+  {
+    "id": "7afb2d572114",
+    "hospital": "Suburban Hospital (Johns Hopkins)",
+    "title": "Physician Assistant I - Neurosurgery",
+    "location": "Bethesda, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/96971/physician-assistant-neurosurgery-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-04-03",
+    "is_new_grad_friendly": true,
+    "match_reason": "New Grad Welcome: 'physician assistant i'",
+    "hub": "MD",
+    "probability": "high",
+    "specialty": "Surgery",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating"
+  },
+  {
+    "id": "6f0263094020",
+    "hospital": "Johns Hopkins Medicine (Johns Hopkins Bayview Medical Center)",
+    "title": "Physician Assistant Resident - Emergency Medicine",
+    "location": "Baltimore, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/104198/physician-assistant-resident-emergency-medicine-physician-assistant-us-md-baltimore-johns-hopkins-bayview-medical-center/",
+    "posted_date": "2026-11-09",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "MD",
+    "probability": "moderate",
+    "specialty": "Emergency Medicine (ER)",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
+  },
+  {
+    "id": "f351b677628c",
+    "hospital": "Suburban Hospital (Johns Hopkins)",
+    "title": "NP or PA - Cardiothoracic Inpatient - Rotating shift",
+    "location": "Bethesda, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/101549/aprn-pa-cardiothoracic-inpatient-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-08-20",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "MD",
+    "probability": "moderate",
+    "specialty": "Surgery",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating"
   },
   {
     "id": "ef0ac42f452c",
@@ -413,7 +488,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115003,
+    "shift": null
   },
   {
     "id": "9f8184831957",
@@ -429,7 +507,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115003,
+    "shift": null
   },
   {
     "id": "96800b40f5d4",
@@ -445,7 +526,10 @@
     "specialty": "Internal Medicine",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115003,
+    "shift": "Days"
   },
   {
     "id": "789af65ee67b",
@@ -461,7 +545,10 @@
     "specialty": "Critical Care / ICU",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$125k \u2013 $195k/yr",
+    "salary_min_annual": 125000,
+    "shift": "Nights"
   },
   {
     "id": "bffab1f6f78a",
@@ -477,7 +564,10 @@
     "specialty": "Critical Care / ICU",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$130k \u2013 $210k/yr",
+    "salary_min_annual": 130000,
+    "shift": null
   },
   {
     "id": "bdd42b780101",
@@ -493,7 +583,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115000,
+    "shift": "Days"
   },
   {
     "id": "904f959d853f",
@@ -509,7 +602,10 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115003,
+    "shift": "Days"
   },
   {
     "id": "c5c742cfd86d",
@@ -525,7 +621,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115000,
+    "shift": null
   },
   {
     "id": "6d7dceb3b901",
@@ -541,7 +640,10 @@
     "specialty": "Primary Care",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115003,
+    "shift": null
   },
   {
     "id": "0e4a2deae4a9",
@@ -557,7 +659,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115000,
+    "shift": null
   },
   {
     "id": "fc3a1000df59",
@@ -573,7 +678,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115003,
+    "shift": null
   },
   {
     "id": "31b9ff81df00",
@@ -589,7 +697,10 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$168k \u2013 $238k/yr",
+    "salary_min_annual": 168250,
+    "shift": "Nights"
   },
   {
     "id": "8987ca4cdeb5",
@@ -605,7 +716,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115000,
+    "shift": null
   },
   {
     "id": "d584280bb803",
@@ -621,7 +735,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115000,
+    "shift": "Nights"
   },
   {
     "id": "22397af05dfd",
@@ -637,7 +754,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115003,
+    "shift": "Weekends"
   },
   {
     "id": "164241571e64",
@@ -653,7 +773,10 @@
     "specialty": "Critical Care / ICU",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115000,
+    "shift": null
   },
   {
     "id": "4c0d26f962bc",
@@ -669,7 +792,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115003,
+    "shift": "Rotating"
   },
   {
     "id": "bb90d53fb0b4",
@@ -685,7 +811,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115003,
+    "shift": null
   },
   {
     "id": "8802b319c5b3",
@@ -701,7 +830,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115003,
+    "shift": null
   },
   {
     "id": "9e2ba5ff66b6",
@@ -717,7 +849,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115003,
+    "shift": null
   },
   {
     "id": "fccbf2e92f54",
@@ -733,7 +868,10 @@
     "specialty": "Critical Care / ICU",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$145k \u2013 $215k/yr",
+    "salary_min_annual": 145000,
+    "shift": null
   },
   {
     "id": "c28909c550db",
@@ -749,7 +887,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$115k \u2013 $190k/yr",
+    "salary_min_annual": 115000,
+    "shift": null
   },
   {
     "id": "0dfa03e1d060",
@@ -765,7 +906,10 @@
     "specialty": "Urgent Care",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$122k \u2013 $291k/yr",
+    "salary_min_annual": 121680,
+    "shift": "Weekends"
   },
   {
     "id": "1f2ec4010f70",
@@ -781,7 +925,10 @@
     "specialty": "Urgent Care",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$122k \u2013 $219k/yr",
+    "salary_min_annual": 121680,
+    "shift": null
   },
   {
     "id": "cfea195a04f1",
@@ -797,7 +944,10 @@
     "specialty": "Urgent Care",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$122k \u2013 $291k/yr",
+    "salary_min_annual": 121680,
+    "shift": null
   },
   {
     "id": "186a8bf52a89",
@@ -813,7 +963,10 @@
     "specialty": "Urgent Care",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$122k \u2013 $291k/yr",
+    "salary_min_annual": 121680,
+    "shift": "Weekends"
   },
   {
     "id": "f1c8f165b387",
@@ -829,7 +982,10 @@
     "specialty": "Urgent Care",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$122k \u2013 $291k/yr",
+    "salary_min_annual": 121680,
+    "shift": null
   },
   {
     "id": "869db2f091a9",
@@ -845,7 +1001,10 @@
     "specialty": "Urgent Care",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$94k \u2013 $120k/yr",
+    "salary_min_annual": 93500,
+    "shift": null
   },
   {
     "id": "7a033ac40c5b",
@@ -861,7 +1020,10 @@
     "specialty": "Urgent Care",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$122k \u2013 $291k/yr",
+    "salary_min_annual": 121680,
+    "shift": null
   },
   {
     "id": "403cfac3a7ba",
@@ -877,7 +1039,10 @@
     "specialty": "Urgent Care",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$122k \u2013 $291k/yr",
+    "salary_min_annual": 121680,
+    "shift": "Weekends"
   },
   {
     "id": "4ab748aa73c3",
@@ -893,7 +1058,10 @@
     "specialty": "Urgent Care",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": "$122k \u2013 $291k/yr",
+    "salary_min_annual": 121680,
+    "shift": "Weekends"
   },
   {
     "id": "e9365c600a69",
@@ -909,7 +1077,10 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "78deb2f554a4",
@@ -925,7 +1096,10 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Days"
   },
   {
     "id": "f78d06563d64",
@@ -941,7 +1115,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "98f061866cbf",
@@ -957,7 +1134,10 @@
     "specialty": "Urgent Care",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "29d523e36f51",
@@ -973,7 +1153,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "465db59e021c",
@@ -989,7 +1172,10 @@
     "specialty": "Internal Medicine",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "412d84faf475",
@@ -1005,7 +1191,10 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "4d34432a1c68",
@@ -1021,7 +1210,10 @@
     "specialty": "Obstetrics & Gynecology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "31b24933d662",
@@ -1037,7 +1229,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "d1aa02f0d1c7",
@@ -1053,7 +1248,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "6f34809ffeee",
@@ -1069,7 +1267,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "8062b8d2c7fb",
@@ -1085,7 +1286,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "d22b6565f2a5",
@@ -1101,7 +1305,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "2cf8f39ca8d6",
@@ -1117,7 +1324,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "e98dd8205569",
@@ -1133,7 +1343,10 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "4254df3a8a66",
@@ -1149,7 +1362,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "f5a7eb35b05a",
@@ -1165,7 +1381,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "4ddb74c3de25",
@@ -1181,7 +1400,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating"
   },
   {
     "id": "ab7d8d9a66d8",
@@ -1197,7 +1419,10 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": null
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "f318780b8a59",
@@ -1213,7 +1438,10 @@
     "specialty": "Internal Medicine",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Rotating"
   },
   {
     "id": "d5f7b83f6eec",
@@ -1229,7 +1457,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "24fb3f05d389",
@@ -1245,7 +1476,10 @@
     "specialty": "Internal Medicine",
     "is_top_specialty": false,
     "is_outside_nyc": true,
-    "borough_tag": "Westchester (Outside City)"
+    "borough_tag": "Westchester (Outside City)",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Nights"
   },
   {
     "id": "34ead0f32143",
@@ -1261,7 +1495,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Nights"
   },
   {
     "id": "9b51eedcc409",
@@ -1277,7 +1514,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Rotating"
   },
   {
     "id": "8a732d716b55",
@@ -1293,7 +1533,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "8c8957d2647a",
@@ -1309,7 +1552,10 @@
     "specialty": "Primary Care",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$161k \u2013 $192k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "d11a0d3bafcc",
@@ -1325,7 +1571,10 @@
     "specialty": "Critical Care / ICU",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$97k/yr",
+    "salary_min_annual": 96600,
+    "shift": "Rotating"
   },
   {
     "id": "6af870bd4c2a",
@@ -1341,7 +1590,48 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
+  },
+  {
+    "id": "544e84c94d36",
+    "hospital": "NewYork-Presbyterian (NYP)",
+    "title": "Hospitalist Physician Assistant (PA) | Full-Time, Night Shift",
+    "location": "NYP/Brooklyn Methodist Hospital",
+    "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPBrooklyn-Methodist-Hospital/Hospitalist-Physician-Assistant--PA----Full-Time--Night-Shift_00890713-1",
+    "posted_date": "Posted Today",
+    "is_new_grad_friendly": true,
+    "match_reason": "New Grad Welcome: 'new graduates welcome'",
+    "hub": "NYC",
+    "probability": "high",
+    "specialty": "Internal Medicine",
+    "is_top_specialty": false,
+    "is_outside_nyc": false,
+    "borough_tag": "Brooklyn",
+    "salary_range": "$73.11 \u2013 $97.64/hr",
+    "salary_min_annual": 152069,
+    "shift": "Nights"
+  },
+  {
+    "id": "21a4c0583564",
+    "hospital": "NewYork-Presbyterian (NYP)",
+    "title": "Physician Assistant - Inpatient Medicine Hospitalist Service | Full-Time, Days",
+    "location": "NYP/Brooklyn Methodist Hospital",
+    "url": "https://nyp.wd1.myworkdayjobs.com/en-US/nypcareers/job/NYPBrooklyn-Methodist-Hospital/Physician-Assistant---Inpatient-Medicine-Hospitalist-Service---Full-Time--Days_00890642-1",
+    "posted_date": "Posted Today",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "NYC",
+    "probability": "moderate",
+    "specialty": "Internal Medicine",
+    "is_top_specialty": false,
+    "is_outside_nyc": false,
+    "borough_tag": "Brooklyn",
+    "salary_range": "$73.11 \u2013 $97.64/hr",
+    "salary_min_annual": 152069,
+    "shift": "Days"
   },
   {
     "id": "f318780b8a59",
@@ -1357,7 +1647,10 @@
     "specialty": "Internal Medicine",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Rotating"
   },
   {
     "id": "d5f7b83f6eec",
@@ -1373,7 +1666,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "24fb3f05d389",
@@ -1389,7 +1685,10 @@
     "specialty": "Internal Medicine",
     "is_top_specialty": false,
     "is_outside_nyc": true,
-    "borough_tag": "Westchester (Outside City)"
+    "borough_tag": "Westchester (Outside City)",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Nights"
   },
   {
     "id": "34ead0f32143",
@@ -1405,7 +1704,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Nights"
   },
   {
     "id": "9b51eedcc409",
@@ -1421,7 +1723,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Rotating"
   },
   {
     "id": "8a732d716b55",
@@ -1437,7 +1742,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "8c8957d2647a",
@@ -1453,7 +1761,10 @@
     "specialty": "Primary Care",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$161k \u2013 $192k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "d11a0d3bafcc",
@@ -1469,7 +1780,10 @@
     "specialty": "Critical Care / ICU",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$97k/yr",
+    "salary_min_annual": 96600,
+    "shift": "Rotating"
   },
   {
     "id": "6af870bd4c2a",
@@ -1485,7 +1799,10 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "f318780b8a59",
@@ -1501,7 +1818,10 @@
     "specialty": "Internal Medicine",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Rotating"
   },
   {
     "id": "d5f7b83f6eec",
@@ -1517,7 +1837,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "24fb3f05d389",
@@ -1533,7 +1856,10 @@
     "specialty": "Internal Medicine",
     "is_top_specialty": false,
     "is_outside_nyc": true,
-    "borough_tag": "Westchester (Outside City)"
+    "borough_tag": "Westchester (Outside City)",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Nights"
   },
   {
     "id": "34ead0f32143",
@@ -1549,7 +1875,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Nights"
   },
   {
     "id": "9b51eedcc409",
@@ -1565,7 +1894,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Rotating"
   },
   {
     "id": "8a732d716b55",
@@ -1581,7 +1913,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "8c8957d2647a",
@@ -1597,7 +1932,10 @@
     "specialty": "Primary Care",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$161k \u2013 $192k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "d11a0d3bafcc",
@@ -1613,7 +1951,10 @@
     "specialty": "Critical Care / ICU",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$97k/yr",
+    "salary_min_annual": 96600,
+    "shift": "Rotating"
   },
   {
     "id": "6af870bd4c2a",
@@ -1629,7 +1970,10 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "f318780b8a59",
@@ -1645,7 +1989,10 @@
     "specialty": "Internal Medicine",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Rotating"
   },
   {
     "id": "d5f7b83f6eec",
@@ -1661,7 +2008,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "24fb3f05d389",
@@ -1677,7 +2027,10 @@
     "specialty": "Internal Medicine",
     "is_top_specialty": false,
     "is_outside_nyc": true,
-    "borough_tag": "Westchester (Outside City)"
+    "borough_tag": "Westchester (Outside City)",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Nights"
   },
   {
     "id": "34ead0f32143",
@@ -1693,7 +2046,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Nights"
   },
   {
     "id": "9b51eedcc409",
@@ -1709,7 +2065,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Rotating"
   },
   {
     "id": "8a732d716b55",
@@ -1725,7 +2084,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "8c8957d2647a",
@@ -1741,7 +2103,10 @@
     "specialty": "Primary Care",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$161k \u2013 $192k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "d11a0d3bafcc",
@@ -1757,7 +2122,10 @@
     "specialty": "Critical Care / ICU",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$97k/yr",
+    "salary_min_annual": 96600,
+    "shift": "Rotating"
   },
   {
     "id": "6af870bd4c2a",
@@ -1773,7 +2141,10 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$161k \u2013 $210k/yr",
+    "salary_min_annual": 161000,
+    "shift": "Days"
   },
   {
     "id": "ec362fccc783",
@@ -1789,7 +2160,10 @@
     "specialty": "Primary Care",
     "is_top_specialty": false,
     "is_outside_nyc": true,
-    "borough_tag": "Long Island (Outside City)"
+    "borough_tag": "Long Island (Outside City)",
+    "salary_range": "$67.34 \u2013 $89.39/hr",
+    "salary_min_annual": 140067,
+    "shift": "Evenings / Swing"
   },
   {
     "id": "8fa100f1d02b",
@@ -1805,7 +2179,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$61.59 \u2013 $77.15/hr",
+    "salary_min_annual": 128105,
+    "shift": "Days"
   },
   {
     "id": "3978b2be6ac9",
@@ -1821,7 +2198,10 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$73 \u2013 $96.79/hr",
+    "salary_min_annual": 151924,
+    "shift": null
   },
   {
     "id": "08ba75e2b582",
@@ -1837,7 +2217,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$71.26 \u2013 $95/hr",
+    "salary_min_annual": 148219,
+    "shift": null
   },
   {
     "id": "abc4b60c6ba8",
@@ -1853,7 +2236,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$71.26 \u2013 $95/hr",
+    "salary_min_annual": 148219,
+    "shift": null
   },
   {
     "id": "b3f448295926",
@@ -1869,7 +2255,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$71.26 \u2013 $95/hr",
+    "salary_min_annual": 148219,
+    "shift": null
   },
   {
     "id": "6e202fdcc3ef",
@@ -1885,7 +2274,10 @@
     "specialty": "Primary Care",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$71.26 \u2013 $95/hr",
+    "salary_min_annual": 148219,
+    "shift": null
   },
   {
     "id": "c07584a113be",
@@ -1901,7 +2293,10 @@
     "specialty": "Primary Care",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$71.26 \u2013 $95/hr",
+    "salary_min_annual": 148219,
+    "shift": null
   },
   {
     "id": "a39bae9d09b2",
@@ -1917,7 +2312,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$71.26 \u2013 $95/hr",
+    "salary_min_annual": 148219,
+    "shift": null
   },
   {
     "id": "5502d3b6b3c1",
@@ -1933,7 +2331,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$71.26 \u2013 $95/hr",
+    "salary_min_annual": 148219,
+    "shift": null
   },
   {
     "id": "a622fb7ec92f",
@@ -1949,7 +2350,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$61.59 \u2013 $77.15/hr",
+    "salary_min_annual": 128105,
+    "shift": "Days"
   },
   {
     "id": "f85a8be66759",
@@ -1965,7 +2369,10 @@
     "specialty": "Primary Care",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$71.26 \u2013 $95/hr",
+    "salary_min_annual": 148219,
+    "shift": null
   },
   {
     "id": "527316f0194d",
@@ -1981,7 +2388,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$71.26 \u2013 $95/hr",
+    "salary_min_annual": 148219,
+    "shift": null
   },
   {
     "id": "7d014f55260a",
@@ -1997,7 +2407,10 @@
     "specialty": "Primary Care",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Queens"
+    "borough_tag": "Queens",
+    "salary_range": "$71.26 \u2013 $95/hr",
+    "salary_min_annual": 148219,
+    "shift": null
   },
   {
     "id": "f370133a8add",
@@ -2013,7 +2426,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "065851037026",
@@ -2029,7 +2445,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null
   },
   {
     "id": "d923489779b2",
@@ -2045,7 +2464,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$131k \u2013 $149k/yr",
+    "salary_min_annual": 131000,
+    "shift": "Days"
   },
   {
     "id": "2d9338e17985",
@@ -2061,7 +2483,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$141k \u2013 $161k/yr",
+    "salary_min_annual": 141000,
+    "shift": "Rotating"
   },
   {
     "id": "8a066e1ef71c",
@@ -2077,7 +2502,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$151k \u2013 $173k/yr",
+    "salary_min_annual": 151000,
+    "shift": "Nights"
   },
   {
     "id": "c8fd820b6b06",
@@ -2093,7 +2521,10 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$141k \u2013 $161k/yr",
+    "salary_min_annual": 141000,
+    "shift": "Rotating"
   },
   {
     "id": "d4619412d1ce",
@@ -2109,7 +2540,10 @@
     "specialty": "Internal Medicine",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$98k \u2013 $117k/yr",
+    "salary_min_annual": 97590,
+    "shift": "Nights"
   },
   {
     "id": "10f275d07545",
@@ -2125,7 +2559,10 @@
     "specialty": "Primary Care",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$129k/yr",
+    "salary_min_annual": 129000,
+    "shift": "Days"
   },
   {
     "id": "f096af05a184",
@@ -2141,7 +2578,10 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$131k \u2013 $149k/yr",
+    "salary_min_annual": 131000,
+    "shift": "Rotating"
   },
   {
     "id": "82f7eccca01c",
@@ -2157,7 +2597,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$131k \u2013 $149k/yr",
+    "salary_min_annual": 131000,
+    "shift": "Days"
   },
   {
     "id": "66f18e20ea99",
@@ -2173,7 +2616,10 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (5 Boroughs)"
+    "borough_tag": "NYC (5 Boroughs)",
+    "salary_range": "$151k \u2013 $165k/yr",
+    "salary_min_annual": 150992,
+    "shift": "Rotating"
   },
   {
     "id": "0dbd2fe241e7",
@@ -2189,7 +2635,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$162k \u2013 $193k/yr",
+    "salary_min_annual": 162387,
+    "shift": "Days"
   },
   {
     "id": "d815c78e6d42",
@@ -2205,7 +2654,10 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (5 Boroughs)"
+    "borough_tag": "NYC (5 Boroughs)",
+    "salary_range": "$145k \u2013 $159k/yr",
+    "salary_min_annual": 144952,
+    "shift": "Rotating"
   },
   {
     "id": "753f1785533b",
@@ -2221,7 +2673,10 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (5 Boroughs)"
+    "borough_tag": "NYC (5 Boroughs)",
+    "salary_range": "$145k \u2013 $159k/yr",
+    "salary_min_annual": 144952,
+    "shift": "Rotating"
   },
   {
     "id": "abd9693f6a9e",
@@ -2237,7 +2692,10 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (5 Boroughs)"
+    "borough_tag": "NYC (5 Boroughs)",
+    "salary_range": "$145k \u2013 $159k/yr",
+    "salary_min_annual": 144952,
+    "shift": "Rotating"
   },
   {
     "id": "38ad31ba868e",
@@ -2253,7 +2711,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$162k \u2013 $193k/yr",
+    "salary_min_annual": 162387,
+    "shift": "Days"
   },
   {
     "id": "e9556545c5ec",
@@ -2269,7 +2730,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$148k \u2013 $179k/yr",
+    "salary_min_annual": 148464,
+    "shift": "Days"
   },
   {
     "id": "af3536ad5ddd",
@@ -2285,7 +2749,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$148k \u2013 $179k/yr",
+    "salary_min_annual": 148464,
+    "shift": "Days"
   },
   {
     "id": "0f1abd0f947a",
@@ -2301,7 +2768,10 @@
     "specialty": "Primary Care",
     "is_top_specialty": false,
     "is_outside_nyc": true,
-    "borough_tag": "Long Island (Outside City)"
+    "borough_tag": "Long Island (Outside City)",
+    "salary_range": "$71.38 \u2013 $86/hr",
+    "salary_min_annual": 148470,
+    "shift": "Evenings / Swing"
   },
   {
     "id": "8404db996a32",
@@ -2317,7 +2787,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (5 Boroughs)"
+    "borough_tag": "NYC (5 Boroughs)",
+    "salary_range": "$151k \u2013 $165k/yr",
+    "salary_min_annual": 150992,
+    "shift": "Days"
   },
   {
     "id": "fb2b3aaf492a",
@@ -2333,7 +2806,10 @@
     "specialty": "Obstetrics & Gynecology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$148k \u2013 $179k/yr",
+    "salary_min_annual": 148464,
+    "shift": "Rotating"
   },
   {
     "id": "013bd8b9ec01",
@@ -2349,7 +2825,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$148k \u2013 $179k/yr",
+    "salary_min_annual": 148464,
+    "shift": "Rotating"
   },
   {
     "id": "21e7a0bc3718",
@@ -2365,7 +2844,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$171k \u2013 $202k/yr",
+    "salary_min_annual": 171165,
+    "shift": "Rotating"
   },
   {
     "id": "da98415f68a5",
@@ -2381,7 +2863,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$172k \u2013 $203k/yr",
+    "salary_min_annual": 172048,
+    "shift": "Evenings / Swing"
   },
   {
     "id": "e9ad46916800",
@@ -2397,7 +2882,10 @@
     "specialty": "Critical Care / ICU",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Brooklyn",
+    "salary_range": "$161k \u2013 $211k/yr",
+    "salary_min_annual": 161293,
+    "shift": "Rotating"
   },
   {
     "id": "22d0bf28ba03",
@@ -2413,7 +2901,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (5 Boroughs)"
+    "borough_tag": "NYC (5 Boroughs)",
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Days"
   },
   {
     "id": "15fae2740445",
@@ -2429,7 +2920,10 @@
     "specialty": "Internal Medicine",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (5 Boroughs)"
+    "borough_tag": "NYC (5 Boroughs)",
+    "salary_range": "$145k \u2013 $159k/yr",
+    "salary_min_annual": 144952,
+    "shift": "Nights"
   },
   {
     "id": "3e1737e406a2",
@@ -2445,7 +2939,10 @@
     "specialty": "Critical Care / ICU",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Brooklyn",
+    "salary_range": "$161k \u2013 $211k/yr",
+    "salary_min_annual": 161293,
+    "shift": "Rotating"
   },
   {
     "id": "da84e700da76",
@@ -2461,7 +2958,10 @@
     "specialty": "Critical Care / ICU",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Brooklyn",
+    "salary_range": "$173k/yr",
+    "salary_min_annual": 172771,
+    "shift": "Rotating"
   },
   {
     "id": "afb733f32734",
@@ -2477,7 +2977,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (5 Boroughs)"
+    "borough_tag": "NYC (5 Boroughs)",
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Days"
   },
   {
     "id": "2c806292c238",
@@ -2493,7 +2996,10 @@
     "specialty": "ENT / Head & Neck",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$172k \u2013 $203k/yr",
+    "salary_min_annual": 172048,
+    "shift": "Days"
   },
   {
     "id": "59a264383860",
@@ -2509,7 +3015,10 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": true,
-    "borough_tag": "Long Island (Outside City)"
+    "borough_tag": "Long Island (Outside City)",
+    "salary_range": "$152k \u2013 $182k/yr",
+    "salary_min_annual": 151531,
+    "shift": "Rotating"
   },
   {
     "id": "40a6478085c6",
@@ -2525,7 +3034,10 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (5 Boroughs)"
+    "borough_tag": "NYC (5 Boroughs)",
+    "salary_range": "$144k \u2013 $176k/yr",
+    "salary_min_annual": 144394,
+    "shift": "Days"
   },
   {
     "id": "5780339dcb3e",
@@ -2541,7 +3053,10 @@
     "specialty": "ENT / Head & Neck",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$162k \u2013 $193k/yr",
+    "salary_min_annual": 162387,
+    "shift": "Days"
   },
   {
     "id": "97af7e02581a",
@@ -2557,7 +3072,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$152k \u2013 $182k/yr",
+    "salary_min_annual": 151531,
+    "shift": "Rotating"
   },
   {
     "id": "26ce61f32e2b",
@@ -2573,23 +3091,10 @@
     "specialty": "ENT / Head & Neck",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
-  },
-  {
-    "id": "9d04c5d7fec4",
-    "hospital": "NYU Langone Health",
-    "title": "Nurse Practitioner or Physician Assistant - Critical Care - Full Time Days",
-    "location": "Patchogue, NY",
-    "url": "https://jobs.nyulangone.org/job/23900092/nurse-practitioner-or-physician-assistant-critical-care-full-time-days-patchogue-ny/",
-    "posted_date": "2026-09-21",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "NYC",
-    "probability": "moderate",
-    "specialty": "Critical Care / ICU",
-    "is_top_specialty": false,
-    "is_outside_nyc": false,
-    "borough_tag": "NYC (5 Boroughs)"
+    "borough_tag": "Manhattan",
+    "salary_range": "$162k \u2013 $193k/yr",
+    "salary_min_annual": 162387,
+    "shift": "Days"
   },
   {
     "id": "9e20a7e0f2b4",
@@ -2605,7 +3110,29 @@
     "specialty": "Internal Medicine",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$162k \u2013 $193k/yr",
+    "salary_min_annual": 162387,
+    "shift": "Days"
+  },
+  {
+    "id": "9d04c5d7fec4",
+    "hospital": "NYU Langone Health",
+    "title": "Nurse Practitioner or Physician Assistant - Critical Care - Full Time Days",
+    "location": "Patchogue, NY",
+    "url": "https://jobs.nyulangone.org/job/23900092/nurse-practitioner-or-physician-assistant-critical-care-full-time-days-patchogue-ny/",
+    "posted_date": "2026-09-21",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "NYC",
+    "probability": "moderate",
+    "specialty": "Critical Care / ICU",
+    "is_top_specialty": false,
+    "is_outside_nyc": false,
+    "borough_tag": "NYC (5 Boroughs)",
+    "salary_range": "$144k \u2013 $176k/yr",
+    "salary_min_annual": 144394,
+    "shift": "Days"
   },
   {
     "id": "00a77db7bc98",
@@ -2621,7 +3148,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$152k \u2013 $182k/yr",
+    "salary_min_annual": 151531,
+    "shift": "Days"
   },
   {
     "id": "4f094d83d495",
@@ -2637,7 +3167,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Brooklyn",
+    "salary_range": "$152k \u2013 $182k/yr",
+    "salary_min_annual": 151531,
+    "shift": "Days"
   },
   {
     "id": "7797a27e2f23",
@@ -2653,7 +3186,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$152k \u2013 $182k/yr",
+    "salary_min_annual": 151531,
+    "shift": "Days"
   },
   {
     "id": "4494c00b068e",
@@ -2669,7 +3205,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Brooklyn",
+    "salary_range": "$152k \u2013 $182k/yr",
+    "salary_min_annual": 151531,
+    "shift": "Days"
   },
   {
     "id": "be23ce5aaf59",
@@ -2685,7 +3224,10 @@
     "specialty": "Internal Medicine",
     "is_top_specialty": false,
     "is_outside_nyc": true,
-    "borough_tag": "Long Island (Outside City)"
+    "borough_tag": "Long Island (Outside City)",
+    "salary_range": "$135k \u2013 $165k/yr",
+    "salary_min_annual": 134862,
+    "shift": "Days"
   },
   {
     "id": "38345f3e3fdd",
@@ -2701,7 +3243,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (5 Boroughs)"
+    "borough_tag": "NYC (5 Boroughs)",
+    "salary_range": "$152k \u2013 $182k/yr",
+    "salary_min_annual": 151531,
+    "shift": "Days"
   },
   {
     "id": "21ba2f2b604e",
@@ -2717,7 +3262,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$152k \u2013 $182k/yr",
+    "salary_min_annual": 151531,
+    "shift": "Days"
   },
   {
     "id": "581ebfdd4478",
@@ -2733,7 +3281,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": true,
-    "borough_tag": "Long Island (Outside City)"
+    "borough_tag": "Long Island (Outside City)",
+    "salary_range": "$129k \u2013 $155k/yr",
+    "salary_min_annual": 128801,
+    "shift": "Days"
   },
   {
     "id": "d6fae5357b95",
@@ -2749,7 +3300,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Brooklyn",
+    "salary_range": "$129k \u2013 $155k/yr",
+    "salary_min_annual": 128801,
+    "shift": "Days"
   },
   {
     "id": "0eda7cf13b21",
@@ -2765,7 +3319,10 @@
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Brooklyn",
+    "salary_range": "$152k \u2013 $182k/yr",
+    "salary_min_annual": 151531,
+    "shift": "Days"
   },
   {
     "id": "b2098ad171d6",
@@ -2778,10 +3335,13 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Brooklyn",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": null
   },
   {
     "id": "492ded9910d2",
@@ -2797,7 +3357,10 @@
     "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Bronx",
+    "salary_range": "$134k \u2013 $178k/yr",
+    "salary_min_annual": 134405,
+    "shift": null
   },
   {
     "id": "197a31755100",
@@ -2810,10 +3373,13 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Bronx",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": null
   },
   {
     "id": "1b6d109f0754",
@@ -2826,26 +3392,13 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Emergency Medicine (ER)",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (Correctional Health)"
-  },
-  {
-    "id": "ab1385a8dbe0",
-    "hospital": "NYC Health + Hospitals (NYC Health + Hospitals - Correctional Health Services)",
-    "title": "Physician Assistant, Correctional Health Services *Sunday-Thursday, 8am - 4pm*",
-    "location": "New York City (NYC (Correctional Health)), NY",
-    "url": "https://www.pagny.org/careers/physician-assistant-correctional-health-services-sunday-thursday-8am-4pm",
-    "posted_date": "Sep 08, 2026",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "NYC",
-    "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
-    "is_outside_nyc": false,
-    "borough_tag": "NYC (Correctional Health)"
+    "borough_tag": "NYC (Correctional Health)",
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Evenings / Swing"
   },
   {
     "id": "fdb62f159a4f",
@@ -2861,7 +3414,10 @@
     "specialty": "Obstetrics & Gynecology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Bronx",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": "Days"
   },
   {
     "id": "921a8856bd98",
@@ -2877,7 +3433,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Brooklyn",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": null
   },
   {
     "id": "c2c85d5c20fe",
@@ -2890,10 +3449,13 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
+    "specialty": "Obstetrics & Gynecology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "NYC (5 Boroughs)"
+    "borough_tag": "NYC (5 Boroughs)",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": null
   },
   {
     "id": "626adbd35db2",
@@ -2906,10 +3468,13 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Emergency Medicine (ER)",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Bronx",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": null
   },
   {
     "id": "eb2fcd638b48",
@@ -2925,7 +3490,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": "Days"
   },
   {
     "id": "3fee292895aa",
@@ -2935,13 +3503,16 @@
     "url": "https://www.pagny.org/careers/physician-assistant-surgery-7",
     "posted_date": "Apr 01, 2026",
     "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "match_reason": "New Grad Welcome: 'new grads welcome'",
     "hub": "NYC",
-    "probability": "moderate",
+    "probability": "high",
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Brooklyn",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": null
   },
   {
     "id": "6b30f90b6a24",
@@ -2957,7 +3528,10 @@
     "specialty": "Obstetrics & Gynecology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Bronx",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": "Rotating"
   },
   {
     "id": "a7a879fa145b",
@@ -2970,10 +3544,13 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
+    "specialty": "Primary Care",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Brooklyn",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": "Rotating"
   },
   {
     "id": "76131c3561aa",
@@ -2983,13 +3560,16 @@
     "url": "https://www.pagny.org/careers/physician-assistant-cardiology-2",
     "posted_date": "Dec 01, 2025",
     "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "match_reason": "1 Year Preferred: '1 year experience'",
     "hub": "NYC",
     "probability": "moderate",
     "specialty": "Cardiology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Brooklyn",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": null
   },
   {
     "id": "ea2db1fe9951",
@@ -2999,13 +3579,16 @@
     "url": "https://www.pagny.org/careers/physician-assistant-catheterization-lab",
     "posted_date": "Dec 01, 2025",
     "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "match_reason": "1 Year Preferred: '1 year experience'",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Brooklyn",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": "Rotating"
   },
   {
     "id": "1eb8cae6288d",
@@ -3021,7 +3604,10 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Bronx",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": "Days"
   },
   {
     "id": "a65e753b66f2",
@@ -3037,7 +3623,10 @@
     "specialty": "General / Inpatient",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Brooklyn"
+    "borough_tag": "Brooklyn",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": "Nights"
   },
   {
     "id": "6afb32d2388d",
@@ -3050,10 +3639,13 @@
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "NYC",
     "probability": "moderate",
-    "specialty": "General / Inpatient",
+    "specialty": "Primary Care",
     "is_top_specialty": false,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": null
   },
   {
     "id": "78c8bce2ec8a",
@@ -3069,7 +3661,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Bronx",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": null
   },
   {
     "id": "fdbee35278f0",
@@ -3085,7 +3680,10 @@
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Bronx"
+    "borough_tag": "Bronx",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": null
   },
   {
     "id": "caa754ccfe22",
@@ -3095,12 +3693,15 @@
     "url": "https://www.pagny.org/careers/physician-assistant-pediatrics",
     "posted_date": "Jul 29, 2025",
     "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "match_reason": "2+ Years Preferred: 'minimum 2 years'",
     "hub": "NYC",
-    "probability": "moderate",
-    "specialty": "General / Inpatient",
-    "is_top_specialty": false,
+    "probability": "lower",
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
-    "borough_tag": "Manhattan"
+    "borough_tag": "Manhattan",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": null
   }
 ]
