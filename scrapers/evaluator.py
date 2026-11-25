@@ -140,7 +140,7 @@ def classify_nyc_location(location_str: str, title_str: str = "") -> Tuple[bool,
     # 1. Suburban / Outside NYC markers
     if re.search(r"\b(westchester|bronxville|white\s*plains|sleepy\s*hollow|valhalla|yonkers|new\s*rochelle|tarrytown|mount\s*vernon|hudson\s*valley|cortlandt|harrison|west\s*harrison|newburgh|cornwall)\b", text):
         return True, "Westchester (Outside City)"
-    if re.search(r"\b(long\s*island|nassau|suffolk|manhasset|new\s*hyde\s*park|mineola|huntington|stony\s*brook|garden\s*city|plainview|uniondale|commack|hauppauge)\b", text):
+    if re.search(r"\b(long\s*island|nassau|suffolk|manhasset|new\s*hyde\s*park|mineola|huntington|stony\s*brook|garden\s*city|plainview|uniondale|commack|hauppauge|patchogue|lake\s*success|great\s*neck|syosset|melville|bay\s*shore|port\s*jefferson|smithtown|east\s*meadow|hempstead|valley\s*stream|oceanside)\b", text):
         return True, "Long Island (Outside City)"
     if re.search(r"\b(rockland|nyack|connecticut|stamford|greenwich|new\s*jersey|jersey|hoboken|paramus|montvale|basking\s*ridge|middletown|bergen)\b", text):
         return True, "Outside NYC Suburbs"
