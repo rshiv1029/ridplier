@@ -555,6 +555,229 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     .btn-undo:hover {
       background: rgba(245, 158, 11, 0.2);
     }
+    .btn-prep {
+      background: rgba(168, 85, 247, 0.14);
+      color: #d8b4fe;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+    .btn-prep:hover {
+      background: rgba(168, 85, 247, 0.24);
+      border-color: #c084fc;
+      color: #f3e8ff;
+    }
+
+    /* Floating Fast-Fill Clipboard Button & Slide-Out Drawer */
+    .fab-fastfill {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      background: #1e293b;
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.55);
+      padding: 0.72rem 1.15rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      z-index: 900;
+      transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+      font-family: inherit;
+    }
+    .fab-fastfill:hover {
+      background: #0f172a;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(56, 189, 248, 0.25);
+    }
+    .overlay-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.75);
+      backdrop-filter: blur(3px);
+      z-index: 950;
+      display: none;
+    }
+    .overlay-backdrop.open {
+      display: block;
+    }
+    .fastfill-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: min(440px, 100vw);
+      background: #0f172a;
+      border-left: 1px solid var(--border);
+      box-shadow: -10px 0 35px rgba(0, 0, 0, 0.6);
+      z-index: 980;
+      transform: translateX(105%);
+      transition: transform 0.22s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .fastfill-drawer.open {
+      transform: translateX(0);
+    }
+    .drawer-header, .modal-header {
+      padding: 1rem 1.2rem;
+      background: #1e293b;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .drawer-title, .modal-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+    .btn-close-x {
+      background: transparent;
+      border: 1px solid #475569;
+      color: var(--text-muted);
+      border-radius: 7px;
+      padding: 0.35rem 0.65rem;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .btn-close-x:hover {
+      color: var(--text);
+      border-color: #94a3b8;
+    }
+    .drawer-body, .modal-body {
+      padding: 1rem 1.2rem;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .privacy-note {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #a7f3d0;
+      font-size: 0.78rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: 8px;
+      line-height: 1.4;
+    }
+    .ff-card {
+      background: #1e293b;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 0.7rem 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .ff-card-text {
+      min-width: 0;
+      flex: 1;
+    }
+    .ff-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #94a3b8;
+      margin-bottom: 0.2rem;
+    }
+    .ff-val {
+      font-size: 0.86rem;
+      color: var(--text);
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+    .ff-empty {
+      color: #64748b;
+      font-style: italic;
+      font-size: 0.82rem;
+    }
+    .ff-input, .ff-textarea, .prep-textarea {
+      width: 100%;
+      background: #0f172a;
+      color: var(--text);
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.88rem;
+      font-family: inherit;
+      outline: none;
+    }
+    .ff-textarea {
+      min-height: 76px;
+      resize: vertical;
+    }
+    .ff-input:focus, .ff-textarea:focus, .prep-textarea:focus {
+      border-color: var(--accent);
+    }
+
+    /* Application Prep / Cover Letter Modal */
+    .prep-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(680px, 94vw);
+      max-height: 90vh;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      z-index: 990;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .prep-modal.open {
+      display: flex;
+    }
+    .kw-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .kw-chip {
+      background: rgba(168, 85, 247, 0.14);
+      color: #d8b4fe;
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      border-radius: 6px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .prep-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .prep-tab-btn {
+      background: #1e293b;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 0.42rem 0.8rem;
+      border-radius: 7px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .prep-tab-btn.active {
+      background: rgba(56, 189, 248, 0.18);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .prep-textarea {
+      min-height: 230px;
+      line-height: 1.5;
+      resize: vertical;
+    }
     .applied-tag {
       font-size: 0.85rem;
       font-weight: 600;
@@ -757,6 +980,65 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <!-- Rendered via JavaScript -->
   </div>
 
+  <!-- Floating Fast-Fill Button -->
+  <button class="fab-fastfill" onclick="openFastFillDrawer()" title="Quick-copy your license, certs, and rotation info for portal applications">
+    📋 Fast-Fill Info
+  </button>
+
+  <!-- Backdrop -->
+  <div class="overlay-backdrop" id="overlay-backdrop" onclick="closeAllOverlays()"></div>
+
+  <!-- Fast-Fill Slide-Out Drawer -->
+  <aside class="fastfill-drawer" id="fastfill-drawer" aria-label="Application Fast-Fill Clipboard">
+    <div class="drawer-header">
+      <h2 class="drawer-title">📋 Application Fast-Fill</h2>
+      <div class="action-group">
+        <button class="btn-outline" id="btn-ff-mode" onclick="toggleFastFillEdit()">✏️ Edit</button>
+        <button class="btn-close-x" onclick="closeAllOverlays()">✕</button>
+      </div>
+    </div>
+    <div class="drawer-body" id="fastfill-body"></div>
+  </aside>
+
+  <!-- Cover Letter & ATS Keywords Modal -->
+  <div class="prep-modal" id="prep-modal" role="dialog" aria-modal="true" aria-label="Application Cover Letter and ATS Keywords">
+    <div class="modal-header">
+      <div>
+        <h2 class="modal-title" id="prep-modal-title">✉️ Cover Letter & Resume Keywords</h2>
+        <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.2rem;" id="prep-modal-subtitle"></div>
+      </div>
+      <button class="btn-close-x" onclick="closeAllOverlays()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem; gap:0.5rem;">
+          <span class="ff-label" style="margin:0;">🎯 Top ATS Keywords for This Specialty</span>
+          <button class="btn-outline" style="padding:0.28rem 0.65rem; font-size:0.78rem;" onclick="copyPrepKeywords()">📋 Copy Keywords</button>
+        </div>
+        <div class="kw-list" id="prep-keywords"></div>
+      </div>
+
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; gap:0.5rem; flex-wrap:wrap;">
+          <div class="prep-tabs">
+            <button class="prep-tab-btn active" id="prep-mode-short" onclick="setCoverLetterMode('short')">⚡ Portal Note ("Why Us")</button>
+            <button class="prep-tab-btn" id="prep-mode-full" onclick="setCoverLetterMode('full')">📄 Full Cover Letter</button>
+          </div>
+          <button class="btn-primary" style="padding:0.42rem 0.9rem; font-size:0.84rem;" onclick="copyPrepCoverLetter()">📋 Copy Text</button>
+        </div>
+        <textarea id="prep-cover-text" class="prep-textarea"></textarea>
+        <div style="font-size:0.76rem; color:#64748b; margin-top:0.35rem;">
+          💡 Tip: Fill in your name, PA program, and rotations once in <strong>📋 Fast-Fill Info</strong> (bottom-left) and they auto-populate here.
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:0.75rem; flex-wrap:wrap; padding-top:0.35rem; border-top:1px solid #1e293b;">
+        <a id="prep-apply-link" class="btn-primary" href="#" target="_blank" rel="noopener noreferrer">Open Hospital Portal ↗</a>
+        <button class="btn-outline" onclick="openFastFillFromPrep()">📋 Open Fast-Fill Clipboard</button>
+      </div>
+    </div>
+  </div>
+
   <div class="toast" id="toast">Status updated!</div>
 
   <script>
@@ -764,6 +1046,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     const GENERATED_AT_MS = __GENERATED_AT_MS__;
     const STORAGE_KEY = 'ridplier_job_status_v1';
     const HIDE_SUBURBS_KEY = 'ridplier_hide_outside_nyc_v1';
+    const FASTFILL_KEY = 'ridplier_fastfill_profile_v1';
     
     // Supabase Cloud Sync Configuration
     const SUPABASE_URL = "https://lmfjzjkkaytnrmiqadut.supabase.co";
@@ -1246,9 +1529,14 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         if (currentStatusTab === 'to_apply') {
           actionMarkup = `
             <div class="card-actions">
-              <a class="btn-primary" href="${j.url}" target="_blank" rel="noopener noreferrer">
-                Apply on Hospital Site ↗
-              </a>
+              <div class="action-group">
+                <a class="btn-primary" href="${j.url}" target="_blank" rel="noopener noreferrer">
+                  Apply on Hospital Site ↗
+                </a>
+                <button class="btn-outline btn-prep" onclick="openPrepModal('${j.id}')">
+                  ✉️ Cover Letter & Keywords
+                </button>
+              </div>
               <div class="action-group">
                 <button class="btn-outline btn-mark-applied" onclick="markAsApplied('${j.id}')">
                   ✅ Mark as Applied
@@ -1267,6 +1555,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 <a class="btn-outline" href="${j.url}" target="_blank" rel="noopener noreferrer">
                   View Listing ↗
                 </a>
+                <button class="btn-outline btn-prep" onclick="openPrepModal('${j.id}')">
+                  ✉️ Cover Letter & Keywords
+                </button>
               </div>
               <div class="action-group">
                 <button class="btn-outline btn-dismiss" title="Move to Dismissed (e.g. if rejected or passing)" onclick="dismissJob('${j.id}', true)">
@@ -1358,6 +1649,239 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     function updateUI() {
       updateCounts();
       renderJobs();
+    }
+
+    // --- Fast-Fill Clipboard & Cover Letter Generator ---
+    const FASTFILL_FIELDS = [
+      { key: 'full_name', label: 'Full Name & Credentials', placeholder: 'e.g. Jane Doe, MS, PA-C' },
+      { key: 'email', label: 'Email Address', placeholder: 'e.g. name@email.com' },
+      { key: 'phone', label: 'Phone Number', placeholder: 'e.g. (555) 123-4567' },
+      { key: 'location', label: 'Target City / Address', placeholder: 'e.g. New York, NY or Germantown, MD' },
+      { key: 'pa_school', label: 'PA Program, Degree & Grad Date', placeholder: 'e.g. MS in Physician Assistant Studies, Aug 2026' },
+      { key: 'nccpa', label: 'NCCPA Certification / PANCE Status', placeholder: 'e.g. NCCPA Certified (PA-C), Passed Aug 2026 | ID: #' },
+      { key: 'ny_license', label: 'NY State PA License Status', placeholder: 'e.g. NYS Application Submitted / Pending Issuance' },
+      { key: 'md_va_license', label: 'MD / VA PA License Status', placeholder: 'e.g. MD Application in Progress / Eligible' },
+      { key: 'certs', label: 'BLS / ACLS / PALS & NYS Courses', placeholder: 'e.g. AHA BLS, ACLS (Date); NYS Infection Control & Child Abuse' },
+      { key: 'rotations', label: 'Clinical Rotations Summary (Paste Block)', placeholder: 'Emergency Medicine, ENT/Facial Plastics, General Surgery, Urgent Care, Internal Medicine...', multiline: true },
+      { key: 'references', label: 'Preceptor / Physician References', placeholder: 'Name, Title, Hospital, Email/Phone...', multiline: true },
+    ];
+
+    const SPECIALTY_KEYWORDS = {
+      'ENT / Head & Neck': ['Otolaryngology', 'Flexible Fiberoptic Laryngoscopy', 'Nasal Endoscopy', 'Cerumen Disimpaction', 'Epistaxis Management', 'Head & Neck Pre-/Post-Op', 'Facial Plastics & Reconstructive', 'Audiogram Review'],
+      'Dermatology': ['Dermatologic Assessment', 'Skin Lesion Evaluation', 'Punch & Shave Biopsy Assist', 'Cryotherapy', 'Wound Closure & Suturing', 'Abscess Incision & Drainage', 'Cellulitis Management', 'Sterile Technique'],
+      'Emergency Medicine (ER)': ['ESI Triage & Stabilization', 'High-Acuity Adult & Pediatric ED', 'Multi-Layer Laceration Repair', 'Abscess I&D', 'Fracture & Joint Splinting', 'Basic Airway Management', 'EKG Interpretation', 'Fast-Track Workflows'],
+      'Surgery': ['Surgical First- & Second-Assist', 'Sterile Field & Operating Room', 'Laparoscopic & General Surgery', 'Subcuticular & Staple Closure', 'Surgical Knot Tying', 'Pre-Op H&Ps', 'Post-Op Daily Rounding', 'Wound Checks & Drain Care'],
+      'Urgent Care': ['Walk-In Acute Care', 'Undifferentiated Complaints', 'Point-of-Care Testing (Strep/Flu/COVID/UA)', 'Minor Procedures & I&D', 'Laceration Repair & Splinting', 'Foreign Body Removal', 'Pediatric & Adult Visits'],
+      'Critical Care / ICU': ['ICU Daily Rounding', 'Critical Care Assessment', 'Basic Airway & Ventilator Exposure', 'ABG / Lab Interpretation', 'Multidisciplinary ICU Team', 'Procedure Readiness', 'Epic EMR'],
+      'Cardiology': ['EKG & Rhythm Interpretation', 'Inpatient Cardiology Rounding', 'Chest Pain / ACS Workup', 'Medication Reconciliation', 'Pre-/Post-Procedure Assessment', 'Patient Counseling'],
+      'Internal Medicine': ['Inpatient Hospitalist Rounding', 'Complex Differential Diagnosis', 'Order Entry & Discharge Planning', 'Medication Reconciliation', 'Multidisciplinary Care Coordination', 'SOAP Documentation'],
+      'Primary Care': ['Outpatient Chronic Disease Management', 'Preventive Screenings & Wellness', 'Patient Education & Counseling', 'Point-of-Care Testing', 'Athena / Epic / eClinicalWorks EHR'],
+      'Obstetrics & Gynecology': ['Pelvic Examinations', 'Prenatal & Postpartum Visits', 'Gyn Office Procedures', 'Preventive Screenings', 'Patient Counseling'],
+      'General / Inpatient': ['History & Physical Exams', 'Differential Diagnosis', 'Clinical Documentation & SOAP Notes', 'Order Entry & Labs', 'Sterile Technique & Procedures', 'Epic EMR'],
+    };
+
+    let fastFillEditMode = false;
+    let activePrepJobId = null;
+    let coverLetterMode = 'short';
+
+    function getFastFillProfile() {
+      try {
+        const raw = localStorage.getItem(FASTFILL_KEY);
+        return raw ? JSON.parse(raw) : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveFastFillProfile() {
+      const next = {};
+      FASTFILL_FIELDS.forEach(f => {
+        const el = document.getElementById('ff-input-' + f.key);
+        if (el) next[f.key] = el.value.trim();
+      });
+      try {
+        localStorage.setItem(FASTFILL_KEY, JSON.stringify(next));
+      } catch (e) {}
+      fastFillEditMode = false;
+      renderFastFillDrawer();
+      showToast('Fast-Fill profile saved locally 🔒');
+    }
+
+    async function copyText(text, label = 'Text') {
+      if (!text) {
+        showToast('Nothing to copy yet — tap Edit to fill in');
+        return;
+      }
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        showToast(`Copied ${label} 📋`);
+      } catch (e) {
+        showToast('Copy failed — select text manually');
+      }
+    }
+
+    function escapeHtml(str) {
+      return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function renderFastFillDrawer() {
+      const profile = getFastFillProfile();
+      const body = document.getElementById('fastfill-body');
+      const modeBtn = document.getElementById('btn-ff-mode');
+      modeBtn.textContent = fastFillEditMode ? '👁️ Copy View' : '✏️ Edit';
+
+      const privacyBanner = `<div class="privacy-note">🔒 <strong>Private to your browser:</strong> Info saved here stays strictly in this device's <code>localStorage</code> and is never committed to GitHub or sent to external servers.</div>`;
+
+      if (fastFillEditMode) {
+        const inputsHtml = FASTFILL_FIELDS.map(f => {
+          const val = escapeHtml(profile[f.key] || '');
+          const fieldMarkup = f.multiline
+            ? `<textarea id="ff-input-${f.key}" class="ff-textarea" placeholder="${escapeHtml(f.placeholder)}">${val}</textarea>`
+            : `<input type="text" id="ff-input-${f.key}" class="ff-input" value="${val}" placeholder="${escapeHtml(f.placeholder)}" />`;
+          return `<div><div class="ff-label">${f.label}</div>${fieldMarkup}</div>`;
+        }).join('');
+        body.innerHTML = `${privacyBanner}${inputsHtml}<button class="btn-primary" style="justify-content:center; padding:0.75rem;" onclick="saveFastFillProfile()">💾 Save Fast-Fill Profile Locally</button>`;
+        return;
+      }
+
+      const cardsHtml = FASTFILL_FIELDS.map(f => {
+        const val = (profile[f.key] || '').trim();
+        return `
+          <div class="ff-card">
+            <div class="ff-card-text">
+              <div class="ff-label">${f.label}</div>
+              ${val ? `<div class="ff-val">${escapeHtml(val)}</div>` : `<div class="ff-empty">Tap ✏️ Edit to save (${escapeHtml(f.placeholder)})</div>`}
+            </div>
+            ${val ? `<button class="btn-outline" style="padding:0.4rem 0.75rem; font-size:0.8rem;" onclick="copyFastFillField('${f.key}')">📋 Copy</button>` : ''}
+          </div>
+        `;
+      }).join('');
+      body.innerHTML = `${privacyBanner}${cardsHtml}`;
+    }
+
+    function copyFastFillField(key) {
+      const profile = getFastFillProfile();
+      const field = FASTFILL_FIELDS.find(f => f.key === key);
+      copyText(profile[key] || '', field ? field.label : 'Field');
+    }
+
+    function openFastFillDrawer() {
+      const profile = getFastFillProfile();
+      if (Object.values(profile).every(v => !v)) {
+        fastFillEditMode = true;
+      }
+      renderFastFillDrawer();
+      document.getElementById('overlay-backdrop').classList.add('open');
+      document.getElementById('fastfill-drawer').classList.add('open');
+      document.getElementById('prep-modal').classList.remove('open');
+    }
+
+    function toggleFastFillEdit() {
+      fastFillEditMode = !fastFillEditMode;
+      renderFastFillDrawer();
+    }
+
+    function closeAllOverlays() {
+      document.getElementById('overlay-backdrop').classList.remove('open');
+      document.getElementById('fastfill-drawer').classList.remove('open');
+      document.getElementById('prep-modal').classList.remove('open');
+    }
+
+    function openFastFillFromPrep() {
+      closeAllOverlays();
+      openFastFillDrawer();
+    }
+
+    function getMatchedKeywords(job) {
+      const base = [...(SPECIALTY_KEYWORDS[job.specialty] || SPECIALTY_KEYWORDS['General / Inpatient'])];
+      const t = (job.title || '').toLowerCase();
+      if (t.includes('trauma') && !base.includes('Trauma Assessment')) base.unshift('Trauma Assessment');
+      if (t.includes('robotic') && !base.includes('Robotic / Minimally Invasive Surgery')) base.unshift('Robotic / Minimally Invasive Surgery');
+      if (t.includes('ortho') && !base.includes('Orthopedic Casting & Splinting')) base.unshift('Orthopedic Casting & Splinting');
+      if (t.includes('plastic') && !base.includes('Facial Plastics & Reconstructive Care')) base.unshift('Facial Plastics & Reconstructive Care');
+      return base.slice(0, 8);
+    }
+
+    function buildCoverLetterText(job, mode) {
+      const p = getFastFillProfile();
+      const name = p.full_name || '[Your Name, MS, PA-C]';
+      const school = p.pa_school || 'my Master of Science in Physician Assistant Studies';
+      const spec = job.specialty || 'Clinical Practice';
+      const hospitalClean = (job.hospital || 'your organization').replace(/\\s*\\(Suburbs\\)/i, '');
+
+      const rotationHighlightMap = {
+        'ENT / Head & Neck': 'during my ENT & Facial Plastic Reconstructive Surgery clinical rotation, where I assisted with office-based otolaryngology procedures (flexible laryngoscopy, cerumen removal, ear irrigation) as well as pre-, intra-, and post-operative head and neck surgical evaluations',
+        'Dermatology': 'across my Facial Plastic Reconstructive Surgery, Urgent Care, and General Surgery rotations, where I gained hands-on experience with skin lesion assessments, wound closures, suturing, incision and drainage procedures, and sterile technique',
+        'Emergency Medicine (ER)': 'during my high-volume Emergency Medicine and Urgent Care rotations, evaluating acute adult and pediatric patients and performing laceration repairs, wound closures, splinting, abscess I&D, and airway management',
+        'Surgery': 'during my General Surgery and ENT & Facial Plastic Surgery rotations, where I first- and second-assisted in the operating room, maintained sterile technique, tied surgical knots, and managed pre-operative workups and post-operative rounding',
+        'Urgent Care': 'across my Urgent Care, Emergency Medicine, and prior urgent-care Medical Assistant experience, managing high-volume acute walk-in patients, point-of-care diagnostics, laceration repairs, and minor outpatient procedures',
+      };
+      const highlight = p.rotations
+        ? `across my clinical training (${p.rotations})`
+        : (rotationHighlightMap[spec] || 'across my inpatient and outpatient clinical rotations, including Emergency Medicine, General Surgery, Internal Medicine, and ENT');
+
+      if (mode === 'short') {
+        return `Hello ${hospitalClean} Hiring Team,\\n\\nI am an NCCPA board-certified Physician Assistant (PA-C) and recent ${school} graduate eager to apply for the ${job.title} role in ${job.location}. I developed strong procedural and collaborative clinical skills ${highlight}.\\n\\nI would welcome the opportunity to bring my adaptability, Epic/EMR readiness, and dedication to patient care to ${hospitalClean}.`;
+      }
+
+      const contactLine = [p.email, p.phone, p.location].filter(Boolean).join(' | ');
+      const header = contactLine ? `${name}\\n${contactLine}\\n\\n` : '';
+      const credsNote = [p.nccpa, p.ny_license, p.md_va_license].filter(Boolean).join(' · ');
+      const credsSentence = credsNote ? ` Credential status: ${credsNote}.` : '';
+
+      return `${header}Dear Hiring Team at ${hospitalClean},\\n\\nI am writing to express my enthusiastic interest in the ${job.title} position located in ${job.location}. As an NCCPA-certified Physician Assistant (PA-C) trained through ${school}, I am excited to begin my PA career contributing to ${hospitalClean}'s ${spec} team.\\n\\nIn clinical training, I built a strong procedural and diagnostic foundation ${highlight}. Combined with hands-on clinical support experience across primary and urgent care settings, I am comfortable thriving in fast-paced clinical teams, writing thorough SOAP documentation, and partnering closely with supervising physicians and nursing staff.${credsSentence}\\n\\nThank you for your time and consideration. I look forward to the opportunity to discuss how I can support your patients and care team.\\n\\nSincerely,\\n${name}`;
+    }
+
+    function openPrepModal(jobId) {
+      const job = getAllKnownJobs().find(j => j.id === jobId);
+      if (!job) return;
+      activePrepJobId = jobId;
+      coverLetterMode = 'short';
+
+      document.getElementById('prep-modal-title').textContent = `✉️ ${job.title}`;
+      document.getElementById('prep-modal-subtitle').textContent = `${job.hospital} · ${job.location} · ${job.specialty}`;
+      document.getElementById('prep-apply-link').href = job.url;
+
+      const kws = getMatchedKeywords(job);
+      document.getElementById('prep-keywords').innerHTML = kws.map(k => `<span class="kw-chip">${escapeHtml(k)}</span>`).join('');
+
+      document.getElementById('prep-mode-short').classList.add('active');
+      document.getElementById('prep-mode-full').classList.remove('active');
+      document.getElementById('prep-cover-text').value = buildCoverLetterText(job, 'short');
+
+      document.getElementById('overlay-backdrop').classList.add('open');
+      document.getElementById('prep-modal').classList.add('open');
+      document.getElementById('fastfill-drawer').classList.remove('open');
+    }
+
+    function setCoverLetterMode(mode) {
+      coverLetterMode = mode;
+      document.getElementById('prep-mode-short').classList.toggle('active', mode === 'short');
+      document.getElementById('prep-mode-full').classList.toggle('active', mode === 'full');
+      const job = getAllKnownJobs().find(j => j.id === activePrepJobId);
+      if (job) {
+        document.getElementById('prep-cover-text').value = buildCoverLetterText(job, mode);
+      }
+    }
+
+    function copyPrepCoverLetter() {
+      const txt = document.getElementById('prep-cover-text').value;
+      copyText(txt, coverLetterMode === 'short' ? 'Portal Note' : 'Cover Letter');
+    }
+
+    function copyPrepKeywords() {
+      const job = getAllKnownJobs().find(j => j.id === activePrepJobId);
+      if (!job) return;
+      copyText(getMatchedKeywords(job).join(', '), 'ATS Keywords');
     }
 
     // 1. Initial instant render from local storage
