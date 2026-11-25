@@ -18,7 +18,7 @@ def fetch_nyp_jobs() -> List[JobPosting]:
     ctx = ssl._create_unverified_context()
     postings = []
     offset = 0
-    max_postings = 60
+    max_postings = 120
 
     while offset < max_postings:
         payload = {

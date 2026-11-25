@@ -18,7 +18,7 @@ def fetch_adventist_jobs() -> List[JobPosting]:
     ctx = ssl._create_unverified_context()
     postings = []
     offset = 0
-    max_postings = 40
+    max_postings = 140
 
     while offset < max_postings:
         payload = {

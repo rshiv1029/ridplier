@@ -5,7 +5,7 @@ from typing import List
 from .models import JobPosting
 from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty, classify_nyc_location
 
-MOUNT_SINAI_API = "https://careers.mountsinai.org/api/jobs?keywords=physician%20assistant&page={page}&limit=50"
+MOUNT_SINAI_API = "https://careers.mountsinai.org/api/jobs?keywords=physician%20assistant&page={page}&limit=100&sortBy=posted_date&descending=true"
 
 def fetch_mount_sinai_jobs() -> List[JobPosting]:
     """
@@ -20,14 +20,16 @@ def fetch_mount_sinai_jobs() -> List[JobPosting]:
 
     postings = []
     seen_ids = set()
+    fetched_raw = 0
 
-    for page in range(1, 3):  # Check first 2 pages (up to 100 results)
+    for page in range(1, 11):
         url = MOUNT_SINAI_API.format(page=page)
         try:
             req = urllib.request.Request(url, headers=headers)
             with urllib.request.urlopen(req, context=ctx, timeout=15) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
                 items = data.get("jobs", [])
+                total_count = data.get("totalCount", 0)
                 if not items:
                     break
 
@@ -79,6 +81,10 @@ def fetch_mount_sinai_jobs() -> List[JobPosting]:
                         raw_data=d,
                     )
                     postings.append(job)
+
+                fetched_raw += len(items)
+                if fetched_raw >= total_count or len(items) < 100:
+                    break
         except Exception as e:
             print(f"[Mount Sinai Scraper] Error on page {page}: {e}")
             break

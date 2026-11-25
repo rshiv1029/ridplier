@@ -1,11 +1,55 @@
 import os
+import re
 import smtplib
+from datetime import datetime, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from typing import List
 from scrapers.models import JobPosting
 
 DEFAULT_DASHBOARD_URL = "https://rshiv1029.github.io/ridplier/"
+DEFAULT_ALERT_MAX_AGE_DAYS = 14
+
+
+def is_recently_posted(posted_date_str: str, max_age_days: int = DEFAULT_ALERT_MAX_AGE_DAYS) -> bool:
+    """
+    Return True if a job's posted_date is within max_age_days of today (or unparseable).
+    Prevents old/bumped requisitions (e.g. from months ago) from triggering 'New Job' alerts.
+    """
+    if not posted_date_str:
+        return True
+
+    s = str(posted_date_str).strip()
+    lower = s.lower()
+    today = datetime.now(timezone.utc).date()
+
+    # 1. ISO date: YYYY-MM-DD
+    iso_m = re.match(r"^(\d{4}-\d{2}-\d{2})", s)
+    if iso_m:
+        try:
+            d = datetime.strptime(iso_m.group(1), "%Y-%m-%d").date()
+            return (today - d).days <= max_age_days
+        except ValueError:
+            pass
+
+    # 2. Month Day, Year (e.g. "Nov 23, 2026")
+    mon_m = re.match(r"^([A-Za-z]{3}\s+\d{1,2},\s*\d{4})$", s)
+    if mon_m:
+        try:
+            d = datetime.strptime(mon_m.group(1), "%b %d, %Y").date()
+            return (today - d).days <= max_age_days
+        except ValueError:
+            pass
+
+    # 3. Relative Workday labels
+    if "today" in lower or "yesterday" in lower:
+        return True
+    days_m = re.search(r"(\d+)(\+)?\s*days?\s*ago", lower)
+    if days_m:
+        days = int(days_m.group(1)) + (1 if days_m.group(2) else 0)
+        return days <= max_age_days
+
+    return True
 
 def format_email_html(jobs: List[JobPosting], dashboard_url: str) -> str:
     """Generate a clean, mobile-optimized HTML email card for iPhone Mail / Gmail."""
@@ -171,9 +215,15 @@ def notify_new_jobs(new_jobs: List[JobPosting], dry_run: bool = False):
         print("[Notifier] No new jobs to notify.")
         return
 
-    notifiable = [j for j in new_jobs if j.is_new_grad_friendly]
+    max_age_days = int(os.getenv("ALERT_MAX_AGE_DAYS", str(DEFAULT_ALERT_MAX_AGE_DAYS)))
+    eligible_new = [j for j in new_jobs if j.is_new_grad_friendly]
+    notifiable = [j for j in eligible_new if is_recently_posted(j.posted_date, max_age_days)]
+    stale_count = len(eligible_new) - len(notifiable)
+    if stale_count > 0:
+        print(f"[Notifier] Skipped {stale_count} older listing(s) posted > {max_age_days} days ago (still visible on dashboard).")
+
     if not notifiable:
-        print("[Notifier] No new-grad eligible jobs to notify.")
+        print("[Notifier] No recently posted new-grad eligible jobs to notify.")
         return
 
     if not (recipient and user and pw):
