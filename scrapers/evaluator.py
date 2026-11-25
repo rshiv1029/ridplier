@@ -1,5 +1,5 @@
 import re
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 
 # Non-new-grad / leadership / non-full-time titles to strictly exclude
 EXCLUDE_TITLE_WORDS = [
@@ -359,3 +359,55 @@ def detect_shift(
                 return res
 
     return None
+
+
+POSTING_REQUIREMENT_PATTERNS = [
+    # Life support & hospital credentialing certs
+    ("ACLS", r"\b(?:acls|advanced\s+cardiac\s+life\s+support|advanced\s+cardiovascular\s+life\s+support)\b"),
+    ("PALS", r"\b(?:pals|pediatric\s+advanced\s+life\s+support)\b"),
+    ("ATLS", r"\b(?:atls|advanced\s+trauma\s+life\s+support)\b"),
+    ("BLS", r"\b(?:bls|basic\s+life\s+support)\b"),
+    ("DEA", r"\b(?:dea\s+(?:registration|license|certification|number|eligible)|controlled\s+substance\s+registration)\b"),
+    ("NYS Infection Control", r"\b(?:infection\s+control\s+(?:certificate|certification|course|training)|mandated\s+reporter)\b"),
+    # Setting & surgical/procedural specifics
+    ("First-Assist", r"\b(?:first[\s-]+assist(?:ing|ant)?|1st\s+assist)\b"),
+    ("Robotic Surgery", r"\b(?:da\s*vinci|robotic(?:s)?(?:\s+surgery|\s+assist(?:ed)?)?)\b"),
+    ("Operating Room", r"\b(?:operating\s+room|\bor\b\s+(?:assisting|coverage|cases)|intra[\s-]?operative|perioperative)\b"),
+    ("Trauma", r"\b(?:level\s+(?:i|1|ii|2)\s+trauma|trauma\s+(?:surgery|team|center|bay|service))\b"),
+    ("ICU / Critical Care", r"\b(?:icu|intensive\s+care\s+unit|critical\s+care|sicu|micu|ccu|neuroicu)\b"),
+    ("Inpatient", r"\b(?:inpatient|daily\s+rounds|rounding)\b"),
+    ("Outpatient / Clinic", r"\b(?:outpatient|ambulatory\s+(?:care|clinic)|office[\s-]+based)\b"),
+    ("Laceration / Suturing", r"\b(?:laceration\s+repair|suturing|suture|wound\s+closure)\b"),
+    ("I&D / Abscess", r"\b(?:incision\s+(?:and|&)\s+drainage|\bi\s*&\s*d\b)\b"),
+    ("Endoscopy / Laryngoscopy", r"\b(?:laryngoscopy|nasal\s+endoscopy|endoscopy|cerumen)\b"),
+    ("Splinting / Casting", r"\b(?:splinting|casting|fracture\s+reduction)\b"),
+    ("Ultrasound / POCUS", r"\b(?:pocus|point[\s-]+of[\s-]+care\s+ultrasound|bedside\s+ultrasound)\b"),
+    ("Lines / Airway", r"\b(?:central\s+line|arterial\s+line|intubation|endotracheal|airway\s+management)\b"),
+    ("Biopsies / Cryotherapy", r"\b(?:skin\s+biops|punch\s+biops|shave\s+biops|cryotherapy|excision)\b"),
+    # EMR, language & schedule commitments
+    ("Epic EMR", r"\bepic\b"),
+    ("Cerner EMR", r"\bcerner\b"),
+    ("Bilingual / Spanish", r"\b(?:bilingual|spanish[\s-]+speaking|spanish\s+preferred)\b"),
+    ("On-Call", r"\b(?:on[\s-]+call|call\s+rotation|call\s+schedule|share\s+call|weekend\s+call|night\s+call)\b"),
+    ("Weekend / Holiday", r"\b(?:weekend\s+(?:rotation|coverage|shift|shifts)|rotating\s+weekends|holiday\s+coverage)\b"),
+]
+
+
+def extract_posting_requirements(title: str = "", description: str = "", max_items: int = 8) -> List[str]:
+    """
+    Scan a specific job posting's title and description for real hospital requirements,
+    certifications, procedures, EMRs, and call/schedule expectations.
+    """
+    raw = f"{title}\n{description}"
+    if not raw.strip():
+        return []
+    clean = re.sub(r"<[^>]+>", " ", raw)
+    clean = re.sub(r"\s+", " ", clean).lower()
+
+    matched: List[str] = []
+    for label, pat in POSTING_REQUIREMENT_PATTERNS:
+        if re.search(pat, clean):
+            matched.append(label)
+            if len(matched) >= max_items:
+                break
+    return matched

@@ -4,7 +4,7 @@ import ssl
 import urllib.request
 from typing import List
 from .models import JobPosting
-from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty, extract_salary_range, detect_shift
+from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty, extract_salary_range, detect_shift, extract_posting_requirements
 
 HOPKINS_SEARCH_URLS = [
     # Suburban Hospital (Bethesda, MD)
@@ -109,6 +109,7 @@ def fetch_hopkins_jobs() -> List[JobPosting]:
                     specialty, is_top = detect_specialty(title, desc_text)
                     salary_range, salary_min = extract_salary_range(desc_text)
                     shift = detect_shift(title, desc_text)
+                    requirements = extract_posting_requirements(title, desc_text)
 
                     job = JobPosting(
                         id=JobPosting.make_id("Hopkins", req_id),
@@ -126,6 +127,7 @@ def fetch_hopkins_jobs() -> List[JobPosting]:
                         salary_range=salary_range,
                         salary_min_annual=salary_min,
                         shift=shift,
+                        requirements=requirements,
                         raw_data=data,
                     )
                     postings.append(job)

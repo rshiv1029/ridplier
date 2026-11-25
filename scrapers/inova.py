@@ -3,7 +3,7 @@ import ssl
 import urllib.request
 from typing import List
 from .models import JobPosting
-from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty, extract_salary_range, detect_shift
+from .evaluator import is_title_eligible, evaluate_new_grad, detect_specialty, extract_salary_range, detect_shift, extract_posting_requirements
 
 INOVA_API = "https://elar.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?finder=findReqs;siteNumber=CX_1,keyword=physician%20assistant,limit=100,offset={offset}&expand=requisitionList"
 
@@ -89,6 +89,7 @@ def fetch_inova_jobs() -> List[JobPosting]:
                     specialty, is_top = detect_specialty(title, full_desc)
                     salary_range, salary_min = extract_salary_range(full_desc)
                     shift = detect_shift(title, full_desc)
+                    requirements = extract_posting_requirements(title, full_desc)
 
                     job = JobPosting(
                         id=JobPosting.make_id("Inova", req_id),
@@ -106,6 +107,7 @@ def fetch_inova_jobs() -> List[JobPosting]:
                         salary_range=salary_range,
                         salary_min_annual=salary_min,
                         shift=shift,
+                        requirements=requirements,
                         raw_data=q,
                     )
                     postings.append(job)

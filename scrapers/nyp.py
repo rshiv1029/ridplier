@@ -10,6 +10,7 @@ from .evaluator import (
     classify_nyc_location,
     extract_salary_range,
     detect_shift,
+    extract_posting_requirements,
 )
 
 NYP_URL = "https://nyp.wd1.myworkdayjobs.com/wday/cxs/nyp/nypcareers/jobs"
@@ -70,6 +71,7 @@ def fetch_nyp_jobs() -> List[JobPosting]:
                     is_outside, borough = classify_nyc_location(location, title)
                     salary_range, salary_min = extract_salary_range(desc_text)
                     shift = detect_shift(title, desc_text)
+                    requirements = extract_posting_requirements(title, desc_text)
 
                     job = JobPosting(
                         id=JobPosting.make_id("NYP", req_id),
@@ -89,6 +91,7 @@ def fetch_nyp_jobs() -> List[JobPosting]:
                         salary_range=salary_range,
                         salary_min_annual=salary_min,
                         shift=shift,
+                        requirements=requirements,
                         raw_data=item,
                     )
                     postings.append(job)

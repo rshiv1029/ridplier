@@ -17,6 +17,7 @@ from scrapers.evaluator import (
     detect_shift,
     detect_specialty,
     evaluate_new_grad,
+    extract_posting_requirements,
     extract_salary_range,
     is_title_eligible,
 )
@@ -124,6 +125,7 @@ def scrape_nyu_langone() -> List[JobPosting]:
                     desc_text, explicit_salary=str(it.get("salary") or "")
                 )
                 shift = detect_shift(title, desc_text, explicit_shift=str(it.get("shift") or ""))
+                requirements = extract_posting_requirements(title, desc_text)
 
                 job = JobPosting(
                     id=JobPosting.make_id("NYULangone", req_id),
@@ -143,6 +145,7 @@ def scrape_nyu_langone() -> List[JobPosting]:
                     salary_range=salary_range,
                     salary_min_annual=salary_min,
                     shift=shift,
+                    requirements=requirements,
                     raw_data={"id": req_id, "category": it.get("primary_category")},
                 )
                 postings.append(job)

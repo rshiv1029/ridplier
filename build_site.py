@@ -439,11 +439,49 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
     .job-meta {
       display: flex;
-      gap: 1.25rem;
+      gap: 1.05rem;
       color: var(--text-muted);
       font-size: 0.86rem;
       flex-wrap: wrap;
       align-items: center;
+    }
+    .meta-resume-ny {
+      background: rgba(244, 63, 94, 0.14);
+      color: #fda4af;
+      border: 1px solid rgba(244, 63, 94, 0.35);
+    }
+    .meta-resume-md {
+      background: rgba(129, 140, 248, 0.14);
+      color: #a5b4fc;
+      border: 1px solid rgba(129, 140, 248, 0.35);
+    }
+    .req-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.38rem;
+      align-items: center;
+    }
+    .req-row-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-right: 0.15rem;
+    }
+    .req-chip {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.18rem 0.52rem;
+      border-radius: 5px;
+      background: rgba(148, 163, 184, 0.11);
+      color: #e2e8f0;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .req-chip-cert {
+      background: rgba(245, 158, 11, 0.14);
+      color: #fde68a;
+      border: 1px solid rgba(245, 158, 11, 0.35);
     }
     .job-reason {
       font-size: 0.86rem;
@@ -1011,9 +1049,16 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
     <div class="modal-body">
       <div>
+        <div id="prep-real-reqs-wrap" style="display:none; margin-bottom:0.75rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; gap:0.5rem;">
+            <span class="ff-label" style="margin:0;">📋 Real Terms Found in This Hospital Posting</span>
+            <button class="btn-outline" style="padding:0.25rem 0.6rem; font-size:0.76rem;" onclick="copyRealReqs()">📋 Copy Posting Terms</button>
+          </div>
+          <div class="kw-list" id="prep-real-reqs"></div>
+        </div>
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem; gap:0.5rem;">
-          <span class="ff-label" style="margin:0;">🎯 Top ATS Keywords for This Specialty</span>
-          <button class="btn-outline" style="padding:0.28rem 0.65rem; font-size:0.78rem;" onclick="copyPrepKeywords()">📋 Copy Keywords</button>
+          <span class="ff-label" style="margin:0;">💡 Suggested Specialty ATS Keywords</span>
+          <button class="btn-outline" style="padding:0.28rem 0.65rem; font-size:0.78rem;" onclick="copyPrepKeywords()">📋 Copy Suggested</button>
         </div>
         <div class="kw-list" id="prep-keywords"></div>
       </div>
@@ -1033,7 +1078,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       </div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; gap:0.75rem; flex-wrap:wrap; padding-top:0.35rem; border-top:1px solid #1e293b;">
-        <a id="prep-apply-link" class="btn-primary" href="#" target="_blank" rel="noopener noreferrer">Open Hospital Portal ↗</a>
+        <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+          <a id="prep-apply-link" class="btn-primary" href="#" target="_blank" rel="noopener noreferrer">Open Hospital Portal ↗</a>
+          <span id="prep-resume-hint"></span>
+        </div>
         <button class="btn-outline" onclick="openFastFillFromPrep()">📋 Open Fast-Fill Clipboard</button>
       </div>
     </div>
@@ -1318,6 +1366,27 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       return `<span class="meta-pill meta-shift">🔄 ${shift}</span>`;
     }
 
+    function getRecommendedResume(job) {
+      return job && job.hub === 'NYC' ? 'Resume_NY.pdf' : 'Resume_MD.pdf';
+    }
+
+    function getResumeMetaBadge(job) {
+      const fname = getRecommendedResume(job);
+      const cls = job && job.hub === 'NYC' ? 'meta-resume-ny' : 'meta-resume-md';
+      return `<span class="meta-pill ${cls}">📄 Use: ${fname}</span>`;
+    }
+
+    const CERT_REQ_NAMES = new Set(['ACLS', 'PALS', 'ATLS', 'BLS', 'DEA', 'NYS Infection Control']);
+
+    function renderCardRequirements(reqs) {
+      if (!Array.isArray(reqs) || reqs.length === 0) return '';
+      const chips = reqs.map(r => {
+        const cls = CERT_REQ_NAMES.has(r) ? 'req-chip req-chip-cert' : 'req-chip';
+        return `<span class="${cls}">${escapeHtml(r)}</span>`;
+      }).join('');
+      return `<div class="req-row"><span class="req-row-label">📋 Posting Mentions:</span>${chips}</div>`;
+    }
+
     const MONTH_INDEX = {
       jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
       jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11
@@ -1468,7 +1537,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         list = list.filter(j => {
           const hay = [
             j.title, j.hospital, j.location, j.borough_tag,
-            j.specialty, j.shift, j.salary_range, j.match_reason
+            j.specialty, j.shift, j.salary_range, j.match_reason,
+            Array.isArray(j.requirements) ? j.requirements.join(' ') : '',
+            getRecommendedResume(j)
           ].filter(Boolean).join(' ').toLowerCase();
           return hay.includes(searchQuery);
         });
@@ -1618,7 +1689,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
               <span>💼 Full-Time</span>
               ${getShiftMetaBadge(j.shift)}
               ${j.salary_range ? `<span class="meta-pill meta-salary">💵 ${j.salary_range}</span>` : ''}
+              ${getResumeMetaBadge(j)}
             </div>
+            ${renderCardRequirements(j.requirements)}
             ${warningNotice}
             <div class="${getReasonClass(j.probability)}">
               💡 <strong>Match Signal:</strong> ${j.is_top_specialty ? '⭐ <strong>Top 5 Specialty Pick</strong> · ' : ''}${j.match_reason}
@@ -1850,6 +1923,19 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       document.getElementById('prep-modal-title').textContent = `✉️ ${job.title}`;
       document.getElementById('prep-modal-subtitle').textContent = `${job.hospital} · ${job.location} · ${job.specialty}`;
       document.getElementById('prep-apply-link').href = job.url;
+      document.getElementById('prep-resume-hint').innerHTML = getResumeMetaBadge(job);
+
+      const realWrap = document.getElementById('prep-real-reqs-wrap');
+      const realReqs = Array.isArray(job.requirements) ? job.requirements : [];
+      if (realReqs.length > 0) {
+        realWrap.style.display = 'block';
+        document.getElementById('prep-real-reqs').innerHTML = realReqs.map(r => {
+          const cls = CERT_REQ_NAMES.has(r) ? 'req-chip req-chip-cert' : 'req-chip';
+          return `<span class="${cls}">${escapeHtml(r)}</span>`;
+        }).join('');
+      } else {
+        realWrap.style.display = 'none';
+      }
 
       const kws = getMatchedKeywords(job);
       document.getElementById('prep-keywords').innerHTML = kws.map(k => `<span class="kw-chip">${escapeHtml(k)}</span>`).join('');
@@ -1881,7 +1967,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     function copyPrepKeywords() {
       const job = getAllKnownJobs().find(j => j.id === activePrepJobId);
       if (!job) return;
-      copyText(getMatchedKeywords(job).join(', '), 'ATS Keywords');
+      copyText(getMatchedKeywords(job).join(', '), 'Suggested Keywords');
+    }
+
+    function copyRealReqs() {
+      const job = getAllKnownJobs().find(j => j.id === activePrepJobId);
+      if (!job || !Array.isArray(job.requirements) || job.requirements.length === 0) return;
+      copyText(job.requirements.join(', '), 'Posting Requirements');
     }
 
     // 1. Initial instant render from local storage

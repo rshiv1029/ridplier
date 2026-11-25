@@ -10,6 +10,7 @@ from .evaluator import (
     classify_nyc_location,
     extract_salary_range,
     detect_shift,
+    extract_posting_requirements,
 )
 
 MOUNT_SINAI_API = "https://careers.mountsinai.org/api/jobs?keywords=physician%20assistant&page={page}&limit=100&sortBy=posted_date&descending=true"
@@ -75,6 +76,7 @@ def fetch_mount_sinai_jobs() -> List[JobPosting]:
                         max_val=d.get("salary_max_value"),
                     )
                     shift = detect_shift(title, desc_text, explicit_shift=str(d.get("shift") or ""))
+                    requirements = extract_posting_requirements(title, desc_text)
 
                     job = JobPosting(
                         id=JobPosting.make_id("MountSinai", req_id),
@@ -94,6 +96,7 @@ def fetch_mount_sinai_jobs() -> List[JobPosting]:
                         salary_range=salary_range,
                         salary_min_annual=salary_min,
                         shift=shift,
+                        requirements=requirements,
                         raw_data=d,
                     )
                     postings.append(job)

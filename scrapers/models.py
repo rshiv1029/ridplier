@@ -1,5 +1,5 @@
-from dataclasses import dataclass, asdict
-from typing import Optional, Dict, Any
+from dataclasses import dataclass, asdict, field
+from typing import Optional, Dict, Any, List
 import hashlib
 
 @dataclass
@@ -21,6 +21,7 @@ class JobPosting:
     salary_range: Optional[str] = None
     salary_min_annual: Optional[int] = None
     shift: Optional[str] = None
+    requirements: List[str] = field(default_factory=list)
     raw_data: Optional[Dict[str, Any]] = None
 
     @classmethod

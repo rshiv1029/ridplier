@@ -26,6 +26,7 @@ from scrapers.evaluator import (
     detect_shift,
     detect_specialty,
     evaluate_new_grad,
+    extract_posting_requirements,
     extract_salary_range,
     is_title_eligible,
 )
@@ -165,6 +166,7 @@ def fetch_pagny_jobs() -> List[JobPosting]:
             full_desc, explicit_salary=detail.get("salary_text", "")
         )
         shift = detect_shift(title, full_desc)
+        requirements = extract_posting_requirements(title, full_desc)
 
         job = JobPosting(
             id=JobPosting.make_id("NYCHHC", req_slug),
@@ -184,6 +186,7 @@ def fetch_pagny_jobs() -> List[JobPosting]:
             salary_range=salary_range,
             salary_min_annual=salary_min,
             shift=shift,
+            requirements=requirements,
             raw_data={"slug": req_slug, "partner": partner_text},
         )
         postings.append(job)
