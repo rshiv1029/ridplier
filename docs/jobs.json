@@ -130,6 +130,76 @@
     ]
   },
   {
+    "id": "7afb2d572114",
+    "hospital": "Suburban Hospital (Johns Hopkins)",
+    "title": "Physician Assistant I - Neurosurgery",
+    "location": "Bethesda, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/96971/physician-assistant-neurosurgery-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-04-03",
+    "is_new_grad_friendly": true,
+    "match_reason": "New Grad Welcome: 'physician assistant i'",
+    "hub": "MD",
+    "probability": "high",
+    "specialty": "Surgery",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating",
+    "requirements": [
+      "Inpatient",
+      "On-Call"
+    ]
+  },
+  {
+    "id": "f351b677628c",
+    "hospital": "Suburban Hospital (Johns Hopkins)",
+    "title": "NP or PA - Cardiothoracic Inpatient - Rotating shift",
+    "location": "Bethesda, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/101549/aprn-pa-cardiothoracic-inpatient-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-08-20",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "MD",
+    "probability": "moderate",
+    "specialty": "Surgery",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating",
+    "requirements": [
+      "ACLS",
+      "BLS",
+      "ICU / Critical Care",
+      "Inpatient"
+    ]
+  },
+  {
+    "id": "990d757bdaa9",
+    "hospital": "Suburban Hospital (Johns Hopkins)",
+    "title": "Physician Assistant I - Surgical",
+    "location": "Bethesda, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/101276/physician-assistant-i-surgical-physician-assistant-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-09-16",
+    "is_new_grad_friendly": true,
+    "match_reason": "New Grad Welcome: 'physician assistant i'",
+    "hub": "MD",
+    "probability": "high",
+    "specialty": "Surgery",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating",
+    "requirements": [
+      "Inpatient"
+    ]
+  },
+  {
     "id": "517dd67c9973",
     "hospital": "Suburban Hospital (Johns Hopkins)",
     "title": "NP or PA - Cardiothoracic Inpatient - Nocturnist",
@@ -156,28 +226,26 @@
     ]
   },
   {
-    "id": "11dd06a289aa",
-    "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "NP or PA - Cardiothoracic Inpatient",
-    "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/96455/np-or-pa-cardiothoracic-inpatient-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-08-12",
+    "id": "6f0263094020",
+    "hospital": "Johns Hopkins Medicine (Johns Hopkins Bayview Medical Center)",
+    "title": "Physician Assistant Resident - Emergency Medicine",
+    "location": "Baltimore, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/104198/physician-assistant-resident-emergency-medicine-physician-assistant-us-md-baltimore-johns-hopkins-bayview-medical-center/",
+    "posted_date": "2026-11-09",
     "is_new_grad_friendly": true,
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "MD",
     "probability": "moderate",
-    "specialty": "Surgery",
+    "specialty": "Emergency Medicine (ER)",
     "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": null,
     "salary_range": null,
     "salary_min_annual": null,
-    "shift": "Rotating",
+    "shift": null,
     "requirements": [
-      "ACLS",
-      "BLS",
-      "ICU / Critical Care",
-      "Inpatient"
+      "Trauma",
+      "ICU / Critical Care"
     ]
   },
   {
@@ -231,54 +299,6 @@
     ]
   },
   {
-    "id": "7afb2d572114",
-    "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "Physician Assistant I - Neurosurgery",
-    "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/96971/physician-assistant-neurosurgery-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-04-03",
-    "is_new_grad_friendly": true,
-    "match_reason": "New Grad Welcome: 'physician assistant i'",
-    "hub": "MD",
-    "probability": "high",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null,
-    "salary_range": null,
-    "salary_min_annual": null,
-    "shift": "Rotating",
-    "requirements": [
-      "Inpatient",
-      "On-Call"
-    ]
-  },
-  {
-    "id": "f351b677628c",
-    "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "NP or PA - Cardiothoracic Inpatient - Rotating shift",
-    "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/101549/aprn-pa-cardiothoracic-inpatient-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-08-20",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "MD",
-    "probability": "moderate",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null,
-    "salary_range": null,
-    "salary_min_annual": null,
-    "shift": "Rotating",
-    "requirements": [
-      "ACLS",
-      "BLS",
-      "ICU / Critical Care",
-      "Inpatient"
-    ]
-  },
-  {
     "id": "2d72fb43ce3e",
     "hospital": "Johns Hopkins Medicine (Johns Hopkins Bayview Medical Center)",
     "title": "APP (NP or PA) Hospitalist",
@@ -305,16 +325,16 @@
     ]
   },
   {
-    "id": "990d757bdaa9",
+    "id": "11dd06a289aa",
     "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "Physician Assistant I - Surgical",
+    "title": "NP or PA - Cardiothoracic Inpatient",
     "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/101276/physician-assistant-i-surgical-physician-assistant-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-09-16",
+    "url": "https://jobs.hopkinsmedicine.org/job/96455/np-or-pa-cardiothoracic-inpatient-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-08-12",
     "is_new_grad_friendly": true,
-    "match_reason": "New Grad Welcome: 'physician assistant i'",
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "MD",
-    "probability": "high",
+    "probability": "moderate",
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
@@ -323,30 +343,10 @@
     "salary_min_annual": null,
     "shift": "Rotating",
     "requirements": [
+      "ACLS",
+      "BLS",
+      "ICU / Critical Care",
       "Inpatient"
-    ]
-  },
-  {
-    "id": "6f0263094020",
-    "hospital": "Johns Hopkins Medicine (Johns Hopkins Bayview Medical Center)",
-    "title": "Physician Assistant Resident - Emergency Medicine",
-    "location": "Baltimore, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/104198/physician-assistant-resident-emergency-medicine-physician-assistant-us-md-baltimore-johns-hopkins-bayview-medical-center/",
-    "posted_date": "2026-11-09",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "MD",
-    "probability": "moderate",
-    "specialty": "Emergency Medicine (ER)",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null,
-    "salary_range": null,
-    "salary_min_annual": null,
-    "shift": null,
-    "requirements": [
-      "Trauma",
-      "ICU / Critical Care"
     ]
   },
   {
@@ -1142,28 +1142,6 @@
     "requirements": []
   },
   {
-    "id": "f78d06563d64",
-    "hospital": "Inova Fairfax Hospital (VA)",
-    "title": "Advanced Lung Disease -Advanced Practice Provider (NP/PA)",
-    "location": "Fairfax, VA",
-    "url": "https://elar.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/691917",
-    "posted_date": "2026-11-18",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "VA",
-    "probability": "moderate",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null,
-    "salary_range": null,
-    "salary_min_annual": null,
-    "shift": null,
-    "requirements": [
-      "Inpatient"
-    ]
-  },
-  {
     "id": "98f061866cbf",
     "hospital": "Inova Health System",
     "title": "Urgent Care APP (NP/PA)",
@@ -1206,24 +1184,26 @@
     ]
   },
   {
-    "id": "465db59e021c",
-    "hospital": "Inova Loudoun Hospital (VA)",
-    "title": "Medical Hospitalist APP (NP/PA) Loudoun",
-    "location": "Leesburg, VA",
-    "url": "https://elar.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/669945",
+    "id": "f78d06563d64",
+    "hospital": "Inova Fairfax Hospital (VA)",
+    "title": "Advanced Lung Disease -Advanced Practice Provider (NP/PA)",
+    "location": "Fairfax, VA",
+    "url": "https://elar.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/691917",
     "posted_date": "2026-11-18",
     "is_new_grad_friendly": true,
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "VA",
     "probability": "moderate",
-    "specialty": "Internal Medicine",
-    "is_top_specialty": false,
+    "specialty": "Surgery",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": null,
     "salary_range": null,
     "salary_min_annual": null,
     "shift": null,
-    "requirements": []
+    "requirements": [
+      "Inpatient"
+    ]
   },
   {
     "id": "412d84faf475",
@@ -1237,26 +1217,6 @@
     "hub": "VA",
     "probability": "moderate",
     "specialty": "General / Inpatient",
-    "is_top_specialty": false,
-    "is_outside_nyc": false,
-    "borough_tag": null,
-    "salary_range": null,
-    "salary_min_annual": null,
-    "shift": null,
-    "requirements": []
-  },
-  {
-    "id": "4d34432a1c68",
-    "hospital": "Inova Fairfax Hospital (VA)",
-    "title": "Women's Health Advanced Practice Provider (NP/PA)",
-    "location": "Fairfax, VA",
-    "url": "https://elar.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/663857",
-    "posted_date": "2026-11-18",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "VA",
-    "probability": "moderate",
-    "specialty": "Obstetrics & Gynecology",
     "is_top_specialty": false,
     "is_outside_nyc": false,
     "borough_tag": null,
@@ -1288,6 +1248,26 @@
     ]
   },
   {
+    "id": "465db59e021c",
+    "hospital": "Inova Loudoun Hospital (VA)",
+    "title": "Medical Hospitalist APP (NP/PA) Loudoun",
+    "location": "Leesburg, VA",
+    "url": "https://elar.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/669945",
+    "posted_date": "2026-11-18",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "VA",
+    "probability": "moderate",
+    "specialty": "Internal Medicine",
+    "is_top_specialty": false,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null,
+    "requirements": []
+  },
+  {
     "id": "d1aa02f0d1c7",
     "hospital": "Inova Health System",
     "title": "Inpatient Heart Failure/Transplant Advanced Practice Provider (NP/PA)",
@@ -1308,6 +1288,26 @@
     "requirements": [
       "Inpatient"
     ]
+  },
+  {
+    "id": "4d34432a1c68",
+    "hospital": "Inova Fairfax Hospital (VA)",
+    "title": "Women's Health Advanced Practice Provider (NP/PA)",
+    "location": "Fairfax, VA",
+    "url": "https://elar.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/663857",
+    "posted_date": "2026-11-18",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "VA",
+    "probability": "moderate",
+    "specialty": "Obstetrics & Gynecology",
+    "is_top_specialty": false,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null,
+    "requirements": []
   },
   {
     "id": "6f34809ffeee",
@@ -3663,32 +3663,6 @@
     ]
   },
   {
-    "id": "ea2db1fe9951",
-    "hospital": "NYC Health + Hospitals (NYC Health + Hospitals - Kings County)",
-    "title": "Physician Assistant - Catheterization Lab",
-    "location": "New York City (Brooklyn), NY",
-    "url": "https://www.pagny.org/careers/physician-assistant-catheterization-lab",
-    "posted_date": "Dec 01, 2025",
-    "is_new_grad_friendly": true,
-    "match_reason": "1 Year Preferred: '1 year experience'",
-    "hub": "NYC",
-    "probability": "moderate",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": "Brooklyn",
-    "salary_range": "$131k \u2013 $175k/yr",
-    "salary_min_annual": 131127,
-    "shift": "Rotating",
-    "requirements": [
-      "ACLS",
-      "BLS",
-      "Trauma",
-      "ICU / Critical Care",
-      "Inpatient"
-    ]
-  },
-  {
     "id": "76131c3561aa",
     "hospital": "NYC Health + Hospitals (NYC Health + Hospitals - Kings County)",
     "title": "Physician Assistant - Cardiology",
@@ -3706,6 +3680,32 @@
     "salary_range": "$131k \u2013 $175k/yr",
     "salary_min_annual": 131127,
     "shift": null,
+    "requirements": [
+      "ACLS",
+      "BLS",
+      "Trauma",
+      "ICU / Critical Care",
+      "Inpatient"
+    ]
+  },
+  {
+    "id": "ea2db1fe9951",
+    "hospital": "NYC Health + Hospitals (NYC Health + Hospitals - Kings County)",
+    "title": "Physician Assistant - Catheterization Lab",
+    "location": "New York City (Brooklyn), NY",
+    "url": "https://www.pagny.org/careers/physician-assistant-catheterization-lab",
+    "posted_date": "Dec 01, 2025",
+    "is_new_grad_friendly": true,
+    "match_reason": "1 Year Preferred: '1 year experience'",
+    "hub": "NYC",
+    "probability": "moderate",
+    "specialty": "Surgery",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": "Brooklyn",
+    "salary_range": "$131k \u2013 $175k/yr",
+    "salary_min_annual": 131127,
+    "shift": "Rotating",
     "requirements": [
       "ACLS",
       "BLS",
@@ -3952,6 +3952,30 @@
     "requirements": [
       "Inpatient",
       "Weekend / Holiday"
+    ]
+  },
+  {
+    "id": "e5f3d2c06337",
+    "hospital": "Memorial Sloan Kettering (MSKCC)",
+    "title": "Advanced Practice Provider | Head & Neck, Melanoma, & Sarcoma Service Float - Inpatient Medicine Team",
+    "location": "New York, NY",
+    "url": "https://msk.wd108.myworkdayjobs.com/en-US/MSKCC_Careers_Primary/job/New-York-NY/Advanced-Practice-Provider---Head---Neck--Melanoma----Sarcoma-Service-Float---Inpatient-Medicine-Team_103738-1",
+    "posted_date": "Posted Today",
+    "is_new_grad_friendly": true,
+    "match_reason": "2+ Years Preferred: 'minimum of 2 years'",
+    "hub": "NYC",
+    "probability": "lower",
+    "specialty": "ENT / Head & Neck",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": "Manhattan",
+    "salary_range": "$156k \u2013 $197k/yr",
+    "salary_min_annual": 155500,
+    "shift": null,
+    "requirements": [
+      "BLS",
+      "ICU / Critical Care",
+      "Inpatient"
     ]
   },
   {
