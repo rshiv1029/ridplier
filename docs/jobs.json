@@ -130,60 +130,35 @@
     ]
   },
   {
-    "id": "2d72fb43ce3e",
+    "id": "6f0263094020",
     "hospital": "Johns Hopkins Medicine (Johns Hopkins Bayview Medical Center)",
-    "title": "APP (NP or PA) Hospitalist",
+    "title": "Physician Assistant Resident - Emergency Medicine",
     "location": "Baltimore, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/104720/app-np-or-pa-hospitalist-advanced-practice-providers-us-md-baltimore-johns-hopkins-bayview-medical-center/",
-    "posted_date": "2026-11-23",
+    "url": "https://jobs.hopkinsmedicine.org/job/104198/physician-assistant-resident-emergency-medicine-physician-assistant-us-md-baltimore-johns-hopkins-bayview-medical-center/",
+    "posted_date": "2026-11-09",
     "is_new_grad_friendly": true,
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "MD",
     "probability": "moderate",
-    "specialty": "Internal Medicine",
-    "is_top_specialty": false,
+    "specialty": "Emergency Medicine (ER)",
+    "is_top_specialty": true,
     "is_outside_nyc": false,
     "borough_tag": null,
     "salary_range": null,
     "salary_min_annual": null,
     "shift": null,
     "requirements": [
-      "ACLS",
-      "BLS",
-      "DEA",
-      "Inpatient",
-      "On-Call"
+      "Trauma",
+      "ICU / Critical Care"
     ]
   },
   {
-    "id": "990d757bdaa9",
+    "id": "f351b677628c",
     "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "Physician Assistant I - Surgical",
+    "title": "NP or PA - Cardiothoracic Inpatient - Rotating shift",
     "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/101276/physician-assistant-i-surgical-physician-assistant-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-09-16",
-    "is_new_grad_friendly": true,
-    "match_reason": "New Grad Welcome: 'physician assistant i'",
-    "hub": "MD",
-    "probability": "high",
-    "specialty": "Surgery",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null,
-    "salary_range": null,
-    "salary_min_annual": null,
-    "shift": "Rotating",
-    "requirements": [
-      "Inpatient"
-    ]
-  },
-  {
-    "id": "11dd06a289aa",
-    "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "NP or PA - Cardiothoracic Inpatient",
-    "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/96455/np-or-pa-cardiothoracic-inpatient-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-08-12",
+    "url": "https://jobs.hopkinsmedicine.org/job/101549/aprn-pa-cardiothoracic-inpatient-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-08-20",
     "is_new_grad_friendly": true,
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "MD",
@@ -199,30 +174,6 @@
       "ACLS",
       "BLS",
       "ICU / Critical Care",
-      "Inpatient"
-    ]
-  },
-  {
-    "id": "7376d89c4c7d",
-    "hospital": "Sibley Memorial Hospital (Johns Hopkins)",
-    "title": "Malignant Hematology Oncology Inpatient - Acute Care NP / PA",
-    "location": "Washington, DC (MD Border)",
-    "url": "https://jobs.hopkinsmedicine.org/job/84275/app-oncology-breast-gyn-nursing-us-dc-washington-sibley-memorial-hospital/",
-    "posted_date": "2026-09-22",
-    "is_new_grad_friendly": true,
-    "match_reason": "Standard PA listing (typical hospital boilerplate)",
-    "hub": "MD",
-    "probability": "moderate",
-    "specialty": "Emergency Medicine (ER)",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null,
-    "salary_range": null,
-    "salary_min_annual": null,
-    "shift": "Weekends",
-    "requirements": [
-      "ACLS",
-      "BLS",
       "Inpatient"
     ]
   },
@@ -253,39 +204,16 @@
     ]
   },
   {
-    "id": "6f0263094020",
-    "hospital": "Johns Hopkins Medicine (Johns Hopkins Bayview Medical Center)",
-    "title": "Physician Assistant Resident - Emergency Medicine",
-    "location": "Baltimore, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/104198/physician-assistant-resident-emergency-medicine-physician-assistant-us-md-baltimore-johns-hopkins-bayview-medical-center/",
-    "posted_date": "2026-11-09",
+    "id": "11dd06a289aa",
+    "hospital": "Suburban Hospital (Johns Hopkins)",
+    "title": "NP or PA - Cardiothoracic Inpatient",
+    "location": "Bethesda, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/96455/np-or-pa-cardiothoracic-inpatient-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-08-12",
     "is_new_grad_friendly": true,
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "MD",
     "probability": "moderate",
-    "specialty": "Emergency Medicine (ER)",
-    "is_top_specialty": true,
-    "is_outside_nyc": false,
-    "borough_tag": null,
-    "salary_range": null,
-    "salary_min_annual": null,
-    "shift": null,
-    "requirements": [
-      "Trauma",
-      "ICU / Critical Care"
-    ]
-  },
-  {
-    "id": "7afb2d572114",
-    "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "Physician Assistant I - Neurosurgery",
-    "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/96971/physician-assistant-neurosurgery-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-04-03",
-    "is_new_grad_friendly": true,
-    "match_reason": "New Grad Welcome: 'physician assistant i'",
-    "hub": "MD",
-    "probability": "high",
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
@@ -294,8 +222,10 @@
     "salary_min_annual": null,
     "shift": "Rotating",
     "requirements": [
-      "Inpatient",
-      "On-Call"
+      "ACLS",
+      "BLS",
+      "ICU / Critical Care",
+      "Inpatient"
     ]
   },
   {
@@ -325,16 +255,42 @@
     ]
   },
   {
-    "id": "f351b677628c",
-    "hospital": "Suburban Hospital (Johns Hopkins)",
-    "title": "NP or PA - Cardiothoracic Inpatient - Rotating shift",
-    "location": "Bethesda, MD",
-    "url": "https://jobs.hopkinsmedicine.org/job/101549/aprn-pa-cardiothoracic-inpatient-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
-    "posted_date": "2026-08-20",
+    "id": "2d72fb43ce3e",
+    "hospital": "Johns Hopkins Medicine (Johns Hopkins Bayview Medical Center)",
+    "title": "APP (NP or PA) Hospitalist",
+    "location": "Baltimore, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/104720/app-np-or-pa-hospitalist-advanced-practice-providers-us-md-baltimore-johns-hopkins-bayview-medical-center/",
+    "posted_date": "2026-11-23",
     "is_new_grad_friendly": true,
     "match_reason": "Standard PA listing (typical hospital boilerplate)",
     "hub": "MD",
     "probability": "moderate",
+    "specialty": "Internal Medicine",
+    "is_top_specialty": false,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": null,
+    "requirements": [
+      "ACLS",
+      "BLS",
+      "DEA",
+      "Inpatient",
+      "On-Call"
+    ]
+  },
+  {
+    "id": "7afb2d572114",
+    "hospital": "Suburban Hospital (Johns Hopkins)",
+    "title": "Physician Assistant I - Neurosurgery",
+    "location": "Bethesda, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/96971/physician-assistant-neurosurgery-advanced-practice-providers-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-04-03",
+    "is_new_grad_friendly": true,
+    "match_reason": "New Grad Welcome: 'physician assistant i'",
+    "hub": "MD",
+    "probability": "high",
     "specialty": "Surgery",
     "is_top_specialty": true,
     "is_outside_nyc": false,
@@ -343,9 +299,53 @@
     "salary_min_annual": null,
     "shift": "Rotating",
     "requirements": [
+      "Inpatient",
+      "On-Call"
+    ]
+  },
+  {
+    "id": "990d757bdaa9",
+    "hospital": "Suburban Hospital (Johns Hopkins)",
+    "title": "Physician Assistant I - Surgical",
+    "location": "Bethesda, MD",
+    "url": "https://jobs.hopkinsmedicine.org/job/101276/physician-assistant-i-surgical-physician-assistant-us-md-bethesda-suburban-hospital/",
+    "posted_date": "2026-09-16",
+    "is_new_grad_friendly": true,
+    "match_reason": "New Grad Welcome: 'physician assistant i'",
+    "hub": "MD",
+    "probability": "high",
+    "specialty": "Surgery",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Rotating",
+    "requirements": [
+      "Inpatient"
+    ]
+  },
+  {
+    "id": "7376d89c4c7d",
+    "hospital": "Sibley Memorial Hospital (Johns Hopkins)",
+    "title": "Malignant Hematology Oncology Inpatient - Acute Care NP / PA",
+    "location": "Washington, DC (MD Border)",
+    "url": "https://jobs.hopkinsmedicine.org/job/84275/app-oncology-breast-gyn-nursing-us-dc-washington-sibley-memorial-hospital/",
+    "posted_date": "2026-09-22",
+    "is_new_grad_friendly": true,
+    "match_reason": "Standard PA listing (typical hospital boilerplate)",
+    "hub": "MD",
+    "probability": "moderate",
+    "specialty": "Emergency Medicine (ER)",
+    "is_top_specialty": true,
+    "is_outside_nyc": false,
+    "borough_tag": null,
+    "salary_range": null,
+    "salary_min_annual": null,
+    "shift": "Weekends",
+    "requirements": [
       "ACLS",
       "BLS",
-      "ICU / Critical Care",
       "Inpatient"
     ]
   },
@@ -3032,6 +3032,32 @@
     ]
   },
   {
+    "id": "9e20a7e0f2b4",
+    "hospital": "NYU Langone Health",
+    "title": "PA or NP - Outpatient - Internal Medicine - Murray Hill , Manhattan",
+    "location": "New York, NY",
+    "url": "https://jobs.nyulangone.org/job/24127105/pa-or-np-outpatient-internal-medicine-murray-hill-manhattan-new-york-ny/",
+    "posted_date": "2026-11-09",
+    "is_new_grad_friendly": true,
+    "match_reason": "2+ Years Preferred: 'experience is preferred'",
+    "hub": "NYC",
+    "probability": "lower",
+    "specialty": "Internal Medicine",
+    "is_top_specialty": false,
+    "is_outside_nyc": false,
+    "borough_tag": "Manhattan",
+    "salary_range": "$162k \u2013 $193k/yr",
+    "salary_min_annual": 162387,
+    "shift": "Days",
+    "requirements": [
+      "ACLS",
+      "PALS",
+      "BLS",
+      "Inpatient",
+      "Outpatient / Clinic"
+    ]
+  },
+  {
     "id": "9d04c5d7fec4",
     "hospital": "NYU Langone Health",
     "title": "Nurse Practitioner or Physician Assistant - Critical Care - Full Time Days",
@@ -3058,32 +3084,6 @@
       "Trauma",
       "ICU / Critical Care",
       "Inpatient"
-    ]
-  },
-  {
-    "id": "9e20a7e0f2b4",
-    "hospital": "NYU Langone Health",
-    "title": "PA or NP - Outpatient - Internal Medicine - Murray Hill , Manhattan",
-    "location": "New York, NY",
-    "url": "https://jobs.nyulangone.org/job/24127105/pa-or-np-outpatient-internal-medicine-murray-hill-manhattan-new-york-ny/",
-    "posted_date": "2026-11-09",
-    "is_new_grad_friendly": true,
-    "match_reason": "2+ Years Preferred: 'experience is preferred'",
-    "hub": "NYC",
-    "probability": "lower",
-    "specialty": "Internal Medicine",
-    "is_top_specialty": false,
-    "is_outside_nyc": false,
-    "borough_tag": "Manhattan",
-    "salary_range": "$162k \u2013 $193k/yr",
-    "salary_min_annual": 162387,
-    "shift": "Days",
-    "requirements": [
-      "ACLS",
-      "PALS",
-      "BLS",
-      "Inpatient",
-      "Outpatient / Clinic"
     ]
   },
   {
